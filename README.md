@@ -50,10 +50,10 @@ Datas de Entregas<br id=b>
 
 - [x]  Kick-off -  21/08/2023
 - [x]  Sprint 01 - 04/09/2023
-- [X]  Sprint 02 - 25/09/2023
-- [X]  Sprint 03 - 16/10/2023
-- [X]  Sprint 04 - 06/11/2023
-- [X]  Feira de Soluções  - 12/12
+- [ ]  Sprint 02 - 25/09/2023
+- [ ]  Sprint 03 - 16/10/2023
+- [ ]  Sprint 04 - 06/11/2023
+- [ ]  Feira de Soluções  - 12/12
 
 <h2>
 Tecnologias Utilizadas<br id=c>
