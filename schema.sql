@@ -13,11 +13,11 @@ CREATE TABLE centro_de_resultados (
 
 CREATE TABLE status_apontamentos (
     apontamento_id INT,
-    avaliador_matricula INT,-----
+    avaliador_matricula INT,
     aprovado BOOLEAN,
     justificativa TEXT,
     FOREIGN KEY (apontamento_id) REFERENCES apontamentos(id),
-    FOREIGN KEY (avaliador_matricula) REFERENCES usuario(matricula)------
+    FOREIGN KEY (avaliador_matricula) REFERENCES usuario(matricula)
 );
 
 CREATE TABLE apontamentos (
