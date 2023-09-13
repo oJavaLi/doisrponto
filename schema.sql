@@ -17,7 +17,7 @@ CREATE TABLE status_apontamentos (
     aprovado BOOLEAN,
     justificativa TEXT,
     FOREIGN KEY (apontamento_id) REFERENCES apontamentos(id),
-    FOREIGN KEY (avaliador_matricula) REFERENCES usuario(matricula)
+    FOREIGN KEY (avaliador_matricula) REFERENCES usuarios(matricula)
 );
 
 CREATE TABLE apontamentos (
@@ -28,6 +28,6 @@ CREATE TABLE apontamentos (
     justificativa TEXT,
     usuario_matricula INT,
     centro_resultados_id INT,
-    FOREIGN KEY (usuario_matricula) REFERENCES usuario(matricula),
+    FOREIGN KEY (usuario_matricula) REFERENCES usuarios(matricula),
     FOREIGN KEY (centro_resultados_id) REFERENCES centro_de_resultados(id)
 );
