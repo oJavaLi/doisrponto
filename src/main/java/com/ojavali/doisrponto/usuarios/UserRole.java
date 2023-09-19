@@ -1,4 +1,5 @@
-package com.ojavali.doisrponto;
+package com.ojavali.doisrponto.usuarios;
+
 public enum UserRole {
     RH,
     GESTOR,

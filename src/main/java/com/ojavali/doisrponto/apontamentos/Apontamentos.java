@@ -1,4 +1,4 @@
-package com.ojavali.doisrponto;
+package com.ojavali.doisrponto.apontamentos;
 
 import lombok.Getter;
 import lombok.Setter;

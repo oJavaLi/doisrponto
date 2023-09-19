@@ -1,4 +1,4 @@
-package com.ojavali.doisrponto;
+package com.ojavali.doisrponto.usuarios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
