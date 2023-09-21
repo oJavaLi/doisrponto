@@ -1,5 +1,6 @@
 package com.ojavali.doisrponto.apontamentos;
 
+import com.ojavali.doisrponto.usuarios.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 
