@@ -1,17 +1,29 @@
 package com.ojavali.doisrponto.apontamentos;
 
-import com.ojavali.doisrponto.usuarios.UserRole;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.*;
+import java.io.Serializable;
+
 
 @Getter
 @Setter
 
-public class Apontamentos {
+
+@Entity
+@Table(name = "apontamentos")
+public class Apontamentos implements Serializable {
+    private static final long seriaVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private String senha;
-    private String email;
-    private UserRole role;
+    private ApontamentosCategoria categoria;
+    private String data_hora_inicio;
+    private String data_hora_fim;
+    private String justificativa;
+    private int usuario_matricula;
+    private int centro_resultados_id;
+    
 
 }
