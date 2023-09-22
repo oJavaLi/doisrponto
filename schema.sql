@@ -31,3 +31,5 @@ CREATE TABLE apontamentos (
     FOREIGN KEY (usuario_matricula) REFERENCES usuarios(matricula),
     FOREIGN KEY (centro_resultados_id) REFERENCES centro_de_resultados(id)
 );
+
+ALTER TABLE usuarios ADD COLUMN email VARCHAR(255);
