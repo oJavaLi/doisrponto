@@ -1,5 +1,5 @@
 package com.ojavali.doisrponto.usuarios;
 
-public class UserRecord {
+public record UserRecord(int matricula,String nome,String senha,UserRole categoria,String email){
     
 }

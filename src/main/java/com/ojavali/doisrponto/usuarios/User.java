@@ -10,14 +10,16 @@ import lombok.Setter;
 @Entity
 public class User {
 	@Id
-	private Long matricula;
+	private int matricula;
 
 	private String nome;
 
 	private String senha;
 
+	@Column(name = "categoria")
+	private UserRole categoria;
+
 	private String email;
 
-	@Column(name = "categoria")
-	private UserRole role;
+
 }

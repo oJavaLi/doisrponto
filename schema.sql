@@ -12,6 +12,7 @@ CREATE TABLE centro_de_resultados (
 );
 
 CREATE TABLE status_apontamentos (
+    id SERIAL PRIMARY KEY,
     apontamento_id INT,
     avaliador_matricula INT,
     aprovado BOOLEAN,
