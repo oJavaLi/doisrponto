@@ -11,16 +11,6 @@ CREATE TABLE centro_de_resultados (
     nome_cliente VARCHAR(255)
 );
 
-CREATE TABLE status_apontamentos (
-    id SERIAL PRIMARY KEY,
-    apontamento_id INT,
-    avaliador_matricula INT,
-    aprovado BOOLEAN,
-    justificativa TEXT,
-    FOREIGN KEY (apontamento_id) REFERENCES apontamentos(id),
-    FOREIGN KEY (avaliador_matricula) REFERENCES usuarios(matricula)
-);
-
 CREATE TABLE apontamentos (
     categoria VARCHAR(255),
     data_hora_inicio TIMESTAMP,
@@ -31,6 +21,16 @@ CREATE TABLE apontamentos (
     centro_resultados_id INT,
     FOREIGN KEY (usuario_matricula) REFERENCES usuarios(matricula),
     FOREIGN KEY (centro_resultados_id) REFERENCES centro_de_resultados(id)
+);
+
+CREATE TABLE status_apontamentos (
+    id SERIAL PRIMARY KEY,
+    apontamento_id INT,
+    avaliador_matricula INT,
+    aprovado BOOLEAN,
+    justificativa TEXT,
+    FOREIGN KEY (apontamento_id) REFERENCES apontamentos(id),
+    FOREIGN KEY (avaliador_matricula) REFERENCES usuarios(matricula)
 );
 
 ALTER TABLE usuarios ADD COLUMN email VARCHAR(255);

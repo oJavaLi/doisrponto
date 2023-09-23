@@ -3,7 +3,7 @@ package com.ojavali.doisrponto.status_apontamentos;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.StandardException;
+// import lombok.experimental.StandardException;
 
 @Setter
 @Getter

@@ -8,7 +8,7 @@ const UserCategoria = document.querySelector(".role");
 
 function cadastrar() {
 
-    fetch("http://localhost:1234/cadastrarApontamento",
+    fetch("http://localhost:1234/cadastrarUsuario",
     {
         headers: {
             'Accept':'application/json',

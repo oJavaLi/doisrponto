@@ -1,8 +1,8 @@
 package com.ojavali.doisrponto.centro_de_resultado;
 
-import com.ojavali.doisrponto.apontamentos.Apontamentos;
-import com.ojavali.doisrponto.apontamentos.ApontamentosRecord;
-import com.ojavali.doisrponto.apontamentos.ApontamentosRepository;
+// import com.ojavali.doisrponto.apontamentos.Apontamentos;
+// import com.ojavali.doisrponto.apontamentos.ApontamentosRecord;
+// import com.ojavali.doisrponto.apontamentos.ApontamentosRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
