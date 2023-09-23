@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style_cadastro.css">
     <title>Criar Usuário</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="./script.js" defer></script>
     
 </head>
 
@@ -29,26 +30,26 @@
         <h2>Cadastro de Usuários</h2>
         <form>
             <label class="form-label" for="name">Nome:</label>
-            <input class="form-input" type="text" id="name" name="name" required>
+            <input type="text" class="name" id="name" name="name" required>
 
             <label class="form-label" for="matricula">Matrícula:</label>
-            <input class="form-input" type="text" id="matricula" name="matricula" required>
+            <input type="text" class="matricula" id="matricula" name="matricula" required>
 
             <label class="form-label" for="email">Email:</label>
-            <input class="form-input" type="email" id="email" name="email" required>
+            <input type="email" class="email" id="email" name="email" required>
 
             <label class="form-label" for="password">Senha:</label>
-            <input class="form-input" type="password" id="password" name="password" required>
+            <input type="password" class="password" id="password" name="password" required>
 
             <label class="form-label" for="role">Role de Usuário:</label>
-            <select class="form-input" id="role" name="role" required>
+            <select id="role" class="role" name="role" required>
                 <option value="GESTOR">GESTOR</option>
                 <option value="RH">RECURSOS HUMANOS</option>
                 <option value="FUNCIONARIO">FUNCIONÁRIO</option>
             </select>
 
-            <button class="create-button" type="submit"><i class="fas fa-user-plus"></i> Criar Usuário</button>
-            <button class="create-button-list" type="submit"></i> Listar Usuários</button>
+            <button class="submit" type="submit"><i class="fas fa-user-plus"></i> Criar Usuário</button>
+            <button class="submit2" type="submit2"></i> Listar Usuários</button>
 
         </form>
     </div>
