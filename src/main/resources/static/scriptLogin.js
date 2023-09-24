@@ -33,6 +33,11 @@ loginForm.addEventListener('submit', function (event) {
                 console.error("Falha na autenticação");
             }
         })
+        .then(token => {
+            sessionStorage.setItem('token', token);
+            // Redirecione para a página desejada após o login bem-sucedido
+            window.location.href = '/listarApontamentos.html';
+        })
         .catch(error => {
             console.error("Erro na solicitação:", error);
         });
