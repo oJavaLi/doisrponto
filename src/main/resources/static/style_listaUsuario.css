@@ -120,3 +120,22 @@ th{
 tr:hover{
 	background-color: #f7f5f5;
 }
+
+/* Button styles with Font Awesome icons and different colors */
+      .view-button {
+        background-color: #3498db;
+        /* Blue */
+        color: #fff;
+      }
+
+      .edit-button {
+        background-color: #f39c12;
+        /* Orange */
+        color: #fff;
+      }
+
+      .remove-button {
+        background-color: #e74c3c;
+        /* Red */
+        color: #fff;
+      }
