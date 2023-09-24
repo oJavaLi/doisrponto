@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apontamentos</title>
+    <!-- Include Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9fafb;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: #1e293b;
+        color: #fff;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header img {
+        max-height: 42px;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        color: #fff;
+      }
+
+      .user-icon {
+        margin-right: 10px;
+      }
+
+      .user-icon i {
+        font-size: 2.5rem; /* Adjust the size as needed */
+        margin-left: 0.5rem;
+      }
+
+      .user-details {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .user-name {
+        font-size: 1.2rem; /* Adjust the size as needed */
+        text-align: right;
+      }
+
+      .user-matricula {
+        font-size: 0.9rem; /* Adjust the size as needed */
+      }
+
+      .apontamento-list {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        padding: 20px;
+        flex-grow: 1;
+      }
+
+      .apontamento-list h2 {
+        text-align: center;
+        color: #1e293b;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+      }
+
+      th:last-child,
+      td:last-child {
+        text-align: center;
+      }
+
+      /* Button styles with Font Awesome icons and different colors */
+      .view-button {
+        background-color: #3498db;
+        /* Blue */
+        color: #fff;
+      }
+
+      .edit-button {
+        background-color: #f39c12;
+        /* Orange */
+        color: #fff;
+      }
+
+      .remove-button {
+        background-color: #e74c3c;
+        /* Red */
+        color: #fff;
+      }
+
+      .apontamento-list button {
+        border: none;
+        border-radius: 4px;
+        padding: 0.3rem 0.6rem;
+        cursor: pointer;
+        font-size: 0.8rem;
+      }
+
+      .apontamento-list button:hover {
+        opacity: 0.8;
+      }
+
+      footer {
+        background-color: #1e293b;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img src="/logo.png" alt="Logo" />
+      <div class="user-info">
+        <div class="user-details">
+          <div class="user-name">João Ney</div>
+          <div class="user-matricula">Matrícula: 12345</div>
+        </div>
+        <div class="user-icon">
+          <i class="fas fa-user-circle fa-2x"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="apontamento-list" id="tabelaApontamentos">
+      <h2>Apontamentos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Categoria</th>
+            <th>Início</th>
+            <th>Fim</th>
+            <th>Justificativa</th>
+            <th>Aprovado Por</th>
+            <th>Centro de Resultados</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="">
+          <!-- Pegar da API -->
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>Equipe Javali</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function fetchApontamentosAndPopulateTable() {
+          const token = sessionStorage.getItem("token");
+          if (!token) {
+            window.location.href = "/index.html";
+          }
+
+          const apiUrl = "/api/apontamentos";
+          const headers = new Headers();
+          headers.append("Authorization", token);
+          const requestOptions = {
+            method: "GET",
+            headers: headers,
+          };
+          fetch(apiUrl, requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              // Reference to the table body
+              const tableBody = document.querySelector(
+                "#tabelaApontamentos tbody"
+              );
+
+              // Loop through the retrieved data and populate the table
+              data.forEach((apontamento) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${apontamento.id}</td>
+                    <td>${apontamento.categoria}</td>
+                    <td>${apontamento.data_hora_inicio}</td>
+                    <td>${apontamento.data_hora_fim}</td>
+                    <td>${apontamento.justificativa}</td>
+                    <td>-</td>
+                    <td>${apontamento.centro_resultados_id}</td>
+                    <td>
+                        <button class="view-button">
+                            <i class="fas fa-eye"></i> Visualizar
+                        </button>
+                        <button class="edit-button">
+                            <i class="fas fa-edit"></i> Corrigir
+                        </button>
+                        <button class="remove-button">
+                            <i class="fas fa-trash-alt"></i> Cancelar
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+              });
+            })
+            .catch((error) => {
+              console.error("Error fetching data:", error);
+            });
+        }
+
+        // Call the function to fetch and populate the table with the auth token
+        fetchApontamentosAndPopulateTable();
+      });
+    </script>
+  </body>
+</html>
