@@ -106,7 +106,7 @@ Aplicação<br id=x>
 
 <h2>Equipe<br id="g"></h2>
 
-![Apresentação de Portfólio Tecnologia Moderno Azul Branco](https://github.com/oJavaLi/2RPonto/assets/107864553/11a89eec-35af-435d-b3a9-95d690d5ffba)
+![Apresentação de Portfólio Tecnologia Moderno Azul Branco (1)](https://github.com/oJavaLi/doisrponto/assets/107864553/69785d41-cc91-4eb4-a592-1fe3c6bee77d)
 
 
 <table>
