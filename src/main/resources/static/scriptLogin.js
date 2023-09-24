@@ -24,21 +24,23 @@ loginForm.addEventListener('submit', function (event) {
         },
         body: JSON.stringify(loginData)
     })
-        .then(response => {
-            if (response.status === 200) {
-                // Autenticação bem-sucedida, você pode redirecionar o usuário para outra página ou executar ações apropriadas.
-                console.log("Autenticação bem-sucedida");
-            } else {
-                // Autenticação falhou, você pode exibir uma mensagem de erro ao usuário.
-                console.error("Falha na autenticação");
-            }
-        })
-        .then(token => {
-            sessionStorage.setItem('token', token);
-            // Redirecione para a página desejada após o login bem-sucedido
-            window.location.href = '/listarApontamentos.html';
-        })
-        .catch(error => {
-            console.error("Erro na solicitação:", error);
-        });
+    .then(response => {
+        if (response.status === 200) {
+            // Autenticação bem-sucedida, você pode redirecionar o usuário para outra página ou executar ações apropriadas.
+            console.log("Autenticação bem-sucedida");
+            response.text().then(token => {
+                sessionStorage.setItem('token', token);
+                // Redirecione para a página desejada após o login bem-sucedido
+                window.location.href = '/listarApontamentos.html';
+            })
+        } else {
+            // Autenticação falhou, você pode exibir uma mensagem de erro ao usuário.
+            console.error("Falha na autenticação");
+            alert("Credenciais Inválidas!");
+        }
+    })
+    .catch(error => {
+        console.error("Erro na solicitação:", error);
+        alert("Falha na autenticação!")
+    });
 });

@@ -25,7 +25,7 @@
 
 	<div class="user-creation-form">
         <h2>Usuários Cadastrados</h2>
-        <table>
+        <table id="tabelaUsuarios">
 			<thead>
     <tr>
         <th>Nome</th>
@@ -34,28 +34,74 @@
         <th>Role de Usuário</th>
     </tr>
 	</thead>    
-	<tbody>
-	<tr>
-        <td>Marcelo Diógenes</td>
-        <td>123456</td>
-        <td>marcelo.diogenes@fatec.sp.gov.br</td>
-        <td>Gestor</td>
-    </tr>
-    <tr>
-        <td>Maria Santos</td>
-        <td>345678</td>
-        <td>maria.santos@fatec.sp.gov.br</td>
-        <td>Colaborador</td>
-    </tr>
-	
-</tbody>
-</table>
+        <tbody>
+          <!-- Pegar da API -->
+        </tbody>
+        
+        </table>
+    
 			<button class="create-button" type="submit"><i class="fas fa-user-plus"></i> Criar Usuário</button>
     </div>
 
     <footer>
         <p>Equipe Javali</p>
     </footer>
+    
+       <script>
+      document.addEventListener("DOMContentLoaded", function () {
+		  function fetUsuariosAndPopulateTable(){
+			  const token = sessionStorage.getItem("token");
+			    if (!token) {
+            window.location.href = "/index.html";
+          }	  
+          const apiUrl = "/api/usuarios";
+          const headers = new Headers();
+          headers.append("Authorization", token);
+          const requestOptions = {
+            method: "GET",
+            headers: headers,
+          };			  
+          fetch(apiUrl, requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              // Reference to the table body
+              const tableBody = document.querySelector(
+                "#tabelaUsuarios tbody"
+              );
+              // Loop through the retrieved data and populate the table
+              data.forEach((usuario) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${usuario.matricula}</td>
+                    <td>${usuario.nome}</td>
+                    <td>${usuario.categoria}</td>
+                    <td>${usuario.email}</td>
+                    <td>
+                        <button class="view-button">
+                            <i class="fas fa-eye"></i> Visualizar
+                        </button>
+                        <button class="edit-button">
+                            <i class="fas fa-edit"></i> Corrigir
+                        </button>
+                        <button class="remove-button">
+                            <i class="fas fa-trash-alt"></i> Cancelar
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+              });
+            })
+            .catch((error) => {
+              console.error("Error fetching data:", error);
+            });
+        }
+
+        // Call the function to fetch and populate the table with the auth token
+        fetUsuariosAndPopulateTable();
+      });
+    </script>
+			  
+
 </body>
 
 </html>
