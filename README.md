@@ -51,7 +51,7 @@ Datas de Entregas<br id=b>
 - [x]  Kick-off -  21/08/2023
 - [x]  Sprint 01 - 04/09/2023
 - [x]  Sprint 02 - 25/09/2023
-- [ ]  Sprint 03 - 16/10/2023
+- [x]  Sprint 03 - 16/10/2023
 - [ ]  Sprint 04 - 06/11/2023
 - [ ]  Feira de Soluções  - 12/12
 
@@ -70,7 +70,7 @@ Tecnologias Utilizadas<br id=c>
 
 <h2>Sprint Backlog<br id=y></h2>
 
-![2](https://github.com/oJavaLi/2RPonto/assets/107864553/1fffbd9d-406c-47df-9bfd-457d9f848d09)
+![Apresentação de Portfólio Tecnologia Moderno Azul Branco](https://github.com/oJavaLi/doisrponto/assets/107864553/0f803b0a-f88d-4ba5-98b0-225748935237)
 
 <h2>
 Aplicação<br id=x>
