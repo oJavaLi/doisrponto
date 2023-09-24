@@ -31,7 +31,8 @@
         <th>Nome</th>
         <th>Matrícula</th>
         <th>Email</th>
-        <th>Role de Usuário</th>
+        <th>Categoria</th>
+        <th>Ações</th>
     </tr>
 	</thead>    
         <tbody>
@@ -72,10 +73,10 @@
               data.forEach((usuario) => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
-                    <td>${usuario.matricula}</td>
                     <td>${usuario.nome}</td>
-                    <td>${usuario.categoria}</td>
+                    <td>${usuario.matricula}</td>
                     <td>${usuario.email}</td>
+                    <td>${usuario.categoria}</td>
                     <td>
                         <button class="view-button">
                             <i class="fas fa-eye"></i> Visualizar
