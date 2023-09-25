@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_cadastro.css">
+    <title>Criar Usuário</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="./script.js" defer></script>
+    
+</head>
+
+<body>
+    <header>
+        <img src="./images/2RPONTO_BRANCO.png" alt="Logo">
+        <div class="user-info">
+            <div class="user-icon">
+                <i class="fas fa-user-circle fa-2x"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-name">John Doe</div>
+                <div class="user-matricula">Matrícula: 12345</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="user-creation-form">
+        <h2>Cadastro de Usuários</h2>
+        <form>
+            <label class="form-label" for="name">Nome:</label>
+            <input type="text" class="name" id="name" name="name" required>
+
+            <label class="form-label" for="matricula">Matrícula:</label>
+            <input type="text" class="matricula" id="matricula" name="matricula" required>
+
+            <label class="form-label" for="email">Email:</label>
+            <input type="email" class="email" id="email" name="email" required>
+
+            <label class="form-label" for="password">Senha:</label>
+            <input type="password" class="password" id="password" name="password" required>
+
+            <label class="form-label" for="role">Role de Usuário:</label>
+            <select id="role" class="role" name="role" required>
+                <option value="GESTOR">GESTOR</option>
+                <option value="RH">RECURSOS HUMANOS</option>
+                <option value="FUNCIONARIO">FUNCIONÁRIO</option>
+            </select>
+
+            <button class="submit" type="submit"><i class="fas fa-user-plus"></i> Criar Usuário</button>
+            <button class="submit2" type="submit2"></i> Listar Usuários</button>
+
+        </form>
+    </div>
+
+    <footer>
+        <p>Equipe Javali</p>
+    </footer>
+</body>
+
+</html>

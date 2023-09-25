@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Usuário</title>
+    <title>Esqueci a Senha</title>
     <!-- Include Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -25,40 +25,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            min-height: 3rem;
         }
 
         header img {
             max-height: 42px;
         }
 
-        .user-info {
-            display: flex;
-            align-items: center;
-            color: #fff;
-        }
-
-        .user-icon {
-            margin-right: 10px;
-        }
-
-        .user-icon i {
-            font-size: 2rem; /* Adjust the size as needed */
-        }
-
-        .user-details {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .user-name {
-            font-size: 1.2rem; /* Adjust the size as needed */
-        }
-
-        .user-matricula {
-            font-size: 0.9rem; /* Adjust the size as needed */
-        }
-
-        .user-creation-form {
+        .forgot-password-form {
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -67,7 +41,7 @@
             flex-grow: 1;
         }
 
-        .user-creation-form h2 {
+        .forgot-password-form h2 {
             text-align: center;
             color: #1e293b;
         }
@@ -85,7 +59,7 @@
         }
 
         /* Button styles with Font Awesome icons and different colors */
-        .create-button {
+        .send-email-button {
             background-color: #3498db;
             /* Blue */
             color: #fff;
@@ -96,7 +70,7 @@
             font-size: 1rem;
         }
 
-        .create-button:hover {
+        .send-email-button:hover {
             opacity: 0.8;
         }
 
@@ -111,47 +85,34 @@
 
 <body>
     <header>
-        <img src="/logo.jpeg" alt="Logo">
-        <div class="user-info">
-            <div class="user-icon">
-                <i class="fas fa-user-circle fa-2x"></i>
-            </div>
-            <div class="user-details">
-                <div class="user-name">John Doe</div>
-                <div class="user-matricula">Matrícula: 12345</div>
-            </div>
-        </div>
+        <img src="/images/2RPONTO_BRANCO.png" alt="Logo">
     </header>
 
-    <div class="user-creation-form">
-        <h2>Cadatro de Usuários</h2>
-        <form>
-            <label class="form-label" for="name">Nome:</label>
-            <input class="form-input" type="text" id="name" name="name" required>
-    
-            <label class="form-label" for="matricula">Matrícula:</label>
-            <input class="form-input" type="text" id="matricula" name="matricula" required>
-    
+    <div class="forgot-password-form">
+        <h2>Esqueci a Senha</h2>
+        <p>Por favor, insira seu endereço de email abaixo e enviaremos instruções para redefinir sua senha.</p>
+        <form id="forgotPasswordForm">
             <label class="form-label" for="email">Email:</label>
             <input class="form-input" type="email" id="email" name="email" required>
-    
-            <label class="form-label" for="password">Senha:</label>
-            <input class="form-input" type="password" id="password" name="password" required>
-    
-            <label class="form-label" for="role">Role de Usuário:</label>
-            <select class="form-input" id="role" name="role" required>
-                <option value="GESTOR">GESTOR</option>
-                <option value="RH">RECURSOS HUMANOS</option>
-                <option value="FUNCIONARIO">FUNCIONÁRIO</option>
-            </select>
-    
-            <button class="create-button" type="submit"><i class="fas fa-user-plus"></i> Criar Usuário</button>
+
+            <button class="send-email-button" type="submit"><i class="fas fa-envelope"></i> Enviar Email</button>
         </form>
     </div>
 
     <footer>
         <p>Equipe Javali</p>
     </footer>
+
+    <script>
+        const form = document.getElementById('forgotPasswordForm');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = form.elements.email.value;
+            window.location.href = `/recuperarSenha.html?email=${email}`;
+        });
+    </script>
 </body>
 
 </html>

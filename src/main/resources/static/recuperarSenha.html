@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pré-visualização de Email</title>
+    <!-- Include Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9fafb;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: #1e293b;
+        color: #fff;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 3rem;
+      }
+
+      header img {
+        max-height: 42px;
+      }
+
+      .logo {
+        max-height: 60px;
+      }
+
+      .email-preview-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        padding: 20px;
+        flex-grow: 1;
+      }
+
+      .email-preview-card h2 {
+        text-align: center;
+        color: #1e293b;
+      }
+
+      .email-content {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 20px;
+        background-color: #f4f4f4;
+        line-height: 1.5;
+      }
+
+      .email-content p {
+        margin: 0;
+      }
+
+      .logo-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      footer {
+        background-color: #1e293b;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img src="/images/2RPONTO_BRANCO.png" alt="Logo" />
+    </header>
+
+    <div class="email-preview-card">
+      <h2>Pré-visualização de Email</h2>
+      <div class="email-content" id="email-content">
+        <p><strong>Assunto:</strong> Solicitação de Redefinição de Senha</p>
+        <p><strong>De:</strong> suporte@empresa.com</p>
+        <p><strong>Para:</strong> <span id="email"></span></p>
+        <p><strong>Data:</strong> <span id="datetime"></span></p>
+        <p><strong>Mensagem:</strong></p>
+        <div
+          style="
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+          "
+        >
+          <div class="logo-container">
+            <img class="logo" src="/images/2RPONTO.png" alt="Logo" />
+          </div>
+          <h3 style="text-align: center">Recuperação de Senha</h3>
+          <p>Olá <span id="name"></span>,</p>
+          <p>
+            Você está recebendo este email porque solicitou a redefinição de sua
+            senha.
+          </p>
+          <p>Para redefinir sua senha, clique no link abaixo:</p>
+          <p style="text-align: center; padding: 1rem">
+            <a
+              id="reset-link"
+              href="#"
+              style="
+                display: inline-block;
+                background-color: #3498db;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 4px;
+                text-decoration: none;
+              "
+              >Redefinir Senha</a
+            >
+          </p>
+          <p>
+            Se você não solicitou a redefinição de senha, pode ignorar este
+            email.
+          </p>
+          <br />
+          <p>Atenciosamente,</p>
+          <p>A Equipe de Suporte</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Equipe Javali</p>
+    </footer>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailParam = urlParams.get('email');
+
+        if (emailParam) {
+            const apiUrl = `/recover-password?email=${encodeURIComponent(emailParam)}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('name').textContent = data.name;
+                    document.getElementById('email').textContent = emailParam;
+                    document.getElementById('datetime').textContent = data.dataEHora;
+                    document.getElementById('reset-link').href = `/redefinirSenha.html?email=${encodeURIComponent(emailParam)}&token=${data.token}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching email details:', error);
+                });
+        }
+    </script>
+  </body>
+</html>

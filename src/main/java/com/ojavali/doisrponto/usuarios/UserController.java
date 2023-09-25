@@ -1,6 +1,7 @@
 
 package com.ojavali.doisrponto.usuarios;
     
+// import com.ojavali.doisrponto.apontamentos.Apontamentos;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/users")
+@CrossOrigin("*")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -20,8 +22,10 @@ public class UserController {
     
     // Criação de usuário
     @PostMapping("/cadastrarUsuario")
-    public ResponseEntity<User> cadastrarUsuario(@RequestBody @Validated User user) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(user));
+    public ResponseEntity<User> cadastrarUsuario(@RequestBody @Validated UserRecord userRecord) {
+        var user = new User();
+        BeanUtils.copyProperties(userRecord, user);
+        return ResponseEntity.status(HttpStatus.OK).body(userRepository.save(user));
     }
 
     // Obter todos os usuários
@@ -32,7 +36,7 @@ public class UserController {
 
     // Obter um usuário com base no ID
     @GetMapping("/usuarios/{id}")
-    public ResponseEntity<Object> getUsuario(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Object> getUsuario(@PathVariable(value = "id") Integer id) {
         Optional<User> userOptional = userRepository.findById(id);
         
         if (userOptional.isPresent()) {
@@ -45,7 +49,7 @@ public class UserController {
 
     // Atualizar dados de um usuário
     @PutMapping("/usuarios/{id}")
-    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") Long id, @RequestBody User updatedUser) {
+    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") Integer id, @RequestBody User updatedUser) {
         Optional<User> userOptional = userRepository.findById(id);
         
         if (userOptional.isPresent()) {
@@ -60,7 +64,7 @@ public class UserController {
 
     // Deletar um usuário
     @DeleteMapping("/usuarios/{id}")
-    public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id") Integer id) {
         Optional<User> userOptional = userRepository.findById(id);
         
         if (userOptional.isPresent()) {

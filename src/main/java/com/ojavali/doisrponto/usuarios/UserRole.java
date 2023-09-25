@@ -4,6 +4,4 @@ public enum UserRole {
     RH,
     GESTOR,
     FUNCIONARIO
-
-
 }
