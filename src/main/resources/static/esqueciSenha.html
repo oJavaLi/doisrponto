@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueci a Senha</title>
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9fafb;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #1e293b;
+            color: #fff;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 3rem;
+        }
+
+        header img {
+            max-height: 42px;
+        }
+
+        .forgot-password-form {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .forgot-password-form h2 {
+            text-align: center;
+            color: #1e293b;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Button styles with Font Awesome icons and different colors */
+        .send-email-button {
+            background-color: #3498db;
+            /* Blue */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .send-email-button:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="/images/2RPONTO_BRANCO.png" alt="Logo">
+    </header>
+
+    <div class="forgot-password-form">
+        <h2>Esqueci a Senha</h2>
+        <p>Por favor, insira seu endereço de email abaixo e enviaremos instruções para redefinir sua senha.</p>
+        <form id="forgotPasswordForm">
+            <label class="form-label" for="email">Email:</label>
+            <input class="form-input" type="email" id="email" name="email" required>
+
+            <button class="send-email-button" type="submit"><i class="fas fa-envelope"></i> Enviar Email</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>Equipe Javali</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('forgotPasswordForm');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = form.elements.email.value;
+            window.location.href = `/recuperarSenha.html?email=${email}`;
+        });
+    </script>
+</body>
+
+</html>

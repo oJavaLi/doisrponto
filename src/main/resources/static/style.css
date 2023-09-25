@@ -55,3 +55,8 @@ body {
     height: auto;
     margin: 2rem auto;
 }
+
+.forgot-password {
+    margin-top: 3rem;
+    text-align: center;
+}

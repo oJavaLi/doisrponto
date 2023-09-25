@@ -34,3 +34,5 @@ CREATE TABLE status_apontamentos (
 );
 
 ALTER TABLE usuarios ADD COLUMN email VARCHAR(255);
+
+ALTER TABLE usuarios ADD COLUMN recover_password_token VARCHAR(255);
