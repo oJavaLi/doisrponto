@@ -130,13 +130,13 @@ Aplicação<br id=x>
   </tr>
     <tr>
     <td>Cauana</td>
-    <td>Desenvolvedora</td>
+    <td>Product Owner</td>
     <td><a href="https://github.com/Cauana">Github</a></td>
     <td><a href="https://www.linkedin.com/in/cauanadias/">Linked-In</a></td>
   </tr>
    <tr>
     <td>Jhonny</td>
-    <td>Product Owner</td>
+    <td>Desenvolvedor</td>
     <td><a href="https://github.com/dutrajy">Github</a></td>
     <td><a href="https://www.linkedin.com/in/jnydutra/">Linked-In</a></td>
   </tr>
