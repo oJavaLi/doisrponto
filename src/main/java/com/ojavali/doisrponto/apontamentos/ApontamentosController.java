@@ -57,4 +57,15 @@ public class ApontamentosController {
         apontamentosRepository.delete(produto0.get());
         return ResponseEntity.status(HttpStatus.OK).body("Apontamento deletado com sucesso!");
     }
+
+    @GetMapping("/apontamentos/matricula/{matricula}")
+    public ResponseEntity<List<Apontamentos>> getApontamentosPorMatricula(@PathVariable(value = "matricula") int matricula){
+        List<Apontamentos> apontamentos = apontamentosRepository.findByUsuarioMatricula(matricula);
+        if (apontamentos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(apontamentos);
+    }
+
+
 }

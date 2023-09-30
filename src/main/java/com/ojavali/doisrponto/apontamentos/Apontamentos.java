@@ -22,7 +22,7 @@ public class Apontamentos implements Serializable {
     private String data_hora_inicio;
     private String data_hora_fim;
     private String justificativa;
-    private int usuario_matricula;
+    private int usuarioMatricula;
     private int centro_resultados_id;
     
 

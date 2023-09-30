@@ -140,7 +140,8 @@
       <div class="user-info">
         <div class="user-details">
           <div class="user-name">João Ney</div>
-          <div class="user-matricula">Matrícula: 12345</div>
+          <div id="usernameDisplay"></div>
+
         </div>
         <div class="user-icon">
           <i class="fas fa-user-circle fa-2x"></i>
@@ -167,6 +168,7 @@
           <!-- Pegar da API -->
         </tbody>
       </table>
+      <button><a href="apontarHoraExtra.html">CRIAR HORA EXTRA</a></button>
     </div>
 
     <footer>
@@ -174,14 +176,27 @@
     </footer>
 
     <script>
+
       document.addEventListener("DOMContentLoaded", function () {
+        function getQueryParameter(name) {
+          const urlSearchParams = new URLSearchParams(window.location.search);
+          return urlSearchParams.get(name);
+        }
+
+        const username = getQueryParameter('username');
+
+        // Obtém o elemento <h1> pelo id
+        const usernameDisplay = document.getElementById('usernameDisplay');
+
+        // Define o texto do elemento <h1> com o valor do 'username'
+        usernameDisplay.textContent = `Matrícula: ${username}`; // Exemplo de mensagem de boas-vindas
         function fetchApontamentosAndPopulateTable() {
           const token = sessionStorage.getItem("token");
           if (!token) {
             window.location.href = "/index.html";
           }
 
-          const apiUrl = "/api/apontamentos";
+          const apiUrl = "/api/apontamentos/matricula/"+username;
           const headers = new Headers();
           headers.append("Authorization", token);
           const requestOptions = {
