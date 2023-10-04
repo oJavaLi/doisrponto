@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_sobreaviso.css">
+    <title>Apontamento de Sobreaviso</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="./script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img src="./images/2RPONTO_BRANCO.png" alt="Logo">
+        <div class="user-info">
+            <div class="user-icon">
+                <i class="fas fa-user-circle fa-2x"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-name">John Doe</div>
+                <div class="user-matricula">Matrícula: 12345</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hora-extra-form">
+        <h2>Apontamento de Sobreaviso</h2>
+        <form>
+            <label class="form-label" for="entrada">Entrada:</label>
+            <input type="datetime-local" class="entrada" id="entrada" name="entrada" required>
+
+            <label class="form-label" for="saida">Saída:</label>
+            <input type="datetime-local" class="saida" id="saida" name="saida" required>
+
+            <label class="form-label" for="cliente">Cliente:</label>
+            <input type="text" class="cliente" id="cliente" name="cliente" required>
+
+            <label class="form-label" for="projeto">Projeto:</label>
+            <input type="text" class="projeto" id="projeto" name="projeto" required>
+
+            <label class="form-label" for="cr">CR:</label>
+            <input type="text" class="cr" id="cr" name="cr" required>
+
+            <label class="form-label" for="justificativa">Justificativa:</label>
+            <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
+
+            <button class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora Extra</button>
+            <button class="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
+
+        </form>
+
+        <h2>Você fez hora extra durante o período sobreaviso?</h2>
+        <form>
+            <label class="form-label" for="sobreaviso">Hora:</label>
+            <select class="sobreaviso" id="sobreaviso" name="sobreaviso">
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+
+            <!-- Mostra a tabela de hora extra apenas se houver hora extra no sobreaviso -->
+            <div class="hora-extra-table" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Início</th>
+                            <th>Fim</th>
+                            <th>Descrição da Atividade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aqui você pode adicionar linhas da tabela conforme necessário -->
+                        <tr>
+                            <td><input type="datetime-local" class="inicio" name="inicio"></td>
+                            <td><input type="datetime-local" class="fim" name="fim"></td>
+                            <td><input type="text" class="descricao" name="descricao"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora Extra</button>
+            <button class="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>Equipe Javali</p>
+    </footer>
+
+    <script>
+        // Adiciona um evento de mudança no campo de seleção de sobreaviso
+        const sobreavisoSelect = document.getElementById("sobreaviso");
+        const horaExtraTable = document.querySelector(".hora-extra-table");
+        
+        sobreavisoSelect.addEventListener("change", function () {
+            if (sobreavisoSelect.value === "sim") {
+                horaExtraTable.style.display = "block";
+            } else {
+                horaExtraTable.style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+</html>
