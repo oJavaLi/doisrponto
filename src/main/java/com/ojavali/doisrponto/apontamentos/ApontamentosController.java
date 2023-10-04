@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+
 public class ApontamentosController {
 
     @Autowired
     ApontamentosRepository apontamentosRepository;
 
     //Cadastro Apontamento
-    @PostMapping("/cadastrarApontamento")
+    @PostMapping("/cadastrarApontamentos")
     public ResponseEntity<Apontamentos> cadastrarApontamentos(@RequestBody @Validated ApontamentosRecord apontamentosRecordDto){
         var apontamentos = new Apontamentos();
         BeanUtils.copyProperties(apontamentosRecordDto, apontamentos);

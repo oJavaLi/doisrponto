@@ -168,7 +168,7 @@
           <!-- Pegar da API -->
         </tbody>
       </table>
-      <button><a href="apontarHoraExtra.html">CRIAR HORA EXTRA</a></button>
+      <button><a id="horaExtra">CRIAR HORA EXTRA</a></button>
     </div>
 
     <footer>
@@ -176,7 +176,22 @@
     </footer>
 
     <script>
+      function redirecionarParaOutraPagina() {
+        // Substitua 'outra_pagina.html' pela URL da página para a qual deseja redirecionar
+        function getQueryParameter(name) {
+          const urlSearchParams = new URLSearchParams(window.location.search);
+          return urlSearchParams.get(name);
+        }
 
+        const username = getQueryParameter('username');
+        const categoria = "HORAEXTRA";
+        window.location.href = `apontarHoraExtra.html?username=${username}&categoria=${categoria}`;
+      }
+
+      // Chame a função para redirecionar quando necessário, por exemplo, em resposta a um evento de clique em um botão
+      document.getElementById('horaExtra').addEventListener('click', function () {
+        redirecionarParaOutraPagina();
+      });
       document.addEventListener("DOMContentLoaded", function () {
         function getQueryParameter(name) {
           const urlSearchParams = new URLSearchParams(window.location.search);
@@ -196,7 +211,7 @@
             window.location.href = "/index.html";
           }
 
-          const apiUrl = "/api/apontamentos/matricula/"+username;
+          const apiUrl = "/apontamentos/matricula/"+username;
           const headers = new Headers();
           headers.append("Authorization", token);
           const requestOptions = {

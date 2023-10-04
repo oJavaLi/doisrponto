@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style_hora_extra.css">
     <title>Apontamento de Horas Extras</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="./script.js" defer></script>
+    <script src="./scriptHoraExtra.js" defer></script>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
             </div>
             <div class="user-details">
                 <div class="user-name">John Doe</div>
-                <div class="user-matricula">Matrícula: 12345</div>
+                <div id="usernameDisplay"></div>
             </div>
         </div>
     </header>
@@ -34,22 +34,23 @@
             <input type="datetime-local" class="saida" id="saida" name="saida" required>
 
             <label class="form-label" for="cliente">Cliente:</label>
-            <input type="text" class="cliente" id="cliente" name="cliente" required>
+            <input type="text" class="cliente" id="cliente" name="cliente"  readonly required>
 
             <label class="form-label" for="projeto">Projeto:</label>
-            <input type="text" class="projeto" id="projeto" name="projeto" required>
+            <input type="text" class="projeto" id="projeto" name="projeto"  readonly required>
 
-            <label class="form-label" for="solicitante">Solicitante:</label>
-            <input type="text" class="solicitante" id="solicitante" name="solicitante" required>
+
 
             <label class="form-label" for="cr">CR:</label>
-            <input type="text" class="cr" id="cr" name="cr" required>
+            <select class="cr" id="cr" name="cr" required>
+                <option value="">Selecione</option>
+            </select>
 
             <label class="form-label" for="justificativa">Justificativa:</label>
             <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
 
-            <button class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora Extra</button>
-            <button class="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
+            <button id="submit" class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora Extra</button>
+            <button id="submit2" class="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
 
         </form>
     </div>

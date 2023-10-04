@@ -18,12 +18,12 @@ public class Apontamentos implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private ApontamentosCategoria categoria;
+    private String categoria;
     private String data_hora_inicio;
     private String data_hora_fim;
     private String justificativa;
     private int usuarioMatricula;
-    private int centro_resultados_id;
+    private int centroResultadosId;
     
 
 }
