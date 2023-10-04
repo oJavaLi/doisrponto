@@ -57,6 +57,35 @@
     <footer>
         <p>Equipe Javali</p>
     </footer>
+
+    <script src="/scriptAuth.js" ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        verificaLogin();
+
+        // Exemplo de requisição
+        const apiUrl = "/api/";
+        const headers = new Headers();
+        headers.append("Authorization", obtemToken());
+        const requestOptions = {
+            method: "GET",
+            headers: headers,
+        };
+        fetch(apiUrl, requestOptions)
+            .then((response) => {
+                if(response.status == 401) {
+                    alert("Sua sessão expirou!");
+                    resetToken();
+                    verificaLogin();
+                }
+
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data.message);
+            });
+      });
+    </script>
 </body>
 
 </html>
