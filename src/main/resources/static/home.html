@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_home.css">
+    <title>"2RPonto"</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+
+<body>
+
+    <header>
+        <img src="./images/2RPONTO_BRANCO.png" alt="Logo">
+        <div class="user-info">
+            <div class="user-icon">
+                <i class="fas fa-user-circle fa-2x"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-name">John Doe</div>
+                <div class="user-matricula">Matrícula: 12345</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+
+        <nav class="menu-lateral">
+
+            <ul>
+
+                <li class="item-menu ativo">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-house-door"></i></span>
+                        <span class="txt-link">Home</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-people"></i></span>
+                        <span class="txt-link">Funcionarios</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-buildings"></i></span>
+                        <span class="txt-link">Clientes</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-collection"></i></span>
+                        <span class="txt-link">CR</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-clock"></i></span>
+                        <span class="txt-link">Horas</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
+                        <span class="txt-link">Relatorios</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-bar-chart"></i></span>
+                        <span class="txt-link">Parametrização</span>
+                    </a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+        <div class="tela">
+            <img src="./images/2RPONTO.png" alt="Imagem 2RPONTO">
+            <div class="descricao">“Seja bem-vindo ao aplicativo 2RPonto! Aqui, você pode apontar suas horas extras e
+                banco de horas com facilidade e eficiência. Agradecemos por escolher o aplicativo Ponto para gerenciar
+                suas horas trabalhadas. Esperamos que você tenha uma experiência agradável e produtiva!”.</div>
+            <button>
+                <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                <span class="txt-link">Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        var homeItem = document.querySelectorAll('.item-menu')
+
+        function selectLink() {
+            homeItem.forEach((item) =>
+                item.classList.remove('ativo')
+            )
+            this.classList.add('ativo')
+        }
+
+        homeItem.forEach((item) =>
+            item.addEventListener('click', selectLink)
+        )
+
+    </script>
+
+</body>
+
+</html>

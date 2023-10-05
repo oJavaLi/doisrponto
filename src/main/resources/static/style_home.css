@@ -1,0 +1,125 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+}
+
+header {
+    background-color: #1e293b;
+    color: #fff;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    max-height: 42px;
+    z-index: 9999;
+}
+
+.tela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: calc(100vh - 42px);
+    padding: 2rem;
+
+}
+
+.tela img {
+    max-height: 200px;
+}
+
+.tela .descricao {
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: justify;
+    line-height: 1.6;
+    max-width: 800px;
+    padding: 20px;
+
+}
+
+
+nav.menu-lateral {
+    width: 60px;
+    height: 100vh;
+    background-color: #2E5276;
+    padding: 0px;
+    box-shadow: 3px 0 0 #3498db;    
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: .2s;
+}
+nav.menu-lateral:hover {
+    width: 250px;
+
+}
+
+ul{
+    height: 100%;    
+    list-style-type: none;
+    padding: 0%;
+}
+
+ul li.item-menu{
+    transition: .2s;
+}
+
+ul li.ativo{
+    background-color: #3498db;
+}
+
+ul li.item-menu:hover {
+    background-color: #3498db;
+}
+ul li.item-menu a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 15px 6%;
+    display: flex ;
+    line-height: 40px;
+
+}
+ul li.item-menu a .txt-link{
+    margin-left: 40px;
+}
+ul li.item-menu a .icon > i{
+    font-size: 30px;
+    margin-left: 10px;
+}
+.content {
+    display: flex;
+    height: calc(100vh - 42px); 
+}
+
+button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #1e293b;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 10px 24px;
+}
+
+button:hover {
+    background-color: #3498db
+}
