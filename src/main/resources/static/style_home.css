@@ -27,10 +27,9 @@ header img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    height: calc(100vh - 42px);
+    justify-content:center;
     padding: 2rem;
-
+    flex-grow: 1;
 }
 
 .tela img {
@@ -51,7 +50,7 @@ header img {
 
 nav.menu-lateral {
     width: 60px;
-    height: 100vh;
+    height: calc (100vh - 58px);
     background-color: #2E5276;
     padding: 0px;
     box-shadow: 3px 0 0 #3498db;    
@@ -86,7 +85,7 @@ ul li.item-menu a{
     color: #ffffff;
     text-decoration: none;
     font-size: 15px;
-    padding: 15px 6%;
+    padding: 10px 6%;
     display: flex ;
     line-height: 40px;
 
@@ -100,24 +99,7 @@ ul li.item-menu a .icon > i{
 }
 .content {
     display: flex;
-    height: calc(100vh - 42px); 
-}
-
-button {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    border: none;
-    outline: none;
-    color: #fff;
-    background-color: #1e293b;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 12px;
-    padding: 10px 24px;
+    height: calc(100vh - 58px); 
 }
 
 button:hover {
