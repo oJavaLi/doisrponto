@@ -24,7 +24,7 @@
         </div>
     </header>
 
-    <div class="hora-extra-form">
+    <div class="sobre-aviso-form">
         <h2>Apontamento de Sobreaviso</h2>
         <form>
             <label class="form-label" for="entrada">Entrada:</label>
@@ -45,17 +45,16 @@
             <label class="form-label" for="justificativa">Justificativa:</label>
             <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
 
-            <button class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora Extra</button>
+            <button class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Sobreaviso</button>
             <button class="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
 
         </form>
 
         <h2>Você fez hora extra durante o período sobreaviso?</h2>
         <form>
-            <label class="form-label" for="sobreaviso">Hora:</label>
             <select class="sobreaviso" id="sobreaviso" name="sobreaviso">
-                <option value="sim">Sim</option>
                 <option value="nao">Não</option>
+                <option value="sim">Sim</option>
             </select>
 
             <!-- Mostra a tabela de hora extra apenas se houver hora extra no sobreaviso -->
@@ -77,10 +76,10 @@
                         </tr>
                     </tbody>
                 </table>
+                <button class="submit-hora-extra" type="submit"><i class="fas fa-clock"></i> Registrar Hora Extra</button>
             </div>
 
-            <button class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora Extra</button>
-            <button class="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
+           
         </form>
     </div>
 
