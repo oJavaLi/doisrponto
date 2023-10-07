@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style_sobreaviso.css">
     <title>Apontamento de Sobreaviso</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="./script.js" defer></script>
+    <script src="./scriptSobreAviso.js" defer></script>
 </head>
 
 <body>
@@ -40,7 +40,9 @@
             <input type="text" class="projeto" id="projeto" name="projeto" required>
 
             <label class="form-label" for="cr">CR:</label>
-            <input type="text" class="cr" id="cr" name="cr" required>
+            <select class="cr" id="cr" name="cr" required>
+                <option value="">Selecione</option>
+            </select>
 
             <label class="form-label" for="justificativa">Justificativa:</label>
             <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
