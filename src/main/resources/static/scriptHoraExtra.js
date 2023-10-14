@@ -15,6 +15,7 @@ function getQueryParameter(name) {
 }
 
 const username = getQueryParameter('username');
+const apontamentoId = getQueryParameter('apontamentoId');
 const categoria = getQueryParameter('categoria');
 const metodo = getQueryParameter('metodo');
 
@@ -84,7 +85,7 @@ if(metodo==="CADASTRAR") {
             // Adicione um evento de alteração ao campo "CR"
 
                 // Faça uma solicitação GET para a URL /CR/{crValue} (onde {crValue} é o valor do campo CR)
-                fetch("/apontamentos/" + categoria)
+                fetch("/apontamentos/"+apontamentoId)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Erro na solicitação.');
@@ -95,21 +96,7 @@ if(metodo==="CADASTRAR") {
                         // Preencha os campos "cliente" e "projeto" com os dados do JSON
                         entrada.value = data.data_hora_inicio;
                         saida.value = data.data_hora_inicio;
-                        fetch("/CR/" + data.centroResultadosId)
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Erro na solicitação.');
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                // Preencha os campos "cliente" e "projeto" com os dados do JSON
-                                cliente.value = data.nome_cliente;
-                                projeto.value = data.nome_projeto;
-                            })
-                            .catch(error => {
-                                console.error('Erro:', error);
-                            });
+
                         justificativa.value = data.justificativa;
                     })
                     .catch(error => {
@@ -121,8 +108,8 @@ if(metodo==="CADASTRAR") {
         fetchApontamentosAndPopulateTable();
 
     });
-    function cadastrar() {
-        fetch("http://localhost:1234/apontamentos/98",
+    function editar() {
+        fetch("http://localhost:1234/apontamentos/"+apontamentoId,
             {
                 headers: {
                     'Accept': 'application/json',
@@ -155,7 +142,7 @@ if(metodo==="CADASTRAR") {
 
     formulario.addEventListener('submit', function (event) {
         event.preventDefault();
-        cadastrar();
+        editar();
     });
     document.getElementById("submit2").addEventListener("click", function () {
         // Volte para a página anterior no histórico de navegação
