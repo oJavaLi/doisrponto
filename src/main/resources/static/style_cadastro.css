@@ -152,14 +152,14 @@ ul li.item-menu a{
     font-size: 15px;
     padding: 10px 6%;
     display: flex ;
-    line-height: 40px;
+    line-height: 30px;
 
 }
 ul li.item-menu a .txt-link{
     margin-left: 40px;
 }
 ul li.item-menu a .icon > i{
-    font-size: 30px;
+    font-size: 23px;
     margin-left: 10px;
 }
 .content {
