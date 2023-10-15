@@ -7,7 +7,6 @@ const cliente = document.querySelector(".cliente");
 const projeto = document.querySelector(".projeto");
 const justificativa = document.querySelector(".justificativa");
 
-
 function getQueryParameter(name) {
     const urlSearchParams = new URLSearchParams(window.location.search);
     return urlSearchParams.get(name);
@@ -24,7 +23,33 @@ const usernameDisplay = document.getElementById('usernameDisplay');
 if(metodo==="CADASTRAR") {
 // Define o texto do elemento <h1> com o valor do 'username'
     usernameDisplay.textContent = `Matrícula: ${username}`; // Exemplo de mensagem de boas-vindas
+    function formatarDataHora(dataHora) {
+        // Crie um objeto Date a partir da string no formato do input datetime-local
+        const dataHoraObj = new Date(dataHora);
+
+        // Obtenha os componentes de data e hora
+        const ano = dataHoraObj.getFullYear();
+        const mes = (dataHoraObj.getMonth() + 1).toString().padStart(2, '0'); // Mês começa em 0, adicione 1
+        const dia = dataHoraObj.getDate().toString().padStart(2, '0');
+        const hora = dataHoraObj.getHours().toString().padStart(2, '0');
+        const minutos = dataHoraObj.getMinutes().toString().padStart(2, '0');
+
+        // Crie a string formatada
+        const dataHoraFormatada = `${ano}-${mes}-${dia} ${hora}:${minutos}:00`;
+
+        return dataHoraFormatada;
+    }
+    const dataHoraFormatada = formatarDataHora(entrada.value);
     function cadastrar() {
+        const dataHoraEntrada = entrada.value;
+        const dataHora = new Date(dataHoraEntrada);
+        const dataHoraEntradaFormatada = `${dataHora.getFullYear()}-${(dataHora.getMonth() + 1).toString().padStart(2, '0')}-${dataHora.getDate().toString().padStart(2, '0')} ${dataHora.getHours().toString().padStart(2, '0')}:${dataHora.getMinutes().toString().padStart(2, '0')}:${dataHora.getSeconds().toString().padStart(2, '0')}`;
+        const dataHoraSaida = saida.value;
+        const dataHoraS = new Date(dataHoraSaida);
+        const dataHoraSaidaFormatada = `${dataHoraS.getFullYear()}-${(dataHoraS.getMonth() + 1).toString().padStart(2, '0')}-${dataHoraS.getDate().toString().padStart(2, '0')} ${dataHoraS.getHours().toString().padStart(2, '0')}:${dataHoraS.getMinutes().toString().padStart(2, '0')}:${dataHoraS.getSeconds().toString().padStart(2, '0')}`;
+
+// Agora, você pode usar dataHoraFormatada ao invés de dataHoraEntrada ao enviar os dados para o servidor
+
         fetch("http://localhost:1234/cadastrarApontamentos",
             {
                 headers: {
@@ -33,9 +58,10 @@ if(metodo==="CADASTRAR") {
                 },
                 method: "POST",
                 body: JSON.stringify({
+
                     categoria: categoria,
-                    data_hora_inicio: entrada.value,
-                    data_hora_fim: saida.value,
+                    data_hora_inicio: dataHoraEntradaFormatada,
+                    data_hora_fim: dataHoraSaidaFormatada,
                     justificativa: justificativa.value,
                     usuarioMatricula: username,
                     centroResultadosId: cr.value
