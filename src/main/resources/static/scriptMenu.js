@@ -1,14 +1,4 @@
 // menuControl.js
-// Após verificar as credenciais e determinar a categoria do usuário
-if (userCategory === 'funcionario') {
-    tipoUsuario = 'funcionario';
-} else if (userCategory === 'gestor') {
-    tipoUsuario = 'gestor';
-} else if (userCategory === 'rh') {
-    tipoUsuario = 'rh';
-}
-
-var tipoUsuario = 'funcionario';
 
 // Função para ocultar um elemento HTML com base no seu ID
 function hideElementById(id) {
@@ -27,7 +17,9 @@ function showElementById(id) {
 }
 
 // Função para controlar a exibição dos itens de menu com base no tipo de usuário
-function setupMenuForUserType() {
+function setupMenuForUserType(usuario) {
+    const tipoUsuario = usuario.categoria;
+
     // Primeiro, oculte todos os itens de menu
     hideElementById('homeMenuItem');
     hideElementById('usuarioMenuItem');
@@ -43,12 +35,12 @@ function setupMenuForUserType() {
     hideElementById('logoutMenuItem');
 
     // Em seguida, exiba os itens de menu com base no tipo de usuário
-    if (tipoUsuario === 'funcionario') {
+    if (tipoUsuario === 'FUNCIONARIO') {
         showElementById('homeMenuItem');
         showElementById('horasExtrasMenuItem');
         showElementById('sobreavisoMenuItem');
         showElementById('logoutMenuItem');
-    } else if (tipoUsuario === 'gestor') {
+    } else if (tipoUsuario === 'GESTOR') {
         showElementById('homeMenuItem');
         showElementById('clientesMenuItem');
         showElementById('crMenuItem');
@@ -58,7 +50,7 @@ function setupMenuForUserType() {
         hideElementById('aprovarApontamentoMenuItem');
         showElementById('relatoriosMenuItem');
         showElementById('logoutMenuItem');
-    } else if (tipoUsuario === 'rh') {
+    } else if (tipoUsuario === 'RH') {
         // Se o tipo de usuário for 'rh', todos os itens de menu serão exibidos
         hideElementById('homeMenuItem');
         hideElementById('usuarioMenuItem');
@@ -76,4 +68,4 @@ function setupMenuForUserType() {
 }
 
 // Chame a função para configurar o menu com base no tipo de usuário
-setupMenuForUserType();
+obtemUsuarioLogado().then(usuario => setupMenuForUserType(usuario));

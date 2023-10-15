@@ -18,3 +18,17 @@ function resetToken() {
 function obtemMatriculaUsuarioLogado() {
     return parseInt(atob(obtemToken()).substring(7));
 }
+
+async function obtemUsuarioLogado() {
+    const matricula = obtemMatriculaUsuarioLogado();
+    const resposta =  await fetch(
+        `/api/usuarios/${matricula}`,
+        {
+            method: "GET",
+            headers: {
+                "Authorization": obtemToken(),
+            }  
+        }
+    )
+    return await resposta.json();
+}
