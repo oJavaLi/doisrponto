@@ -6,7 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_home.css">
     <title>"2RPonto"</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .report-button {
+            background-color: #00a884;
+            color: #fff;
+            font-size: 1.5rem;
+            border: 0px;
+            padding: 10px;
+            margin-top: 1.5rem;
+            border-radius: 7px;
+        }
+
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        }
+
+        th,
+        td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+        }
+
+        th:last-child,
+        td:last-child {
+        text-align: center;
+        }
+    </style>
 </head>
 
 
@@ -31,7 +61,7 @@
 
             <ul>
 
-                <li class="item-menu ativo" id="homeMenuItem">
+                <li class="item-menu" id="homeMenuItem">
                     <a href="./home.html">
                         <span class="icon"><i class="bi bi-house-door"></i></span>
                         <span class="txt-link">Home</span>
@@ -85,7 +115,7 @@
                         <span class="txt-link">AprovarApontamentos</span>
                     </a>
                 </li>
-                <li class="item-menu" id="relatoriosMenuItem">
+                <li class="item-menu ativo">
                     <a href="/gerarRelatorio.html">
                         <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
                         <span class="txt-link">Relatorios</span>
@@ -109,36 +139,113 @@
 
         </nav>
 
-        <div class="tela">
-            <img src="./images/2RPONTO.png" alt="Imagem 2RPONTO">
-            <div class="descricao">“Seja bem-vindo ao aplicativo 2RPonto! Aqui, você pode apontar suas horas extras e
-                banco de horas com facilidade e eficiência. Agradecemos por escolher o aplicativo Ponto para gerenciar
-                suas horas trabalhadas. Esperamos que você tenha uma experiência agradável e produtiva!”.
-            </div>
-        </div>
+    <div class="tela">
+        <strong>Colaborador:</strong>
+        <select id="colaboradoresSelect">
+          <option>Selecione...</option>
+        </select>
+
+        <button id="gerarRelatorioButton" class="report-button">
+            <i class="fas fa-file-invoice"></i> Gerar Relatório
+        </button>
 
 
+        <h2>Relatório</h2>
+        <table>
+        <thead>
+            <tr>
+                <th>CR</th>
+                <th>Categoria</th>
+                <th>Data Hora Início</th>
+                <th>Data Hora Fim</th>
+                <th>Verba</th>
+                <th>Multiplicador</th>
+                <th>Horas Calculadas</th>
+                <th>Porcentagem Adicional</th>
+                <th>Justificativa</th>
+            </tr>
+        </thead>
+        <tbody id="relatorioTableBody">
+            <!-- Pegar da API -->
+        </tbody>
+        </table>
     </div>
-
-
-    <script>
-        var homeItem = document.querySelectorAll('.item-menu')
-
-        function selectLink() {
-            homeItem.forEach((item) =>
-                item.classList.remove('ativo')
-            )
-            this.classList.add('ativo')
-        }
-
-        homeItem.forEach((item) =>
-            item.addEventListener('click', selectLink)
-        )
-
-    </script>
-
+        
     <script src="scriptAuth.js" defer></script>
     <script src="scriptMenu.js" defer></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        verificaLogin();
+        
+        const tableBody = document.querySelector("#tabelaApontamentos tbody");
+        const colaboradoresSelect = document.getElementById("colaboradoresSelect");
+        
+        fetch(
+        "/api/usuarios",
+        {
+            method: "GET",
+            headers: {
+            "Authorization": obtemToken(),
+            }  
+        }
+        ).then((response) => {
+            if(response.status == 401) {
+                alert("Sua sessão expirou!");
+                resetToken();
+                verificaLogin();
+            }
+            return response.json();
+        }).then((data) => {
+            data.forEach(colaborador => {
+                const colaboradorOption = document.createElement("option");
+                colaboradorOption.value = colaborador.matricula;
+                colaboradorOption.innerHTML = `${colaborador.matricula} - ${colaborador.nome}`;
+                colaboradoresSelect.appendChild(colaboradorOption);
+            });
+        });
+
+        const gerarRelatorioButton = document.querySelector("#gerarRelatorioButton");
+        gerarRelatorioButton.addEventListener("click", (e) => {
+            const matricula = colaboradoresSelect.selectedOptions[0].value;
+            fetch(
+                `/api/relatorio/${matricula}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization": obtemToken(),
+                    },
+                }
+            ).then((response) => {
+                if(response.status == 200) {
+                    alert("Relatório gerado com sucesso!");
+                    return response.json();
+                } else {
+                    alert("Erro ao gerar relatório!");
+                    return null;
+                }
+            }).then((data) => {
+                const tableBody = document.querySelector("#relatorioTableBody");
+                data.forEach((linha) => {
+                    if(linha[0] == "CR") return; // Pula cabeçalho
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${linha[0]}</td>
+                        <td>${linha[1]}</td>
+                        <td>${linha[2]}</td>
+                        <td>${linha[3]}</td>
+                        <td>${linha[4]}</td>
+                        <td>${linha[5]}</td>
+                        <td>${linha[6]}</td>
+                        <td>${linha[7]}</td>
+                        <td>${linha[8]}</td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+            });
+        })
+    });
+    </script>
+    
 
 </body>
 
