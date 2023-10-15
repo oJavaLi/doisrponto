@@ -39,6 +39,7 @@ function setupMenuForUserType(usuario) {
         showElementById('homeMenuItem');
         showElementById('horasExtrasMenuItem');
         showElementById('sobreavisoMenuItem');
+        showElementById('listaApontamentosMenuItem');
         showElementById('logoutMenuItem');
     } else if (tipoUsuario === 'GESTOR') {
         showElementById('homeMenuItem');
