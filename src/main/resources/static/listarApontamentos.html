@@ -334,6 +334,20 @@
 
   <script>
 
+    function deleteItem(id) {
+      if (confirm("Tem certeza de que deseja excluir este item?")) {
+        fetch(`/apontamentos/${id}`, {
+          method: "DELETE",
+        })
+                .then(response => {
+                  location.reload();
+                })
+                .catch(error => {
+                  console.error("Erro ao excluir o item:", error);
+                });
+      }
+    }
+
     // Função para redirecionar para a página correta
     function redirecionarParaOutraPagina(categoria) {
       function getQueryParameter(name) {
@@ -405,7 +419,7 @@
                         <a  href="apontarHoraExtra.html?username=${username}&metodo=EDITAR&apontamentoId=${apontamento.id}&categoria=HORAEXTRA"><button class="editar">
                         <i class="fas fa-edit"></i>Corrigir</button></a>
 
-                        <a  href="apontarHoraExtra.html?username=${username}&metodo=DELETAR&apontamentoId=${apontamento.id}&categoria=HORAEXTRA"><button class="editar">
+                        <a><button id="arroz" onclick="deleteItem(${apontamento.id})" class="editar">
                         <i class="fas fa-trash-alt"></i>Deletar</button></a>
                     </td>
                 `;
@@ -418,6 +432,7 @@
           });
 
       }
+
 
       // Call the function to fetch and populate the table with the auth token
       fetchApontamentosAndPopulateTable();

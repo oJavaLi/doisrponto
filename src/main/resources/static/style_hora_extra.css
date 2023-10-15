@@ -8,6 +8,7 @@ body {
     min-height: 100vh;
 }
 
+
 /* Estilos para o cabeçalho */
 header {
     background-color: #1e293b;
@@ -107,8 +108,11 @@ header img {
     font-size: 1rem;
     margin-top: 10px;
     margin-left: 100px;
-}
 
+}
+#formulario{
+    position: relative;
+}
 
 /* Estilos para o hover nos botões */
 .submit:hover,
@@ -126,7 +130,7 @@ footer {
 
 nav.menu-lateral {
     width: 60px;
-    height: calc (100vh - 58px);
+    height: calc(100vh - 58px);
     background-color: #2E5276;
     padding: 0px;
     box-shadow: 3px 0 0 #3498db;    
