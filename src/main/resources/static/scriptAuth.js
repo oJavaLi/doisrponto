@@ -14,3 +14,7 @@ function verificaLogin() {
 function resetToken() {
     sessionStorage.removeItem("token");
 }
+
+function obtemMatriculaUsuarioLogado() {
+    return parseInt(atob(obtemToken()).substring(7));
+}

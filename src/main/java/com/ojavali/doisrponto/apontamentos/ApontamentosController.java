@@ -61,9 +61,6 @@ public class ApontamentosController {
     @GetMapping("/apontamentos/matricula/{matricula}")
     public ResponseEntity<Object> getApontamentosPorMatricula(@PathVariable(value = "matricula") int matricula){
         List<Apontamentos> apontamentos = apontamentosRepository.findByUsuarioMatricula(matricula);
-        if (apontamentos.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.status(HttpStatus.OK).body(apontamentos);
     }
 
