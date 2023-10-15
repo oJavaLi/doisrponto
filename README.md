@@ -51,7 +51,7 @@ Datas de Entregas<br id=b>
 - [x]  Kick-off -  21/08/2023
 - [x]  Sprint 01 - 04/09/2023
 - [x]  Sprint 02 - 25/09/2023
-- [ ]  Sprint 03 - 16/10/2023
+- [x]  Sprint 03 - 16/10/2023
 - [ ]  Sprint 04 - 06/11/2023
 - [ ]  Feira de Soluções  - 12/12/2023
 
@@ -91,6 +91,8 @@ https://github.com/oJavaLi/doisrponto/assets/107864553/2758f8b1-238a-458e-8668-6
 <br>
 
  
+ ![Captura de tela 2023-10-15 194111](https://github.com/oJavaLi/doisrponto/assets/107864553/e7b4d8af-c132-4599-9554-a6a7bccdd05b)
+
 </details>
 <details>
 <summary><h2> Sprint 3 </h2> <br id=h></summary>
