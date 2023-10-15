@@ -51,21 +51,22 @@ function setupMenuForUserType(usuario) {
         showElementById('relatoriosMenuItem');
         showElementById('logoutMenuItem');
     } else if (tipoUsuario === 'RH') {
-        // Se o tipo de usuário for 'rh', todos os itens de menu serão exibidos
-        hideElementById('homeMenuItem');
-        hideElementById('usuarioMenuItem');
-        hideElementById('listaUsuarioMenuItem');
-        hideElementById('clientesMenuItem');
-        hideElementById('crMenuItem');
-        hideElementById('horasExtrasMenuItem');
-        hideElementById('sobreavisoMenuItem');
-        hideElementById('listaApontamentosMenuItem');
-        hideElementById('aprovarApontamentoMenuItem');
-        hideElementById('relatoriosMenuItem');
-        hideElementById('ParametrizacaoMenuItem');
-        hideElementById('logoutMenuItem');
+        // Se o tipo de usuário for 'rh', todas as opções de menu devem ser exibidas
+        showElementById('homeMenuItem');
+        showElementById('usuarioMenuItem');
+        showElementById('listaUsuarioMenuItem');
+        showElementById('clientesMenuItem');
+        showElementById('crMenuItem');
+        showElementById('horasExtrasMenuItem');
+        showElementById('sobreavisoMenuItem');
+        showElementById('listaApontamentosMenuItem');
+        showElementById('aprovarApontamentoMenuItem');
+        showElementById('relatoriosMenuItem');
+        showElementById('ParametrizacaoMenuItem');
+        showElementById('logoutMenuItem');
     }
 }
+
 
 // Chame a função para configurar o menu com base no tipo de usuário
 obtemUsuarioLogado().then(usuario => setupMenuForUserType(usuario));
