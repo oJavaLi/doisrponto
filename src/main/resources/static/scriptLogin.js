@@ -31,7 +31,7 @@ loginForm.addEventListener('submit', function (event) {
             response.text().then(token => {
                 sessionStorage.setItem('token', token);
                 // Redirecione para a página desejada após o login bem-sucedido
-                window.location.href = '/listarApontamentos.html?username=' + encodeURIComponent(username);
+                window.location.href = '/home.html?username=' + encodeURIComponent(username);
             })
         } else {
             // Autenticação falhou, você pode exibir uma mensagem de erro ao usuário.
