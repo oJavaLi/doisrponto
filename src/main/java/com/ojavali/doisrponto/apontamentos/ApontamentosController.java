@@ -59,7 +59,7 @@ public class ApontamentosController {
     }
 
     @GetMapping("/apontamentos/matricula/{matricula}")
-    public ResponseEntity<List<Apontamentos>> getApontamentosPorMatricula(@PathVariable(value = "matricula") int matricula){
+    public ResponseEntity<Object> getApontamentosPorMatricula(@PathVariable(value = "matricula") int matricula){
         List<Apontamentos> apontamentos = apontamentosRepository.findByUsuarioMatricula(matricula);
         return ResponseEntity.status(HttpStatus.OK).body(apontamentos);
     }

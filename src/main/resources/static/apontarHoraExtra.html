@@ -8,6 +8,7 @@
     <title>Apontamento de Horas Extras</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="./scriptHoraExtra.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -24,68 +25,165 @@
         </div>
     </header>
 
-    <div class="hora-extra-form">
-        <h2>Apontamento de Horas Extras</h2>
-        <form>
-            <label class="form-label" for="entrada">Entrada:</label>
-            <input type="datetime-local" class="entrada" id="entrada" name="entrada" required>
+    <div class="content">
+        <nav class="menu-lateral">
 
-            <label class="form-label" for="saida">Saída:</label>
-            <input type="datetime-local" class="saida" id="saida" name="saida" required>
+            <ul>
 
-            <label class="form-label" for="cliente">Cliente:</label>
-            <input type="text" class="cliente" id="cliente" name="cliente"  readonly required>
+                <li class="item-menu ativo">
+                    <a href="./home.html">
+                        <span class="icon"><i class="bi bi-house-door"></i></span>
+                        <span class="txt-link">Home</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./cadastroUsuario.html">
+                        <span class="icon"><i class="bi bi-people"></i></span>
+                        <span class="txt-link">Usuários</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./listaUsuario.html">
+                        <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                        <span class="txt-link">ListaUsuários</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-buildings"></i></span>
+                        <span class="txt-link">Clientes</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-collection"></i></span>
+                        <span class="txt-link">CR</span>
+                    </a>
+                </li>
+                <li class="item-menu ativo">
+                    <a href="./apontarHoraExtra.html">
+                        <span class="icon"><i class="bi bi-clock"></i></span>
+                        <span class="txt-link">HorasExtras</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./apontarSobreAviso.html">
+                        <span class="icon"><i class="bi bi-calendar-check"></i></span>
+                        <span class="txt-link">Sobreaviso</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./listarApontamentos.html">
+                        <span class="icon"><i class="bi bi-card-list"></i></span>
+                        <span class="txt-link">ListaApontamentos</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
+                        <span class="txt-link">Relatorios</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-bar-chart"></i></span>
+                        <span class="txt-link">Parametrização</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./index.html">
+                        <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                        <span class="txt-link">Logout</span>
+                    </a>
+                </li>
 
-            <label class="form-label" for="projeto">Projeto:</label>
-            <input type="text" class="projeto" id="projeto" name="projeto"  readonly required>
+            </ul>
 
 
+        </nav>
+        <div class="tela">
 
-            <label class="form-label" for="cr">CR:</label>
-            <select class="cr" id="cr" name="cr" required>
-                <option value="">Selecione</option>
-            </select>
+            <div class="content">
+                <div class="hora-extra-form">
+                    <h2>Apontamento de Horas Extras</h2>
+                    <form id="formulario">
+                        <label class="form-label" for="entrada">Entrada:</label>
+                        <input type="datetime-local" class="entrada" id="entrada" name="entrada" required>
 
-            <label class="form-label" for="justificativa">Justificativa:</label>
-            <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
+                        <label class="form-label" for="saida">Saída:</label>
+                        <input type="datetime-local" class="saida" id="saida" name="saida" required>
 
-            <button id="submit" class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora Extra</button>
-            <button id="submit2" class="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
+                        <label class="form-label" for="cliente">Cliente:</label>
+                        <input type="text" class="cliente" id="cliente" name="cliente" readonly required>
 
-        </form>
+                        <label class="form-label" for="projeto">Projeto:</label>
+                        <input type="text" class="projeto" id="projeto" name="projeto" readonly required>
+
+                        <label class="form-label" for="cr">CR:</label>
+                        <select class="cr" id="cr" name="cr" required>
+                            <option value="">Selecione</option>
+                        </select>
+
+                        <label class="form-label" for="justificativa">Justificativa:</label>
+                        <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
+
+                        <button id="submit" class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora
+                            Extra</button>
+
+                        <button id="submit2" class="submit2" type="button"> Ver
+                            Registros</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
-
     <footer>
         <p>Equipe Javali</p>
     </footer>
 
-    <script src="/scriptAuth.js" ></script>
+    <script src="/scriptAuth.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        verificaLogin();
+        document.addEventListener("DOMContentLoaded", function () {
+            verificaLogin();
 
-        // Exemplo de requisição
-        const apiUrl = "/api/";
-        const headers = new Headers();
-        headers.append("Authorization", obtemToken());
-        const requestOptions = {
-            method: "GET",
-            headers: headers,
-        };
-        fetch(apiUrl, requestOptions)
-            .then((response) => {
-                if(response.status == 401) {
-                    alert("Sua sessão expirou!");
-                    resetToken();
-                    verificaLogin();
-                }
+            // Exemplo de requisição
+            const apiUrl = "/api/";
+            const headers = new Headers();
+            headers.append("Authorization", obtemToken());
+            const requestOptions = {
+                method: "GET",
+                headers: headers,
+            };
+            fetch(apiUrl, requestOptions)
+                .then((response) => {
+                    if (response.status == 401) {
+                        alert("Sua sessão expirou!");
+                        resetToken();
+                        verificaLogin();
+                    }
 
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data.message);
-            });
-      });
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data.message);
+                });
+        });
+    </script>
+    <script>
+        var homeItem = document.querySelectorAll('.item-menu')
+
+        function selectLink() {
+            homeItem.forEach((item) =>
+                item.classList.remove('ativo')
+            )
+            this.classList.add('ativo')
+        }
+
+        homeItem.forEach((item) =>
+            item.addEventListener('click', selectLink)
+        )
+
     </script>
 </body>
 

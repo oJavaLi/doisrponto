@@ -42,7 +42,13 @@
                 <li class="item-menu ativo">
                     <a href="./cadastroUsuario.html">
                         <span class="icon"><i class="bi bi-people"></i></span>
-                        <span class="txt-link">Funcionarios</span>
+                        <span class="txt-link">Usuários</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./listaUsuario.html">
+                        <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                        <span class="txt-link">ListaUsuários</span>
                     </a>
                 </li>
                 <li class="item-menu">
@@ -58,9 +64,21 @@
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="#">
+                    <a href="./apontarHoraExtra.html">
                         <span class="icon"><i class="bi bi-clock"></i></span>
-                        <span class="txt-link">Horas</span>
+                        <span class="txt-link">HorasExtras</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./apontarSobreAviso.html">
+                        <span class="icon"><i class="bi bi-calendar-check"></i></span>
+                        <span class="txt-link">Sobreaviso</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./listarApontamentos.html">
+                        <span class="icon"><i class="bi bi-card-list"></i></span>
+                        <span class="txt-link">ListaApontamentos</span>
                     </a>
                 </li>
                 <li class="item-menu">
@@ -76,7 +94,7 @@
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="#">
+                    <a href="./index.html">
                         <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
                         <span class="txt-link">Logout</span>
                     </a>
@@ -86,6 +104,8 @@
 
 
         </nav>
+        
+
         <div class="tela">
         <div class="user-creation-form">
         <h2>Cadastro de Usuários</h2>
@@ -146,6 +166,21 @@
                 console.log(data.message);
             });
       });
+    </script>
+    <script>
+        var homeItem = document.querySelectorAll('.item-menu')
+
+        function selectLink() {
+            homeItem.forEach((item) =>
+                item.classList.remove('ativo')
+            )
+            this.classList.add('ativo')
+        }
+
+        homeItem.forEach((item) =>
+            item.addEventListener('click', selectLink)
+        )
+
     </script>
 </body>
 

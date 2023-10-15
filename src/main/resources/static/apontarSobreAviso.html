@@ -8,6 +8,7 @@
     <title>Apontamento de Sobreaviso</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="./scriptSobreAviso.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -23,8 +24,86 @@
             </div>
         </div>
     </header>
+    <div class="content">
 
-    <div class="sobre-aviso-form">
+        <nav class="menu-lateral">
+
+            <ul>
+
+                <li class="item-menu">
+                    <a href="./home.html">
+                        <span class="icon"><i class="bi bi-house-door"></i></span>
+                        <span class="txt-link">Home</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./cadastroUsuario.html">
+                        <span class="icon"><i class="bi bi-people"></i></span>
+                        <span class="txt-link">Usuários</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./listaUsuario.html">
+                        <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                        <span class="txt-link">ListaUsuários</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-buildings"></i></span>
+                        <span class="txt-link">Clientes</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-collection"></i></span>
+                        <span class="txt-link">CR</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./apontarHoraExtra.html">
+                        <span class="icon"><i class="bi bi-clock"></i></span>
+                        <span class="txt-link">HorasExtras</span>
+                    </a>
+                </li>
+                <li class="item-menu ativo">
+                    <a href="./apontarSobreAviso.html">
+                        <span class="icon"><i class="bi bi-calendar-check"></i></span>
+                        <span class="txt-link">Sobreaviso</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./listarApontamentos.html">
+                        <span class="icon"><i class="bi bi-card-list"></i></span>
+                        <span class="txt-link">ListaApontamentos</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
+                        <span class="txt-link">Relatorios</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-bar-chart"></i></span>
+                        <span class="txt-link">Parametrização</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="./index.html">
+                        <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                        <span class="txt-link">Logout</span>
+                    </a>
+                </li>
+                
+            </ul>
+
+
+        </nav>
+
+        <div class="tela">
+             <div class="sobre-aviso-form">
         <h2>Apontamento de Sobreaviso</h2>
         <form>
             <label class="form-label" for="entrada">Entrada:</label>
@@ -83,8 +162,9 @@
 
            
         </form>
+             </div>
+        </div>
     </div>
-
     <footer>
         <p>Equipe Javali</p>
     </footer>
@@ -101,6 +181,21 @@
                 horaExtraTable.style.display = "none";
             }
         });
+    </script>
+    <script>
+        var homeItem = document.querySelectorAll('.item-menu')
+
+        function selectLink() {
+            homeItem.forEach((item) =>
+                item.classList.remove('ativo')
+            )
+            this.classList.add('ativo')
+        }
+
+        homeItem.forEach((item) =>
+            item.addEventListener('click', selectLink)
+        )
+
     </script>
 </body>
 
