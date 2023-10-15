@@ -1,4 +1,4 @@
-// menuControl.js
+// scriptMenu.js
 
 // Função para ocultar um elemento HTML com base no seu ID
 function hideElementById(id) {
