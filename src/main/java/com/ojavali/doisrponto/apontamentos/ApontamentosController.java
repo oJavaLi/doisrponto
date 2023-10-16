@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+
 public class ApontamentosController {
 
     @Autowired
     ApontamentosRepository apontamentosRepository;
 
     //Cadastro Apontamento
-    @PostMapping("/cadastrarApontamento")
+    @PostMapping("/cadastrarApontamentos")
     public ResponseEntity<Apontamentos> cadastrarApontamentos(@RequestBody @Validated ApontamentosRecord apontamentosRecordDto){
         var apontamentos = new Apontamentos();
         BeanUtils.copyProperties(apontamentosRecordDto, apontamentos);
@@ -57,4 +57,12 @@ public class ApontamentosController {
         apontamentosRepository.delete(produto0.get());
         return ResponseEntity.status(HttpStatus.OK).body("Apontamento deletado com sucesso!");
     }
+
+    @GetMapping("/apontamentos/matricula/{matricula}")
+    public ResponseEntity<Object> getApontamentosPorMatricula(@PathVariable(value = "matricula") int matricula){
+        List<Apontamentos> apontamentos = apontamentosRepository.findByUsuarioMatricula(matricula);
+        return ResponseEntity.status(HttpStatus.OK).body(apontamentos);
+    }
+
+
 }

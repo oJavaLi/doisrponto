@@ -1,152 +1,315 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Apontamentos</title>
-    <!-- Include Font Awesome CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
 
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f9fafb;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apontamentos</title>
+  <!-- Include Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-      header {
-        background-color: #1e293b;
-        color: #fff;
-        padding: 0.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-      header img {
-        max-height: 42px;
-      }
+    header {
+      background-color: #1e293b;
+      color: #fff;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-      .user-info {
-        display: flex;
-        align-items: center;
-        color: #fff;
-      }
+    header img {
+      max-height: 42px;
+    }
 
-      .user-icon {
-        margin-right: 10px;
-      }
+    .user-info {
+      display: flex;
+      align-items: center;
+      color: #fff;
+    }
 
-      .user-icon i {
-        font-size: 2.5rem; /* Adjust the size as needed */
-        margin-left: 0.5rem;
-      }
+    .user-icon {
+      margin-right: 10px;
+    }
 
-      .user-details {
-        display: flex;
-        flex-direction: column;
-      }
+    .user-icon i {
+      font-size: 2.5rem;
+      /* Adjust the size as needed */
+      margin-left: 0.5rem;
+    }
 
-      .user-name {
-        font-size: 1.2rem; /* Adjust the size as needed */
-        text-align: right;
-      }
+    .user-details {
+      display: flex;
+      flex-direction: column;
+    }
 
-      .user-matricula {
-        font-size: 0.9rem; /* Adjust the size as needed */
-      }
+    .user-name {
+      font-size: 1.2rem;
+      /* Adjust the size as needed */
+      text-align: right;
+    }
 
-      .apontamento-list {
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        margin: 20px auto;
-        padding: 20px;
-        flex-grow: 1;
-      }
+    .user-matricula {
+      font-size: 0.9rem;
+      /* Adjust the size as needed */
+    }
 
-      .apontamento-list h2 {
-        text-align: center;
-        color: #1e293b;
-      }
+    .apontamento-list {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      padding: 20px;
+      flex-grow: 1;
+    }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
+    .apontamento-list h2 {
+      text-align: center;
+      color: #1e293b;
+    }
 
-      th,
-      td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ccc;
-      }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
 
-      th:last-child,
-      td:last-child {
-        text-align: center;
-      }
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
 
-      /* Button styles with Font Awesome icons and different colors */
-      .view-button {
-        background-color: #3498db;
-        /* Blue */
-        color: #fff;
-      }
+    th:last-child,
+    td:last-child {
+      text-align: center;
+    }
 
-      .edit-button {
-        background-color: #f39c12;
-        /* Orange */
-        color: #fff;
-      }
+    .horaExtra {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+      margin-left: 190px;
+    }
 
-      .remove-button {
-        background-color: #e74c3c;
-        /* Red */
-        color: #fff;
-      }
+    .sobreaviso {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+      margin-left: 100px;
+    }
 
-      .apontamento-list button {
-        border: none;
-        border-radius: 4px;
-        padding: 0.3rem 0.6rem;
-        cursor: pointer;
-        font-size: 0.8rem;
-      }
+    .horaExtra:hover,
+    .sobreaviso:hover {
+      opacity: 0.8;
+    }
 
-      .apontamento-list button:hover {
-        opacity: 0.8;
-      }
+    .apontamento-list button {
+      border: none;
+      border-radius: 4px;
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
 
-      footer {
-        background-color: #1e293b;
-        color: #fff;
-        text-align: center;
-        padding: 10px 0;
-      }
-    </style>
-  </head>
+    .apontamento-list button:hover {
+      opacity: 0.8;
+    }
 
-  <body>
-    <header>
-      <img src="/images/2RPONTO_BRANCO.png" alt="Logo" />
-      <div class="user-info">
-        <div class="user-details">
-          <div class="user-name">João Ney</div>
-          <div class="user-matricula">Matrícula: 12345</div>
-        </div>
-        <div class="user-icon">
-          <i class="fas fa-user-circle fa-2x"></i>
-        </div>
+    footer {
+      background-color: #1e293b;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    nav.menu-lateral {
+      width: 60px;
+      height: calc (100vh - 58px);
+      background-color: #2E5276;
+      padding: 0px;
+      box-shadow: 3px 0 0 #3498db;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      transition: .2s;
+    }
+
+    nav.menu-lateral:hover {
+      width: 250px;
+
+    }
+
+    ul {
+      height: 100%;
+      list-style-type: none;
+      padding: 0%;
+    }
+
+    ul li.item-menu {
+      transition: .2s;
+    }
+
+    ul li.ativo {
+      background-color: #3498db;
+    }
+
+    ul li.item-menu:hover {
+      background-color: #3498db;
+    }
+
+    ul li.item-menu a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 15px;
+      padding: 10px 6%;
+      display: flex;
+      line-height: 30px;
+
+    }
+
+    ul li.item-menu a .txt-link {
+      margin-left: 40px;
+    }
+
+    ul li.item-menu a .icon>i {
+      font-size: 23px;
+      margin-left: 10px;
+    }
+
+    .content {
+      display: flex;
+      height: calc(100vh - 58px);
+    }
+
+    .tela {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      flex-grow: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="/images/2RPONTO_BRANCO.png" alt="Logo" />
+    <div class="user-info">
+      <div class="user-details">
+        <div class="user-name">João Ney</div>
+        <div id="usernameDisplay"></div>
+
       </div>
-    </header>
+      <div class="user-icon">
+        <i class="fas fa-user-circle fa-2x"></i>
+      </div>
+    </div>
+  </header>
+  <div class="content">
+    <nav class="menu-lateral">
+
+      <ul>
+
+        <li class="item-menu" id="homeMenuItem">
+            <a href="./home.html">
+                <span class="icon"><i class="bi bi-house-door"></i></span>
+                <span class="txt-link">Home</span>
+            </a>
+        </li>
+        <li class="item-menu" id="usuarioMenuItem">
+            <a href="./cadastroUsuario.html">
+                <span class="icon"><i class="bi bi-people"></i></span>
+                <span class="txt-link">Usuários</span>
+            </a>
+        </li>
+        <li class="item-menu" id="listaUsuarioMenuItem">
+            <a href="./listaUsuario.html">
+                <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                <span class="txt-link">ListaUsuários</span>
+            </a>
+        </li>
+        <li class="item-menu" id="clientesMenuItem">
+            <a href="#">
+                <span class="icon"><i class="bi bi-buildings"></i></span>
+                <span class="txt-link">Clientes</span>
+            </a>
+        </li>
+        <li class="item-menu" id="crMenuItem">
+            <a href="#">
+                <span class="icon"><i class="bi bi-collection"></i></span>
+                <span class="txt-link">CR</span>
+            </a>
+        </li>
+        <li class="item-menu" id="horasExtrasMenuItem">
+            <a href="./apontarHoraExtra.html">
+                <span class="icon"><i class="bi bi-clock"></i></span>
+                <span class="txt-link">HorasExtras</span>
+            </a>
+        </li>
+        <li class="item-menu" id="sobreavisoMenuItem">
+            <a href="./apontarSobreAviso.html">
+                <span class="icon"><i class="bi bi-calendar-check"></i></span>
+                <span class="txt-link">Sobreaviso</span>
+            </a>
+        </li>
+        <li class="item-menu ativo" id="listaApontamentosMenuItem">
+            <a href="./listarApontamentos.html">
+                <span class="icon"><i class="bi bi-card-list"></i></span>
+                <span class="txt-link">ListaApontamentos</span>
+            </a>
+        </li>
+        <li class="item-menu" id="aprovarApontamentoMenuItem">
+            <a href="./aprovarApontamento.html">
+                <span class="icon"><i class="bi bi-card-checklist"></i></span>
+                <span class="txt-link">AprovarApontamentos</span>
+            </a>
+        </li>
+        <li class="item-menu" id="relatoriosMenuItem">
+          <a href="#">
+              <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
+              <span class="txt-link">Relatorios</span>
+          </a>
+        </li>
+        <li class="item-menu" id="ParametrizacaoMenuItem">
+            <a href="#">
+                <span class="icon"><i class="bi bi-bar-chart"></i></span>
+                <span class="txt-link">Parametrização</span>
+            </a>
+        </li>
+        <li class="item-menu" id="logoutMenuItem">
+            <a href="./index.html">
+                <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                <span class="txt-link">Logout</span>
+            </a>
+        </li>
+
+    </ul>
+
+
+    </nav>
 
     <div class="apontamento-list" id="tabelaApontamentos">
       <h2>Apontamentos</h2>
@@ -167,69 +330,140 @@
           <!-- Pegar da API -->
         </tbody>
       </table>
+      <button id=horaExtra class="horaExtra"><i class="fas fa-clock"></i> Registrar Hora Extra</a></button>
+      <button id=sobreaviso class="sobreaviso" type="submit"><i class="fas fa-clock"></i> Registrar Sobreaviso</button>
     </div>
+  </div>
+  <footer>
+    <p>Equipe Javali</p>
+  </footer>
 
-    <footer>
-      <p>Equipe Javali</p>
-    </footer>
+  <script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        function fetchApontamentosAndPopulateTable() {
-          const token = sessionStorage.getItem("token");
-          if (!token) {
-            window.location.href = "/index.html";
-          }
+    function deleteItem(id) {
+      if (confirm("Tem certeza de que deseja excluir este item?")) {
+        fetch(`/apontamentos/${id}`, {
+          method: "DELETE",
+        })
+                .then(response => {
+                  location.reload();
+                })
+                .catch(error => {
+                  console.error("Erro ao excluir o item:", error);
+                });
+      }
+    }
 
-          const apiUrl = "/api/apontamentos";
-          const headers = new Headers();
-          headers.append("Authorization", token);
-          const requestOptions = {
-            method: "GET",
-            headers: headers,
-          };
-          fetch(apiUrl, requestOptions)
-            .then((response) => response.json())
-            .then((data) => {
-              // Reference to the table body
-              const tableBody = document.querySelector(
-                "#tabelaApontamentos tbody"
-              );
+    // Função para redirecionar para a página correta
+    function redirecionarParaOutraPagina(categoria) {
+      function getQueryParameter(name) {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        return urlSearchParams.get(name);
+      }
+      const username = getQueryParameter('username');
+      window.location.href = `apontar${categoria}.html?username=${username}&categoria=${categoria}&metodo=CADASTRAR`;
+    }
 
-              // Loop through the retrieved data and populate the table
-              data.forEach((apontamento) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${apontamento.id}</td>
+    // Adicionar ouvinte de evento para o botão "Hora Extra"
+    document.getElementById('horaExtra').addEventListener('click', function () {
+      redirecionarParaOutraPagina("HORAEXTRA");
+    });
+
+    // Adicionar ouvinte de evento para o botão "Sobreaviso"
+    document.getElementById('sobreaviso').addEventListener('click', function () {
+      redirecionarParaOutraPagina("SOBREAVISO");
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      function getQueryParameter(name) {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        return urlSearchParams.get(name);
+      }
+
+      const username = getQueryParameter('username');
+
+      // Obtém o elemento <h1> pelo id
+      const usernameDisplay = document.getElementById('usernameDisplay');
+
+      // Define o texto do elemento <h1> com o valor do 'username'
+      usernameDisplay.textContent = `Matrícula: ${username}`; // Exemplo de mensagem de boas-vindas
+      function fetchApontamentosAndPopulateTable() {
+        const token = sessionStorage.getItem("token");
+        if (!token) {
+          window.location.href = "/index.html";
+        }
+
+        const apiUrl = "/apontamentos/matricula/" + username;
+        const headers = new Headers();
+        headers.append("Authorization", token);
+        const requestOptions = {
+          method: "GET",
+          headers: headers,
+        };
+        fetch(apiUrl, requestOptions)
+          .then((response) => response.json())
+          .then((data) => {
+            // Reference to the table body
+            const tableBody = document.querySelector(
+              "#tabelaApontamentos tbody"
+            );
+
+            // Loop through the retrieved data and populate the table
+            data.forEach((apontamento) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                    <td class="id">${apontamento.id}</td>
                     <td>${apontamento.categoria}</td>
                     <td>${apontamento.data_hora_inicio}</td>
                     <td>${apontamento.data_hora_fim}</td>
                     <td>${apontamento.justificativa}</td>
                     <td>-</td>
-                    <td>${apontamento.centro_resultados_id}</td>
+                    <td>${apontamento.centroResultadosId}</td>
                     <td>
-                        <button class="view-button">
-                            <i class="fas fa-eye"></i> Visualizar
-                        </button>
-                        <button class="edit-button">
-                            <i class="fas fa-edit"></i> Corrigir
-                        </button>
-                        <button class="remove-button">
-                            <i class="fas fa-trash-alt"></i> Cancelar
-                        </button>
+                        <a  href="apontarHoraExtra.html?username=${username}&metodo=VISUALIZAR&apontamentoId=${apontamento.id}&categoria=HORAEXTRA"><button class="editar">
+                        <i class="fas fa-eye"></i>Visualizar</button></a>
+
+                        <a  href="apontarHoraExtra.html?username=${username}&metodo=EDITAR&apontamentoId=${apontamento.id}&categoria=HORAEXTRA"><button class="editar">
+                        <i class="fas fa-edit"></i>Corrigir</button></a>
+
+                        <a><button id="arroz" onclick="deleteItem(${apontamento.id})" class="editar">
+                        <i class="fas fa-trash-alt"></i>Deletar</button></a>
                     </td>
                 `;
-                tableBody.appendChild(row);
-              });
-            })
-            .catch((error) => {
-              console.error("Error fetching data:", error);
+              tableBody.appendChild(row);
             });
-        }
 
-        // Call the function to fetch and populate the table with the auth token
-        fetchApontamentosAndPopulateTable();
-      });
-    </script>
-  </body>
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+
+      }
+
+
+      // Call the function to fetch and populate the table with the auth token
+      fetchApontamentosAndPopulateTable();
+
+    });
+  </script>
+  <script>
+    var homeItem = document.querySelectorAll('.item-menu')
+
+    function selectLink() {
+      homeItem.forEach((item) =>
+        item.classList.remove('ativo')
+      )
+      this.classList.add('ativo')
+    }
+
+    homeItem.forEach((item) =>
+      item.addEventListener('click', selectLink)
+    )
+
+  </script>
+
+<script src="scriptAuth.js" defer></script>
+<script src="scriptMenu.js" defer></script>
+
+</body>
+
 </html>

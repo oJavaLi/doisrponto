@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_listaUsuario.css">
-    <title>Lista de Usuários</title>
+    <link rel="stylesheet" href="style_sobreaviso.css">
+    <title>Apontamento de Sobreaviso</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="./scriptSobreAviso.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 
@@ -23,11 +24,10 @@
             </div>
         </div>
     </header>
-   
-  <div class="content"> 
-    <nav class="menu-lateral">
-
+    <div class="content">
+        <nav class="menu-lateral">
         <ul>
+
             <li class="item-menu" id="homeMenuItem">
                 <a href="./home.html">
                     <span class="icon"><i class="bi bi-house-door"></i></span>
@@ -40,7 +40,7 @@
                     <span class="txt-link">Usuários</span>
                 </a>
             </li>
-            <li class="item-menu ativo" id="listaUsuarioMenuItem">
+            <li class="item-menu" id="listaUsuarioMenuItem">
                 <a href="./listaUsuario.html">
                     <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
                     <span class="txt-link">ListaUsuários</span>
@@ -64,7 +64,7 @@
                     <span class="txt-link">HorasExtras</span>
                 </a>
             </li>
-            <li class="item-menu" id="sobreavisoMenuItem">
+            <li class="item-menu ativo" id="sobreavisoMenuItem">
                 <a href="./apontarSobreAviso.html">
                     <span class="icon"><i class="bi bi-calendar-check"></i></span>
                     <span class="txt-link">Sobreaviso</span>
@@ -100,95 +100,106 @@
                     <span class="txt-link">Logout</span>
                 </a>
             </li>
-
         </ul>
+        </nav>
+        <div class="tela">
+             <div class="sobre-aviso-form">
+        <h2>Apontamento de Sobreaviso</h2>
+        <form>
+            <label class="form-label" for="entrada">Entrada:</label>
+            <input type="datetime-local" class="entrada" id="entrada" name="entrada" required>
 
+            <label class="form-label" for="saida">Saída:</label>
+            <input type="datetime-local" class="saida" id="saida" name="saida" required>
 
-  </nav>
+            <label class="form-label" for="cliente">Cliente:</label>
+            <input type="text" class="cliente" id="cliente" name="cliente" required>
 
+            <label class="form-label" for="projeto">Projeto:</label>
+            <input type="text" class="projeto" id="projeto" name="projeto" required>
 
-	<div class="user-creation-form">
-        <h2>Usuários Cadastrados</h2>
-        <table id="tabelaUsuarios">
-			<thead>
-    <tr>
-        <th>Nome</th>
-        <th>Matrícula</th>
-        <th>Email</th>
-        <th>Categoria</th>
-        <th>Ações</th>
-    </tr>
-	</thead>    
-        <tbody>
-          <!-- Pegar da API -->
-        </tbody>
-        
-        </table>
-    
-			<button class="create-button" type="submit"><i class="fas fa-user-plus"></i> Criar Usuário</button>
+            <label class="form-label" for="cr">CR:</label>
+            <select class="cr" id="cr" name="cr" required>
+                <option value="">Selecione</option>
+            </select>
+
+            <label class="form-label" for="justificativa">Justificativa:</label>
+            <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
+
+            <button class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Sobreaviso</button>
+            <button class="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
+
+        </form>
+
+        <h2>Você fez hora extra durante o período sobreaviso?</h2>
+        <form>
+            <select class="sobreaviso" id="sobreaviso" name="sobreaviso">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+            </select>
+
+            <!-- Mostra a tabela de hora extra apenas se houver hora extra no sobreaviso -->
+            <div class="hora-extra-table" style="display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Início</th>
+                            <th>Fim</th>
+                            <th>Descrição da Atividade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aqui você pode adicionar linhas da tabela conforme necessário -->
+                        <tr>
+                            <td><input type="datetime-local" class="inicio" name="inicio"></td>
+                            <td><input type="datetime-local" class="fim" name="fim"></td>
+                            <td><input type="text" class="descricao" name="descricao"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="submit-hora-extra" type="submit"><i class="fas fa-clock"></i> Registrar Hora Extra</button>
+            </div>
+
+           
+        </form>
+             </div>
+        </div>
     </div>
-  </div>
-
     <footer>
         <p>Equipe Javali</p>
     </footer>
-    
-       <script>
-      document.addEventListener("DOMContentLoaded", function () {
-		  function fetUsuariosAndPopulateTable(){
-			  const token = sessionStorage.getItem("token");
-			    if (!token) {
-            window.location.href = "/index.html";
-          }	  
-          const apiUrl = "/api/usuarios";
-          const headers = new Headers();
-          headers.append("Authorization", token);
-          const requestOptions = {
-            method: "GET",
-            headers: headers,
-          };			  
-          fetch(apiUrl, requestOptions)
-            .then((response) => response.json())
-            .then((data) => {
-              // Reference to the table body
-              const tableBody = document.querySelector(
-                "#tabelaUsuarios tbody"
-              );
-              // Loop through the retrieved data and populate the table
-              data.forEach((usuario) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${usuario.nome}</td>
-                    <td>${usuario.matricula}</td>
-                    <td>${usuario.email}</td>
-                    <td>${usuario.categoria}</td>
-                    <td>
-                        <button class="view-button">
-                            <i class="fas fa-eye"></i> Visualizar
-                        </button>
-                        <button class="edit-button">
-                            <i class="fas fa-edit"></i> Corrigir
-                        </button>
-                        <button class="remove-button">
-                            <i class="fas fa-trash-alt"></i> Cancelar
-                        </button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-              });
-            })
-            .catch((error) => {
-              console.error("Error fetching data:", error);
-            });
+
+    <script>
+        // Adiciona um evento de mudança no campo de seleção de sobreaviso
+        const sobreavisoSelect = document.getElementById("sobreaviso");
+        const horaExtraTable = document.querySelector(".hora-extra-table");
+        
+        sobreavisoSelect.addEventListener("change", function () {
+            if (sobreavisoSelect.value === "sim") {
+                horaExtraTable.style.display = "block";
+            } else {
+                horaExtraTable.style.display = "none";
+            }
+        });
+    </script>
+    <script>
+        var homeItem = document.querySelectorAll('.item-menu')
+
+        function selectLink() {
+            homeItem.forEach((item) =>
+                item.classList.remove('ativo')
+            )
+            this.classList.add('ativo')
         }
 
-        // Call the function to fetch and populate the table with the auth token
-        fetUsuariosAndPopulateTable();
-      });
+        homeItem.forEach((item) =>
+            item.addEventListener('click', selectLink)
+        )
+
     </script>
-			  
-              <script src="scriptAuth.js" defer></script>
-              <script src="scriptMenu.js" defer></script>
+
+<script src="scriptAuth.js" defer></script>
+<script src="scriptMenu.js" defer></script>
 
 </body>
 

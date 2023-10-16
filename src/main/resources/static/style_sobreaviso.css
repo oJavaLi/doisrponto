@@ -1,3 +1,4 @@
+/* Estilos para o corpo da página */
 body {
     font-family: Arial, sans-serif;
     background-color: #1e293b;
@@ -7,10 +8,11 @@ body {
     min-height: 100vh;
 }
 
+/* Estilos para o cabeçalho */
 header {
     background-color: #1e293b;
     color: #fff;
-    padding: 0.5rem;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,7 +34,6 @@ header img {
 
 .user-icon i {
     font-size: 2rem;
-
 }
 
 .user-details {
@@ -42,25 +43,24 @@ header img {
 
 .user-name {
     font-size: 1.2rem;
-
 }
 
 .user-matricula {
     font-size: 0.9rem;
-
 }
 
-.user-creation-form {
+/* Estilos para o apontamento de hora extra */
+.sobre-aviso-form {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
     padding: 20px;
     flex-grow: 1;
-    width: 850px;
+    max-width: 850px;
 }
 
-.user-creation-form h2 {
+.sobre-aviso-form h2 {
     text-align: center;
     color: #1e293b;
 }
@@ -69,14 +69,22 @@ header img {
     font-weight: bold;
 }
 
-.name, .matricula, .email, .password, .role {
-    width: 800px;
+/* Estilos para os campos de entrada */
+.entrada,
+.saida,
+.cliente,
+.projeto,
+.solicitante,
+.cr,
+.justificativa {
+    width: 820px;
     padding: 5px;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
+/* Estilos para os botões */
 .submit {
     background-color: #3498db;
     color: #fff;
@@ -86,7 +94,7 @@ header img {
     cursor: pointer;
     font-size: 1rem;
     margin-top: 10px;
-    margin-left: 230px;
+    margin-left: 190px;
 }
 
 .submit2 {
@@ -101,10 +109,14 @@ header img {
     margin-left: 100px;
 }
 
-.create-button:hover {
+
+/* Estilos para o hover nos botões */
+.submit:hover,
+.submit2:hover {
     opacity: 0.8;
 }
 
+/* Estilos para o rodapé */
 footer {
     background-color: #1e293b;
     color: #fff;
@@ -112,6 +124,109 @@ footer {
     padding: 10px 0;
 }
 
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #1e293b;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+} */
+
+header {
+    background-color: #1e293b;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    max-height: 42px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.user-icon {
+    margin-right: 10px;
+}
+
+.user-icon i {
+    font-size: 2rem;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 1.2rem;
+}
+
+.user-matricula {
+    font-size: 0.9rem;
+}
+
+.sobre-aviso-form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    flex-grow: 1;
+    max-width: 850px;
+}
+
+.sobre-aviso-form h2 {
+    text-align: center;
+}
+
+.sobreaviso {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+
+.hora-extra-table table {
+    width: 850px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.hora-extra-table th,
+.hora-extra-table td {
+    padding: 2px;
+    /* Espaçamento interno das células da tabela */
+    border: 1px solid #ccc;
+    /* Adicione uma borda às células da tabela */
+    text-align: center;
+    /* Centralize o conteúdo horizontalmente nas células */
+}
+
+.submit-hora-extra {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-left: 650px;
+
+
+}
 
 nav.menu-lateral {
     width: 60px;

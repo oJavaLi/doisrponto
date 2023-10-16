@@ -4,14 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_cadastro.css">
-    <title>Criar Usuário</title>
+    <link rel="stylesheet" href="style_hora_extra.css">
+    <title>Apontamento de Horas Extras</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="./script.js" defer></script>
+    <script src="./scriptHoraExtra.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-    
 </head>
 
 <body>
@@ -23,12 +20,12 @@
             </div>
             <div class="user-details">
                 <div class="user-name">John Doe</div>
-                <div class="user-matricula">Matrícula: 12345</div>
+                <div id="usernameDisplay"></div>
             </div>
         </div>
     </header>
-    <div class="content">
 
+    <div class="content">
         <nav class="menu-lateral">
 
             <ul>
@@ -39,7 +36,7 @@
                         <span class="txt-link">Home</span>
                     </a>
                 </li>
-                <li class="item-menu ativo" id="usuarioMenuItem">
+                <li class="item-menu" id="usuarioMenuItem">
                     <a href="./cadastroUsuario.html">
                         <span class="icon"><i class="bi bi-people"></i></span>
                         <span class="txt-link">Usuários</span>
@@ -63,7 +60,7 @@
                         <span class="txt-link">CR</span>
                     </a>
                 </li>
-                <li class="item-menu" id="horasExtrasMenuItem">
+                <li class="item-menu ativo" id="horasExtrasMenuItem">
                     <a href="./apontarHoraExtra.html">
                         <span class="icon"><i class="bi bi-clock"></i></span>
                         <span class="txt-link">HorasExtras</span>
@@ -87,8 +84,8 @@
                         <span class="txt-link">AprovarApontamentos</span>
                     </a>
                 </li>
-                <li class="item-menu" id="relatoriosMenuItem">
-                    <a href="#">
+                <li class="item-menu">
+                    <a href="/gerarRelatorio.html">
                         <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
                         <span class="txt-link">Relatorios</span>
                     </a>
@@ -110,68 +107,74 @@
 
 
         </nav>
-        
-
         <div class="tela">
-        <div class="user-creation-form">
-        <h2>Cadastro de Usuários</h2>
-        <form>
-            <label class="form-label" for="name">Nome:</label>
-            <input type="text" class="name" id="name" name="name" required>
 
-            <label class="form-label" for="matricula">Matrícula:</label>
-            <input type="text" class="matricula" id="matricula" name="matricula" required>
+            <div class="content">
+                <div class="hora-extra-form">
+                    <h2>Apontamento de Horas Extras</h2>
+                    <form id="formulario">
+                        <label class="form-label" for="entrada">Entrada:</label>
+                        <input type="datetime-local" class="entrada" id="entrada" name="entrada" required>
 
-            <label class="form-label" for="email">Email:</label>
-            <input type="email" class="email" id="email" name="email" required>
+                        <label class="form-label" for="saida">Saída:</label>
+                        <input type="datetime-local" class="saida" id="saida" name="saida" required>
 
-            <label class="form-label" for="password">Senha:</label>
-            <input type="password" class="password" id="password" name="password" required>
+                        <label class="form-label" for="cliente">Cliente:</label>
+                        <input type="text" class="cliente" id="cliente" name="cliente" readonly required>
 
-            <label class="form-label" for="role">Role de Usuário:</label>
-            <select id="role" class="role" name="role" required>
-                <option value="GESTOR">GESTOR</option>
-                <option value="RH">RECURSOS HUMANOS</option>
-                <option value="FUNCIONARIO">FUNCIONÁRIO</option>
-            </select>
+                        <label class="form-label" for="projeto">Projeto:</label>
+                        <input type="text" class="projeto" id="projeto" name="projeto" readonly required>
 
-            <button class="submit" type="submit"><i class="fas fa-user-plus"></i> Criar Usuário</button>
-            <button class="submit2" type="submit2"></i> Listar Usuários</button>
+                        <label class="form-label" for="cr">CR:</label>
+                        <select class="cr" id="cr" name="cr" required>
+                            <option value="">Selecione</option>
+                        </select>
 
-        </form>
+                        <label class="form-label" for="justificativa">Justificativa:</label>
+                        <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
+
+                        <button id="submit" class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora
+                            Extra</button>
+
+                        <button id="submit2" class="submit2" type="button"> Ver
+                            Registros</button>
+                    </form>
+
+                </div>
+            </div>
         </div>
     </div>
-    </div>
+    <footer>
+        <p>Equipe Javali</p>
+    </footer>
 
-
-
-    <script src="/scriptAuth.js" ></script>
+    <script src="/scriptAuth.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        verificaLogin();
+        document.addEventListener("DOMContentLoaded", function () {
+            verificaLogin();
 
-        // Exemplo de requisição
-        const apiUrl = "/api/";
-        const headers = new Headers();
-        headers.append("Authorization", obtemToken());
-        const requestOptions = {
-            method: "GET",
-            headers: headers,
-        };
-        fetch(apiUrl, requestOptions)
-            .then((response) => {
-                if(response.status == 401) {
-                    alert("Sua sessão expirou!");
-                    resetToken();
-                    verificaLogin();
-                }
+            // Exemplo de requisição
+            const apiUrl = "/api/";
+            const headers = new Headers();
+            headers.append("Authorization", obtemToken());
+            const requestOptions = {
+                method: "GET",
+                headers: headers,
+            };
+            fetch(apiUrl, requestOptions)
+                .then((response) => {
+                    if (response.status == 401) {
+                        alert("Sua sessão expirou!");
+                        resetToken();
+                        verificaLogin();
+                    }
 
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data.message);
-            });
-      });
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data.message);
+                });
+        });
     </script>
     <script>
         var homeItem = document.querySelectorAll('.item-menu')

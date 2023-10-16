@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aprovar Apontamentos</title>
+  <!-- Include Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #1e293b;
+      color: #fff;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header img {
+      max-height: 42px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      color: #fff;
+    }
+
+    .user-icon {
+      margin-right: 10px;
+    }
+
+    .user-icon i {
+      font-size: 2.5rem;
+      /* Adjust the size as needed */
+      margin-left: 0.5rem;
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-name {
+      font-size: 1.2rem;
+      /* Adjust the size as needed */
+      text-align: right;
+    }
+
+    .user-matricula {
+      font-size: 0.9rem;
+      /* Adjust the size as needed */
+    }
+
+    .apontamento-list {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .apontamento-list h2 {
+      text-align: center;
+      color: #1e293b;
+      padding-top: 1rem;
+    }
+
+    .apontamento-list strong {
+      color: #1e293b;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th:last-child,
+    td:last-child {
+      text-align: center;
+    }
+
+    .horaExtra {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+      margin-left: 190px;
+    }
+
+    .sobreaviso {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+      margin-left: 100px;
+    }
+
+    .horaExtra:hover,
+    .sobreaviso:hover {
+    opacity: 0.8;
+}
+
+    .apontamento-list button {
+      border: none;
+      border-radius: 4px;
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .approve-button {
+      background-color: #3498db;
+    }
+
+    .apontamento-list button:hover {
+      opacity: 0.8;
+    }
+
+    footer {
+      background-color: #1e293b;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .approve-button {
+      background-color: #3498db;
+      color: #fff;
+    }
+    
+    .reprove-button {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+    nav.menu-lateral {
+    width: 60px;
+    height: calc (100vh - 58px);
+    background-color: #2E5276;
+    padding: 0px;
+    box-shadow: 3px 0 0 #3498db;    
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: .2s;
+}
+nav.menu-lateral:hover {
+    width: 250px;
+
+}
+
+ul{
+    height: 100%;    
+    list-style-type: none;
+    padding: 0%;
+}
+
+ul li.item-menu{
+    transition: .2s;
+}
+
+ul li.ativo{
+    background-color: #3498db;
+}
+
+ul li.item-menu:hover {
+    background-color: #3498db;
+}
+ul li.item-menu a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px 6%;
+    display: flex ;
+    line-height: 30px;
+
+}
+ul li.item-menu a .txt-link{
+    margin-left: 40px;
+}
+ul li.item-menu a .icon > i{
+    font-size: 23px;
+    margin-left: 10px;
+}
+.content {
+    display: flex;
+    height: calc(100vh - 58px); 
+}
+
+.tela {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="./images/2RPONTO_BRANCO.png" alt="Logo">
+    <div class="user-info">
+        <div class="user-icon">
+            <i class="fas fa-user-circle fa-2x"></i>
+        </div>
+        <div class="user-details">
+            <div class="user-name">John Doe</div>
+            <div class="user-matricula">Matrícula: 12345</div>
+        </div>
+    </div>
+</header>
+  <div class="content">
+       <nav class="menu-lateral">
+
+        <ul>
+          <li class="item-menu" id="homeMenuItem">
+              <a href="./home.html">
+                  <span class="icon"><i class="bi bi-house-door"></i></span>
+                  <span class="txt-link">Home</span>
+              </a>
+          </li>
+          <li class="item-menu" id="usuarioMenuItem">
+              <a href="./cadastroUsuario.html">
+                  <span class="icon"><i class="bi bi-people"></i></span>
+                  <span class="txt-link">Usuários</span>
+              </a>
+          </li>
+          <li class="item-menu" id="listaUsuarioMenuItem">
+              <a href="./listaUsuario.html">
+                  <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                  <span class="txt-link">ListaUsuários</span>
+              </a>
+          </li>
+          <li class="item-menu" id="clientesMenuItem">
+              <a href="#">
+                  <span class="icon"><i class="bi bi-buildings"></i></span>
+                  <span class="txt-link">Clientes</span>
+              </a>
+          </li>
+          <li class="item-menu" id="crMenuItem">
+              <a href="#">
+                  <span class="icon"><i class="bi bi-collection"></i></span>
+                  <span class="txt-link">CR</span>
+              </a>
+          </li>
+          <li class="item-menu" id="horasExtrasMenuItem">
+              <a href="./apontarHoraExtra.html">
+                  <span class="icon"><i class="bi bi-clock"></i></span>
+                  <span class="txt-link">HorasExtras</span>
+              </a>
+          </li>
+          <li class="item-menu" id="sobreavisoMenuItem">
+              <a href="./apontarSobreAviso.html">
+                  <span class="icon"><i class="bi bi-calendar-check"></i></span>
+                  <span class="txt-link">Sobreaviso</span>
+              </a>
+          </li>
+          <li class="item-menu" id="listaApontamentosMenuItem">
+              <a href="./listarApontamentos.html">
+                  <span class="icon"><i class="bi bi-card-list"></i></span>
+                  <span class="txt-link">ListaApontamentos</span>
+              </a>
+          </li>
+          <li class="item-menu ativo" id="aprovarApontamentoMenuItem">
+              <a href="./aprovarApontamento.html">
+                  <span class="icon"><i class="bi bi-card-checklist"></i></span>
+                  <span class="txt-link">AprovarApontamentos</span>
+              </a>
+          </li>
+          <li class="item-menu" id="relatoriosMenuItem">
+              <a href="/gerarRelatorio.html">
+                  <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
+                  <span class="txt-link">Relatorios</span>
+              </a>
+          </li>
+          <li class="item-menu" id="ParametrizacaoMenuItem">
+              <a href="#">
+                  <span class="icon"><i class="bi bi-bar-chart"></i></span>
+                  <span class="txt-link">Parametrização</span>
+              </a>
+          </li>
+          <li class="item-menu" id="logoutMenuItem">
+              <a href="./index.html">
+                  <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                  <span class="txt-link">Logout</span>
+              </a>
+          </li>
+
+      </ul>
+
+       </nav>
+       <div class="tela">
+  <div class="apontamento-list" id="tabelaApontamentos">
+    <strong>Colaborador:</strong>
+    <select id="colaboradoresSelect">
+      <option>Selecione...</option>
+    </select>
+    
+    <h2>Aprovar Apontamentos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Categoria</th>
+          <th>Início</th>
+          <th>Fim</th>
+          <th>Justificativa</th>
+          <th>Aprovado Por</th>
+          <th>Centro de Resultados</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Pegar da API -->
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+  <footer>
+    <p>Equipe Javali</p>
+  </footer>
+
+  <script src="/scriptAuth.js" ></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    verificaLogin();
+      
+    const tableBody = document.querySelector("#tabelaApontamentos tbody");
+    const colaboradoresSelect = document.getElementById("colaboradoresSelect");
+    
+    fetch(
+      "/api/usuarios",
+      {
+        method: "GET",
+        headers: {
+          "Authorization": obtemToken(),
+        }  
+      }
+    ).then((response) => {
+      if(response.status == 401) {
+          alert("Sua sessão expirou!");
+          resetToken();
+          verificaLogin();
+        }
+
+      return response.json();
+    }).then((data) => {
+      data.forEach(colaborador => {
+        const colaboradorOption = document.createElement("option");
+        colaboradorOption.value = colaborador.matricula;
+        colaboradorOption.innerHTML = `${colaborador.matricula} - ${colaborador.nome}`;
+        colaboradoresSelect.appendChild(colaboradorOption);
+      });
+    });
+
+    colaboradoresSelect.addEventListener("change", (e) => {
+      tableBody.innerHTML = "";
+
+      const matricula = e.target.selectedOptions[0].value;
+      if(!matricula) return;
+
+      fetch(
+        `/apontamentos/matricula/${matricula}`,
+        {
+          method: "GET",
+          headers: {
+            "Authorization": obtemToken(),
+          }  
+        }
+      ).then((response) => response.json()
+      ).then((data) => {
+
+        if(data.length === 0) {
+          const p = document.createElement("p");
+          p.innerHTML = "Nenhum apontamento encontrado!";
+          tableBody.appendChild(p);
+          return;
+        }
+
+        data.forEach((apontamento) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                <td>${apontamento.id}</td>
+                <td>${apontamento.categoria}</td>
+                <td>${apontamento.data_hora_inicio}</td>
+                <td>${apontamento.data_hora_fim}</td>
+                <td>${apontamento.justificativa}</td>
+                <td>-</td>
+                <td>${apontamento.centro_resultados_id}</td>
+                <td>
+                    <button class="approve-button" data-id="${apontamento.id}">
+                        <i class="fas fa-check"></i> Aprovar
+                    </button>
+                    <button class="reprove-button" data-id="${apontamento.id}">
+                        <i class="fas fa-times"></i> Reprovar
+                    </button>
+                </td>
+            `;
+          tableBody.appendChild(row);
+        });
+      });
+    });
+
+    tableBody.addEventListener('click', function (e) {
+      const id = e.target.dataset.id;
+
+      console.log(id);
+
+      const justificativa = prompt("Justificativa:");
+      if(justificativa == null) return;
+
+      let approved = false;
+      if (e.target.classList.contains('approve-button')) {
+        approved = true;
+      } else if (e.target.classList.contains('reject-button')) {
+        approved = false;
+      }
+
+      fetch(
+        `/cadastrarStatus`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": obtemToken(),
+          },
+          body: JSON.stringify({
+            apontamento_id: id,
+            avaliador_matricula: obtemMatriculaUsuarioLogado(),
+            aprovado: approved,
+            justificativa: justificativa,
+          })
+        }
+      ).then((response) => {
+        if(response.status == 200) {
+          alert("Apontamento atualizado com sucesso!");
+        } else {
+          alert("Erro ao atualizar apontamento!");
+        }
+      });
+    });
+  });
+  </script>
+
+<script src="scriptAuth.js" defer></script>
+<script src="scriptMenu.js" defer></script>
+
+</body>
+
+</html>

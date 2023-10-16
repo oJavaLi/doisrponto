@@ -18,7 +18,7 @@ public class DoisrpontoApplication {
 		SpringApplication.run(DoisrpontoApplication.class, args);
 	}
 
-	@GetMapping("/")
+	@GetMapping("/api/")
 	public ResponseEntity<Object> index() {
 		Map<String, String> data = new HashMap<>();
 		data.put("message", "Bem vindo a API 2RPonto.");
