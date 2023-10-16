@@ -70,7 +70,7 @@ Tecnologias Utilizadas<br id=c>
 
 <h2>Sprint Backlog<br id=y></h2>
 
-![Apresentação de Portfólio Tecnologia Moderno Azul Branco](https://github.com/oJavaLi/doisrponto/assets/107864553/0f803b0a-f88d-4ba5-98b0-225748935237)
+![Apresentação de Portfólio Tecnologia Moderno Azul Branco](https://github.com/oJavaLi/doisrponto/assets/107864553/22f377b6-5c00-4d6c-b3a3-46d915078922)
 
 <h2>
 Aplicação<br id=x>
@@ -89,6 +89,8 @@ https://github.com/oJavaLi/doisrponto/assets/107864553/2758f8b1-238a-458e-8668-6
 <details>
 <summary><h2> Sprint 2 </h2> <br id=h></summary>
 <br>
+
+https://github.com/oJavaLi/doisrponto/assets/107864553/9a88e17a-8ddf-41ad-aa0a-ddf21fddbd8e
 
  
  ![Captura de tela 2023-10-15 194111](https://github.com/oJavaLi/doisrponto/assets/107864553/e7b4d8af-c132-4599-9554-a6a7bccdd05b)
