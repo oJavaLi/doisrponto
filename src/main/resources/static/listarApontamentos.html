@@ -219,8 +219,8 @@
     <img src="/images/2RPONTO_BRANCO.png" alt="Logo" />
     <div class="user-info">
       <div class="user-details">
-        <div class="user-name">João Ney</div>
-        <div id="usernameDisplay"></div>
+        <div id="usernameDisplay" class="user-name"></div>
+        <div id="matriculaDisplay" class="user-name"></div>
 
       </div>
       <div class="user-icon">
@@ -337,9 +337,24 @@
   <footer>
     <p>Equipe Javali</p>
   </footer>
+  
+  <script src="scriptAuth.js" defer></script>
+  <script src="scriptMenu.js" defer></script>
+
 
   <script>
-
+document.addEventListener("DOMContentLoaded", function () {
+                verificaLogin();
+                
+                obtemUsuarioLogado().then(function (usuario) {
+                var infoMatricula = usuario.matricula;
+                var infoNome = usuario.nome;
+                var usernameDisplay = document.getElementById("usernameDisplay");
+                var matriculaDisplay = document.getElementById("matriculaDisplay");
+                usernameDisplay.textContent = infoNome;
+                matriculaDisplay.textContent = infoMatricula;
+                });
+            });
     function deleteItem(id) {
       if (confirm("Tem certeza de que deseja excluir este item?")) {
         fetch(`/apontamentos/${id}`, {
@@ -461,8 +476,6 @@
 
   </script>
 
-<script src="scriptAuth.js" defer></script>
-<script src="scriptMenu.js" defer></script>
 
 </body>
 

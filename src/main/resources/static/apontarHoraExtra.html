@@ -1,200 +1,211 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+    <!DOCTYPE html>
+    <html lang="pt-BR">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_hora_extra.css">
-    <title>Apontamento de Horas Extras</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="./scriptHoraExtra.js" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style_hora_extra.css">
+        <title>Apontamento de Horas Extras</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <script src="./scriptHoraExtra.js" defer></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    </head>
 
-<body>
-    <header>
-        <img src="./images/2RPONTO_BRANCO.png" alt="Logo">
-        <div class="user-info">
-            <div class="user-icon">
-                <i class="fas fa-user-circle fa-2x"></i>
+    <body>
+        <header>
+            <img src="./images/2RPONTO_BRANCO.png" alt="Logo">
+            <div class="user-info">
+                <div class="user-icon">
+                    <i class="fas fa-user-circle fa-2x"></i>
+                </div>
+                <div class="user-details">
+                    <div id="usernameDisplay" class="user-name"></div>
+                    <div id="matriculaDisplay" class="user-name"></div>
+                    
+                </div>
             </div>
-            <div class="user-details">
-                <div class="user-name">John Doe</div>
-                <div id="usernameDisplay"></div>
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="content">
-        <nav class="menu-lateral">
+        <div class="content">
+            <nav class="menu-lateral">
 
-            <ul>
+                <ul>
 
-                <li class="item-menu" id="homeMenuItem">
-                    <a href="./home.html">
-                        <span class="icon"><i class="bi bi-house-door"></i></span>
-                        <span class="txt-link">Home</span>
-                    </a>
-                </li>
-                <li class="item-menu" id="usuarioMenuItem">
-                    <a href="./cadastroUsuario.html">
-                        <span class="icon"><i class="bi bi-people"></i></span>
-                        <span class="txt-link">Usuários</span>
-                    </a>
-                </li>
-                <li class="item-menu" id="listaUsuarioMenuItem">
-                    <a href="./listaUsuario.html">
-                        <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
-                        <span class="txt-link">ListaUsuários</span>
-                    </a>
-                </li>
-                <li class="item-menu" id="clientesMenuItem">
-                    <a href="#">
-                        <span class="icon"><i class="bi bi-buildings"></i></span>
-                        <span class="txt-link">Clientes</span>
-                    </a>
-                </li>
-                <li class="item-menu" id="crMenuItem">
-                    <a href="#">
-                        <span class="icon"><i class="bi bi-collection"></i></span>
-                        <span class="txt-link">CR</span>
-                    </a>
-                </li>
-                <li class="item-menu ativo" id="horasExtrasMenuItem">
-                    <a href="./apontarHoraExtra.html">
-                        <span class="icon"><i class="bi bi-clock"></i></span>
-                        <span class="txt-link">HorasExtras</span>
-                    </a>
-                </li>
-                <li class="item-menu" id="sobreavisoMenuItem">
-                    <a href="./apontarSobreAviso.html">
-                        <span class="icon"><i class="bi bi-calendar-check"></i></span>
-                        <span class="txt-link">Sobreaviso</span>
-                    </a>
-                </li>
-                <li class="item-menu" id="listaApontamentosMenuItem">
-                    <a href="./listarApontamentos.html">
-                        <span class="icon"><i class="bi bi-card-list"></i></span>
-                        <span class="txt-link">ListaApontamentos</span>
-                    </a>
-                </li>
-                <li class="item-menu" id="aprovarApontamentoMenuItem">
-                    <a href="./aprovarApontamento.html">
-                        <span class="icon"><i class="bi bi-card-checklist"></i></span>
-                        <span class="txt-link">AprovarApontamentos</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="/gerarRelatorio.html">
-                        <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
-                        <span class="txt-link">Relatorios</span>
-                    </a>
-                </li>
-                <li class="item-menu" id="ParametrizacaoMenuItem">
-                    <a href="#">
-                        <span class="icon"><i class="bi bi-bar-chart"></i></span>
-                        <span class="txt-link">Parametrização</span>
-                    </a>
-                </li>
-                <li class="item-menu" id="logoutMenuItem">
-                    <a href="./index.html">
-                        <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
-                        <span class="txt-link">Logout</span>
-                    </a>
-                </li>
+                    <li class="item-menu" id="homeMenuItem">
+                        <a href="./home.html">
+                            <span class="icon"><i class="bi bi-house-door"></i></span>
+                            <span class="txt-link">Home</span>
+                        </a>
+                    </li>
+                    <li class="item-menu" id="usuarioMenuItem">
+                        <a href="./cadastroUsuario.html">
+                            <span class="icon"><i class="bi bi-people"></i></span>
+                            <span class="txt-link">Usuários</span>
+                        </a>
+                    </li>
+                    <li class="item-menu" id="listaUsuarioMenuItem">
+                        <a href="./listaUsuario.html">
+                            <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                            <span class="txt-link">ListaUsuários</span>
+                        </a>
+                    </li>
+                    <li class="item-menu" id="clientesMenuItem">
+                        <a href="#">
+                            <span class="icon"><i class="bi bi-buildings"></i></span>
+                            <span class="txt-link">Clientes</span>
+                        </a>
+                    </li>
+                    <li class="item-menu" id="crMenuItem">
+                        <a href="#">
+                            <span class="icon"><i class="bi bi-collection"></i></span>
+                            <span class="txt-link">CR</span>
+                        </a>
+                    </li>
+                    <li class="item-menu ativo" id="horasExtrasMenuItem">
+                        <a href="./apontarHoraExtra.html">
+                            <span class="icon"><i class="bi bi-clock"></i></span>
+                            <span class="txt-link">HorasExtras</span>
+                        </a>
+                    </li>
+                    <li class="item-menu" id="sobreavisoMenuItem">
+                        <a href="./apontarSobreAviso.html">
+                            <span class="icon"><i class="bi bi-calendar-check"></i></span>
+                            <span class="txt-link">Sobreaviso</span>
+                        </a>
+                    </li>
+                    <li class="item-menu" id="listaApontamentosMenuItem">
+                        <a href="./listarApontamentos.html">
+                            <span class="icon"><i class="bi bi-card-list"></i></span>
+                            <span class="txt-link">ListaApontamentos</span>
+                        </a>
+                    </li>
+                    <li class="item-menu" id="aprovarApontamentoMenuItem">
+                        <a href="./aprovarApontamento.html">
+                            <span class="icon"><i class="bi bi-card-checklist"></i></span>
+                            <span class="txt-link">AprovarApontamentos</span>
+                        </a>
+                    </li>
+                    <li class="item-menu">
+                        <a href="/gerarRelatorio.html">
+                            <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
+                            <span class="txt-link">Relatorios</span>
+                        </a>
+                    </li>
+                    <li class="item-menu" id="ParametrizacaoMenuItem">
+                        <a href="#">
+                            <span class="icon"><i class="bi bi-bar-chart"></i></span>
+                            <span class="txt-link">Parametrização</span>
+                        </a>
+                    </li>
+                    <li class="item-menu" id="logoutMenuItem">
+                        <a href="./index.html">
+                            <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                            <span class="txt-link">Logout</span>
+                        </a>
+                    </li>
 
-            </ul>
+                </ul>
 
 
-        </nav>
-        <div class="tela">
+            </nav>
+            <div class="tela">
 
-            <div class="content">
-                <div class="hora-extra-form">
-                    <h2>Apontamento de Horas Extras</h2>
-                    <form id="formulario">
-                        <label class="form-label" for="entrada">Entrada:</label>
-                        <input type="datetime-local" class="entrada" id="entrada" name="entrada" required>
+                <div class="content">
+                    <div class="hora-extra-form">
+                        <h2>Apontamento de Horas Extras</h2>
+                        <form id="formulario">
+                            <label class="form-label" for="entrada">Entrada:</label>
+                            <input type="datetime-local" class="entrada" id="entrada" name="entrada" required>
 
-                        <label class="form-label" for="saida">Saída:</label>
-                        <input type="datetime-local" class="saida" id="saida" name="saida" required>
+                            <label class="form-label" for="saida">Saída:</label>
+                            <input type="datetime-local" class="saida" id="saida" name="saida" required>
 
-                        <label class="form-label" for="cliente">Cliente:</label>
-                        <input type="text" class="cliente" id="cliente" name="cliente" readonly required>
+                            <label class="form-label" for="cliente">Cliente:</label>
+                            <input type="text" class="cliente" id="cliente" name="cliente" readonly required>
 
-                        <label class="form-label" for="projeto">Projeto:</label>
-                        <input type="text" class="projeto" id="projeto" name="projeto" readonly required>
+                            <label class="form-label" for="projeto">Projeto:</label>
+                            <input type="text" class="projeto" id="projeto" name="projeto" readonly required>
 
-                        <label class="form-label" for="cr">CR:</label>
-                        <select class="cr" id="cr" name="cr" required>
-                            <option value="">Selecione</option>
-                        </select>
+                            <label class="form-label" for="cr">CR:</label>
+                            <select class="cr" id="cr" name="cr" required>
+                                <option value="">Selecione</option>
+                            </select>
 
-                        <label class="form-label" for="justificativa">Justificativa:</label>
-                        <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
+                            <label class="form-label" for="justificativa">Justificativa:</label>
+                            <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
 
-                        <button id="submit" class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora
-                            Extra</button>
+                            <button id="submit" class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Hora
+                                Extra</button>
 
-                        <button id="submit2" class="submit2" type="button"> Ver
-                            Registros</button>
-                    </form>
-
+                            <button id="submit2" class="submit2" type="button"> Ver
+                                Registros</button>
+                            </form>
+                            
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <footer>
-        <p>Equipe Javali</p>
-    </footer>
+        <footer>
+            <p>Equipe Javali</p>
+        </footer>
 
-    <script src="/scriptAuth.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            verificaLogin();
+        <script src="/scriptAuth.js"></script>
+        <script src="scriptMenu.js"></script>
 
-            // Exemplo de requisição
-            const apiUrl = "/api/";
-            const headers = new Headers();
-            headers.append("Authorization", obtemToken());
-            const requestOptions = {
-                method: "GET",
-                headers: headers,
-            };
-            fetch(apiUrl, requestOptions)
-                .then((response) => {
-                    if (response.status == 401) {
-                        alert("Sua sessão expirou!");
-                        resetToken();
-                        verificaLogin();
-                    }
-
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log(data.message);
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                verificaLogin();
+                
+                obtemUsuarioLogado().then(function (usuario) {
+                var infoMatricula = usuario.matricula;
+                var infoNome = usuario.nome;
+                var usernameDisplay = document.getElementById("usernameDisplay");
+                var matriculaDisplay = document.getElementById("matriculaDisplay");
+                usernameDisplay.textContent = infoNome;
+                matriculaDisplay.textContent = infoMatricula;
                 });
-        });
-    </script>
-    <script>
-        var homeItem = document.querySelectorAll('.item-menu')
 
-        function selectLink() {
+
+                // Exemplo de requisição
+                const apiUrl = "/api/";
+                const headers = new Headers();
+                headers.append("Authorization", obtemToken());
+                const requestOptions = {
+                    method: "GET",
+                    headers: headers,
+                };
+                fetch(apiUrl, requestOptions)
+                    .then((response) => {
+                        if (response.status == 401) {
+                            alert("Sua sessão expirou!");
+                            resetToken();
+                            verificaLogin();
+                        }
+
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data.message);
+                    });
+            });
+        </script>
+        <script>
+            var homeItem = document.querySelectorAll('.item-menu')
+
+            function selectLink() {
+                homeItem.forEach((item) =>
+                    item.classList.remove('ativo')
+                )
+                this.classList.add('ativo')
+            }
+
             homeItem.forEach((item) =>
-                item.classList.remove('ativo')
+                item.addEventListener('click', selectLink)
             )
-            this.classList.add('ativo')
-        }
 
-        homeItem.forEach((item) =>
-            item.addEventListener('click', selectLink)
-        )
+        </script>
 
-    </script>
 
-<script src="scriptAuth.js" defer></script>
-<script src="scriptMenu.js" defer></script>
+    </body>
 
-</body>
-
-</html>
+    </html>
