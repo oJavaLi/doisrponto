@@ -164,7 +164,7 @@
     }
     nav.menu-lateral {
     width: 60px;
-    height: calc (100vh - 58px);
+    height: calc(100vh - 58px);
     background-color: #2E5276;
     padding: 0px;
     box-shadow: 3px 0 0 #3498db;    
@@ -239,7 +239,7 @@ ul li.item-menu a .icon > i{
         </div>
         <div class="user-details">
             <div class="user-name">John Doe</div>
-            <div class="user-matricula">Matrícula: 12345</div>
+            <div class="user-matricula" id="userMatricula"></div>
         </div>
     </div>
 </header>
@@ -358,12 +358,19 @@ ul li.item-menu a .icon > i{
 
   <script src="/scriptAuth.js" ></script>
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
+      const h1 = document.createElement('h1');
+      h1.id = 'meuH1'
+    const usernameDisplay = document.getElementById('userMatricula');
+    let username = sessionStorage.getItem('username');
+    usernameDisplay.textContent = `Matrícula: ${username}`;
+      // Define o texto do elemento <h1> com o valor do 'username
+
+    document.addEventListener("DOMContentLoaded", function () {
     verificaLogin();
       
     const tableBody = document.querySelector("#tabelaApontamentos tbody");
     const colaboradoresSelect = document.getElementById("colaboradoresSelect");
-    
+
     fetch(
       "/api/usuarios",
       {
@@ -406,76 +413,107 @@ ul li.item-menu a .icon > i{
       ).then((response) => response.json()
       ).then((data) => {
 
-        if(data.length === 0) {
-          const p = document.createElement("p");
-          p.innerHTML = "Nenhum apontamento encontrado!";
-          tableBody.appendChild(p);
-          return;
-        }
-
         data.forEach((apontamento) => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-                <td>${apontamento.id}</td>
-                <td>${apontamento.categoria}</td>
-                <td>${apontamento.data_hora_inicio}</td>
-                <td>${apontamento.data_hora_fim}</td>
-                <td>${apontamento.justificativa}</td>
-                <td>-</td>
-                <td>${apontamento.centro_resultados_id}</td>
-                <td>
-                    <button class="approve-button" data-id="${apontamento.id}">
-                        <i class="fas fa-check"></i> Aprovar
-                    </button>
-                    <button class="reprove-button" data-id="${apontamento.id}">
-                        <i class="fas fa-times"></i> Reprovar
-                    </button>
-                </td>
-            `;
+            const row = document.createElement("tr");
+            row.id = apontamento.id;
+            if(apontamento.resposta === null){
+              row.innerHTML = `
+                    <td >${apontamento.id}</td>
+                    <td>${apontamento.categoria}</td>
+                    <td>${apontamento.data_hora_inicio}</td>
+                    <td>${apontamento.data_hora_fim}</td>
+                    <td>${apontamento.justificativa}</td>
+                    <td>-</td>
+                    <td>${apontamento.centroResultadosId}</td>
+                    <td>
+                        <button class="approve-button" data-id="${apontamento.id}" data-categoria="${apontamento.categoria}" data-data_hora_inicio="${apontamento.data_hora_inicio}" data-data_hora_fim="${apontamento.data_hora_fim}" data-justificativa="${apontamento.justificativa}" data-usuario_matricula="${apontamento.usuarioMatricula}" data-cr_id="${apontamento.centroResultadosId}" data-resposta="${apontamento.resposta}">
+                            <i class="fas fa-check"></i> Aprovar
+                        </button>
+                        <button class="reprove-button" data-id="${apontamento.id}">
+                            <i class="fas fa-times"></i> Reprovar
+                        </button>
+                    </td>
+                `;
+
+            }
+
           tableBody.appendChild(row);
         });
       });
+
     });
 
+
+
+        tableBody.addEventListener('click', function (e) {
+            if (tableBody.querySelectorAll('tr').length === 0) {
+                const h1 = document.createElement('h1');
+                h1.textContent = 'Nenhum apontamento disponível';
+                tableBody.parentElement.appendChild(h1);
+            }
+            if (e.target.classList.contains('approve-button')) {
+                // Se o botão "approve-button" for clicado, remova a linha correspondente da tabela
+                const row = e.target.closest('tr');
+                if (row) {
+                    // Remova a linha da tabela
+                    row.remove();
+
+                }
+            } else if (e.target.classList.contains('reprove-button')) {
+                // Se o botão "reprove-button" for clicado, remova a linha correspondente da tabela
+                const row = e.target.closest('tr');
+                if (row) {
+                    // Remova a linha da tabela
+                    row.remove();
+
+                }
+            }
+        });
     tableBody.addEventListener('click', function (e) {
-      const id = e.target.dataset.id;
+        const row = document.createElement("tr");
+        const id = e.target.dataset.id;
+        const categoria = e.target.dataset.categoria;
+        const justificativa = e.target.dataset.justificativa;
+        const data_hora_inicio = e.target.dataset.data_hora_inicio;
+        const data_hora_fim = e.target.dataset.data_hora_fim;
+        const usuario_matricula = e.target.dataset.usuario_matricula;
+        const cr_id = e.target.dataset.cr_id;
+        const resposta = prompt("Resposta:");
 
-      console.log(id);
 
-      const justificativa = prompt("Justificativa:");
-      if(justificativa == null) return;
+        const url = `http://localhost:1234/apontamentos/${id}`; // Substitua com a URL correta do registro que deseja atualizar
 
-      let approved = false;
-      if (e.target.classList.contains('approve-button')) {
-        approved = true;
-      } else if (e.target.classList.contains('reject-button')) {
-        approved = false;
-      }
 
-      fetch(
-        `/cadastrarStatus`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": obtemToken(),
-          },
-          body: JSON.stringify({
-            apontamento_id: id,
-            avaliador_matricula: obtemMatriculaUsuarioLogado(),
-            aprovado: approved,
-            justificativa: justificativa,
-          })
-        }
-      ).then((response) => {
-        if(response.status == 200) {
-          alert("Apontamento atualizado com sucesso!");
-        } else {
-          alert("Erro ao atualizar apontamento!");
-        }
-      });
+        fetch(
+            url,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": obtemToken(),
+                },
+                body: JSON.stringify({
+                    categoria: categoria,
+                    data_hora_inicio: data_hora_inicio,
+                    data_hora_fim: data_hora_fim,
+                    justificativa: justificativa,
+                    usuarioMatricula: usuario_matricula,
+                    centroResultadosId: cr_id,
+                    aprovado: true,
+                    avaliador: username,
+                    resposta: resposta
+                })
+            })
+            .then((response) => {
+                alert("Avaliado!!");
+                document.getElementById(id).parentNode.removeChild(document.getElementById(id));
+            });
+        tableBody.querySelector("tbody").appendChild(row);
+
     });
+
   });
+
   </script>
 
 <script src="scriptAuth.js" defer></script>

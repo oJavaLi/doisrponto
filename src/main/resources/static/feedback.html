@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_feedback.css">
+    <title>Apontamento de Horas Extras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="./scriptHoraExtra.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+<header>
+    <img src="./images/2RPONTO_BRANCO.png" alt="Logo">
+    <div class="user-info">
+        <div class="user-icon">
+            <i class="fas fa-user-circle fa-2x"></i>
+        </div>
+        <div class="user-details">
+            <div class="user-name">John Doe</div>
+            <div id="usernameDisplay"></div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="tela">
+
+        <div class="content">
+            <div class="hora-extra-form">
+                <h2>Tela de Feedback</h2>
+                <form id="formulario">
+                        <div class="input-group">
+                            <label for="avaliador" class="form-label">Avaliador:</label>
+                            <input type="text" id="avaliador" class="entrada" readonly>
+                        </div>
+                    <label for="resposta" class="form-label">Resposta:</label>
+                    <textarea type="text" class="cliente" id="resposta" name="cliente" readonly></textarea>
+
+                    <button id="submit2" class="submit2" type="button"> Ver
+                        Registros</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+<footer>
+    <p>Equipe Javali</p>
+</footer>
+
+<script src="/scriptAuth.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        verificaLogin();
+
+        // Exemplo de requisição
+        const apiUrl = "/api/";
+        const headers = new Headers();
+        headers.append("Authorization", obtemToken());
+        const requestOptions = {
+            method: "GET",
+            headers: headers,
+        };
+        fetch(apiUrl, requestOptions)
+            .then((response) => {
+                if (response.status == 401) {
+                    alert("Sua sessão expirou!");
+                    resetToken();
+                    verificaLogin();
+                }
+
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data.message);
+            });
+    });
+</script>
+<script>
+    var homeItem = document.querySelectorAll('.item-menu')
+
+    function selectLink() {
+        homeItem.forEach((item) =>
+            item.classList.remove('ativo')
+        )
+        this.classList.add('ativo')
+    }
+
+    homeItem.forEach((item) =>
+        item.addEventListener('click', selectLink)
+    )
+
+</script>
+<script>
+    const resposta = document.getElementById('resposta');
+    document.addEventListener('DOMContentLoaded', function () {
+        const token = sessionStorage.getItem("token");
+
+        // Execute este código após a página ser completamente carregada
+        const avaliador = document.getElementById('avaliador');
+        const headers = new Headers();
+        headers.append("Authorization", token);
+        const requestOptions = {
+            method: "GET",
+            headers: headers,
+        };
+        fetch("/apontamentos/"+apontamentoId,requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na solicitação.');
+                }
+                return response.json();
+            })
+            .then(apontamento=> {
+                // Preencha os campos "cliente" e "projeto" com os dados do JSON
+                resposta.value = apontamento.resposta;
+                fetch("api/usuarios/"+apontamento.avaliador,requestOptions)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro na solicitação.');
+                        }
+                        return response.json();
+                    })
+                    .then(avaliadorNome => {
+                        // Preencha os campos "cliente" e "projeto" com os dados do JSON
+                        avaliador.value = avaliadorNome.nome;
+
+                    })
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        document.getElementById("submit2").addEventListener("click", function () {
+            window.location.href = `listarApontamentos.html?username=${username}`;
+        });
+    });
+
+
+</script>
+<script src="scriptAuth.js" defer></script>
+<script src="scriptMenu.js" defer></script>
+
+</body>
+
+</html>
