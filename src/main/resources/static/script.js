@@ -6,7 +6,9 @@ const UserEmail = document.querySelector(".email");
 const UserSenha = document.querySelector(".password");
 const UserCategoria = document.querySelector(".role");
 
+
 function cadastrar() {
+    
      // Verifique se o usuário está autenticado
      const token = sessionStorage.getItem("token");
      if (!token) {
@@ -52,4 +54,19 @@ function cadastrar() {
     formulario.addEventListener('submit', function (event) {
       event.preventDefault();
       cadastrar(); // Chame a função de cadastro aqui
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        function getQueryParameter(name) {
+          const urlSearchParams = new URLSearchParams(window.location.search);
+          return urlSearchParams.get(name);
+        }
+    
+        const username = getQueryParameter('username');
+    
+        // Obtém o elemento <h1> pelo id
+        const usernameDisplay = document.getElementById('usernameDisplay');
+    
+        // Define o texto do elemento <h1> com o valor do 'username'
+        usernameDisplay.textContent = `Matrícula: ${username}`; // Exemplo de mensagem de boas-vindas
+    
     });
