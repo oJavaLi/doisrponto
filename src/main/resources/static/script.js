@@ -7,29 +7,49 @@ const UserSenha = document.querySelector(".password");
 const UserCategoria = document.querySelector(".role");
 
 function cadastrar() {
-
-    fetch("http://localhost:1234/cadastrarUsuario",
-    {
+     // Verifique se o usuário está autenticado
+     const token = sessionStorage.getItem("token");
+     if (!token) {
+       window.location.href = "/index.html";
+       return;
+     }
+     const userData = {
+        nome: UserNome.value,
+        matricula: UserMatricula.value,
+        email: UserEmail.value,
+        senha: UserSenha.value,
+        categoria: UserCategoria.value,
+        recover_password_token: "",
+      };
+  
+      // Faça a solicitação de cadastro autenticada com o método "POST"
+      fetch("http://localhost:1234/api/cadastrarUsuario", {
+        method: "POST", // Use o método "POST" aqui
         headers: {
-            'Accept':'application/json',
-            'Content-Type':'application/json'
+          'Authorization': token, // Adicione o token de autenticação aos cabeçalhos
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
         },
-        method:"POST",
-        body: JSON.stringify({
-            nome: UserNome.value,
-            matricula: UserMatricula.value,
-            email: UserEmail.value,
-            senha: UserSenha.value,
-            categoria: UserCategoria.value
-    
+        body: JSON.stringify(userData),
+      })
+        .then(function (response) {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Erro na solicitação');
+          }
         })
-    })
-    .then(function (res) {console.log(res)})
-    .catch(function(res) {console.log(res)})
-};
-
-formulario.addEventListener('submit', function(event){
-    event.preventDefault();
-    cadastrar();
-
-});
+        .then(function (data) {
+          // Lide com a resposta do servidor (por exemplo, exiba uma mensagem de sucesso)
+          console.log(data);
+        })
+        .catch(function (error) {
+          // Lide com erros (por exemplo, exiba uma mensagem de erro)
+          console.error(error);
+        });
+    }
+  
+    formulario.addEventListener('submit', function (event) {
+      event.preventDefault();
+      cadastrar(); // Chame a função de cadastro aqui
+    });
