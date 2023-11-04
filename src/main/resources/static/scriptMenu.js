@@ -48,7 +48,7 @@ function setupMenuForUserType(usuario) {
         showElementById('horasExtrasMenuItem');
         showElementById('sobreavisoMenuItem');
         showElementById('listaApontamentosMenuItem');
-        hideElementById('aprovarApontamentoMenuItem');
+        showElementById('aprovarApontamentoMenuItem');
         showElementById('relatoriosMenuItem');
         showElementById('logoutMenuItem');
     } else if (tipoUsuario === 'RH') {
