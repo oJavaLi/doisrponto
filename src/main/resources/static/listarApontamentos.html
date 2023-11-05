@@ -296,7 +296,7 @@
             </a>
         </li>
         <li class="item-menu" id="relatoriosMenuItem">
-          <a href="#">
+          <a href="/gerarRelatorio.html">
               <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
               <span class="txt-link">Relatorios</span>
           </a>
@@ -391,7 +391,7 @@
         return urlSearchParams.get(name);
       }
 
-      const username = getQueryParameter('username');
+      const username = sessionStorage.getItem("username");
 
       // Obtém o elemento <h1> pelo id
 

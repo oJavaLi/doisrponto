@@ -32,7 +32,7 @@ loginForm.addEventListener('submit', function (event) {
                 sessionStorage.setItem('username', username)
                 sessionStorage.setItem('token', token);
                 // Redirecione para a página desejada após o login bem-sucedido
-                window.location.href = '/listarApontamentos.html?username=' + username;
+                window.location.href = '/listarApontamentos.html';
             })
         } else {
             // Autenticação falhou, você pode exibir uma mensagem de erro ao usuário.

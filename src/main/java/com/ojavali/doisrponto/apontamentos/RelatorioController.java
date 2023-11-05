@@ -44,7 +44,7 @@ public class RelatorioController {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         List<String[]> relatorio = new ArrayList<>();
         
-        List<Apontamentos> apontamentos = apontamentosRepository.findByUsuarioMatricula(matricula);
+        List<Apontamentos> apontamentos = apontamentosRepository.findByUsuarioMatriculaAndAprovado(matricula, true);
 
         relatorio.add(new String[] {
             "CR", 

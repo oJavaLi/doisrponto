@@ -225,7 +225,13 @@ ul li.item-menu a .icon > i{
     flex-grow: 1;
 }
 
+.aprovado{
+    background-color: #a7ffa7;
+}
 
+.reprovado{
+    background-color: #ffa7a7;
+}
 
   </style>
 </head>
@@ -339,8 +345,9 @@ ul li.item-menu a .icon > i{
           <th>Início</th>
           <th>Fim</th>
           <th>Justificativa</th>
-          <th>Aprovado Por</th>
+          <th>Avaliado Por</th>
           <th>Centro de Resultados</th>
+          <th>Resposta</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -396,11 +403,11 @@ ul li.item-menu a .icon > i{
       });
     });
 
-    colaboradoresSelect.addEventListener("change", (e) => {
+    function updateTableBody(matricula) {
       tableBody.innerHTML = "";
 
-      const matricula = e.target.selectedOptions[0].value;
       if(!matricula) return;
+
 
       fetch(
         `/apontamentos/matricula/${matricula}`,
@@ -414,63 +421,47 @@ ul li.item-menu a .icon > i{
       ).then((data) => {
 
         data.forEach((apontamento) => {
+            const dataset = `data-id="${apontamento.id}" data-categoria="${apontamento.categoria}" data-data_hora_inicio="${apontamento.data_hora_inicio}" data-data_hora_fim="${apontamento.data_hora_fim}" data-justificativa="${apontamento.justificativa}" data-usuario_matricula="${apontamento.usuarioMatricula}" data-cr_id="${apontamento.centroResultadosId}" data-resposta="${apontamento.resposta}"`;
             const row = document.createElement("tr");
             row.id = apontamento.id;
-            if(apontamento.resposta === null){
-              row.innerHTML = `
-                    <td >${apontamento.id}</td>
-                    <td>${apontamento.categoria}</td>
-                    <td>${apontamento.data_hora_inicio}</td>
-                    <td>${apontamento.data_hora_fim}</td>
-                    <td>${apontamento.justificativa}</td>
-                    <td>-</td>
-                    <td>${apontamento.centroResultadosId}</td>
-                    <td>
-                        <button class="approve-button" data-id="${apontamento.id}" data-categoria="${apontamento.categoria}" data-data_hora_inicio="${apontamento.data_hora_inicio}" data-data_hora_fim="${apontamento.data_hora_fim}" data-justificativa="${apontamento.justificativa}" data-usuario_matricula="${apontamento.usuarioMatricula}" data-cr_id="${apontamento.centroResultadosId}" data-resposta="${apontamento.resposta}">
-                            <i class="fas fa-check"></i> Aprovar
-                        </button>
-                        <button class="reprove-button" data-id="${apontamento.id}">
-                            <i class="fas fa-times"></i> Reprovar
-                        </button>
-                    </td>
-                `;
-
+            row.innerHTML = `
+                  <td >${apontamento.id}</td>
+                  <td>${apontamento.categoria}</td>
+                  <td>${apontamento.data_hora_inicio}</td>
+                  <td>${apontamento.data_hora_fim}</td>
+                  <td>${apontamento.justificativa}</td>
+                  <td>${apontamento.avaliador || " - "}</td>
+                  <td>${apontamento.centroResultadosId}</td>
+                  <td>${apontamento.resposta || "-"}</td>
+                  <td>
+                      <button class="approve-button" ${dataset}>
+                          <i class="fas fa-check"></i> Aprovar
+                      </button>
+                      <button class="reprove-button" ${dataset}>
+                          <i class="fas fa-times"></i> Reprovar
+                      </button>
+                  </td>
+              `;
+            
+            if(!Object.is(apontamento.aprovado, null)) {
+              if(apontamento.aprovado) {
+                row.classList.add("aprovado");
+              } else {
+                row.classList.add("reprovado");
+              }
             }
 
           tableBody.appendChild(row);
         });
-      });
+      });      
+    }
 
+    colaboradoresSelect.addEventListener("change", (e) => {
+      const matricula = e.target.selectedOptions[0].value;
+      updateTableBody(matricula);
     });
 
-
-
-        tableBody.addEventListener('click', function (e) {
-            if (tableBody.querySelectorAll('tr').length === 0) {
-                const h1 = document.createElement('h1');
-                h1.textContent = 'Nenhum apontamento disponível';
-                tableBody.parentElement.appendChild(h1);
-            }
-            if (e.target.classList.contains('approve-button')) {
-                // Se o botão "approve-button" for clicado, remova a linha correspondente da tabela
-                const row = e.target.closest('tr');
-                if (row) {
-                    // Remova a linha da tabela
-                    row.remove();
-
-                }
-            } else if (e.target.classList.contains('reprove-button')) {
-                // Se o botão "reprove-button" for clicado, remova a linha correspondente da tabela
-                const row = e.target.closest('tr');
-                if (row) {
-                    // Remova a linha da tabela
-                    row.remove();
-
-                }
-            }
-        });
     tableBody.addEventListener('click', function (e) {
-        const row = document.createElement("tr");
         const id = e.target.dataset.id;
         const categoria = e.target.dataset.categoria;
         const justificativa = e.target.dataset.justificativa;
@@ -479,11 +470,18 @@ ul li.item-menu a .icon > i{
         const usuario_matricula = e.target.dataset.usuario_matricula;
         const cr_id = e.target.dataset.cr_id;
         const resposta = prompt("Resposta:");
+        if(resposta == null) return;
 
+        let aprovado = false;
+        if (e.target.classList.contains('approve-button')) {
+          aprovado = true;
+        } else if (e.target.classList.contains('reject-button')) {
+          aprovado = false;
+        }
 
-        const url = `http://localhost:1234/apontamentos/${id}`; // Substitua com a URL correta do registro que deseja atualizar
+        const row = document.createElement("tr");
 
-
+        const url = `http://localhost:1234/apontamentos/${id}`;
         fetch(
             url,
             {
@@ -499,17 +497,19 @@ ul li.item-menu a .icon > i{
                     justificativa: justificativa,
                     usuarioMatricula: usuario_matricula,
                     centroResultadosId: cr_id,
-                    aprovado: true,
+                    aprovado: aprovado,
                     avaliador: username,
                     resposta: resposta
                 })
             })
             .then((response) => {
-                alert("Avaliado!!");
-                document.getElementById(id).parentNode.removeChild(document.getElementById(id));
+              if(response.status == 200) {
+                alert("Apontamento atualizado com sucesso!");
+              } else {
+                alert("Erro ao atualizar apontamento!");
+              }
+              updateTableBody(usuario_matricula);
             });
-        tableBody.querySelector("tbody").appendChild(row);
-
     });
 
   });
