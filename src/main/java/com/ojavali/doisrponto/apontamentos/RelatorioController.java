@@ -64,7 +64,7 @@ public class RelatorioController {
             double porcentagem = 0;
             double horasCalculadas = 0;
             
-            if (a.getCategoria() == "0") {
+            if (a.getCategoria().equals("1")) { // Sobreaviso
                 verba = "3016";
                 multiplicador = 1;
                 porcentagem = 30;
@@ -95,7 +95,7 @@ public class RelatorioController {
                 });
             } else {
                 if(
-                    a.getInicio().getHour() >= 6
+                    (a.getInicio().getHour() >= 6 && a.getInicio().getHour() < 22)
                     && (a.getFim().getHour() < 22 || (a.getFim().getHour() == 22 && a.getFim().getMinute() == 0))
                 ){
                     Duration duracao = Duration.between(a.getInicio(), a.getFim());

@@ -36,3 +36,11 @@ CREATE TABLE status_apontamentos (
 ALTER TABLE usuarios ADD COLUMN email VARCHAR(255);
 
 ALTER TABLE usuarios ADD COLUMN recover_password_token VARCHAR(255);
+
+ALTER TABLE apontamentos ADD COLUMN aprovado BOOLEAN;
+
+ALTER TABLE apontamentos ADD COLUMN avaliador INTEGER;
+
+ALTER TABLE apontamentos ADD COLUMN resposta TEXT;
+
+ALTER TABLE apontamentos ADD CONSTRAINT apontamentos_avaliador_matricula_fkey FOREIGN KEY (avaliador) REFERENCES usuarios(matricula);

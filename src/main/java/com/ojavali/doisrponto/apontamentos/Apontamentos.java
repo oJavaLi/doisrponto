@@ -28,8 +28,8 @@ public class Apontamentos implements Serializable {
     private String justificativa;
     private int usuarioMatricula;
     private int centroResultadosId;
-    private boolean aprovado;
-    private int avaliador;
+    private Boolean aprovado;
+    private Integer avaliador;
     private String resposta;
 
     public String getTotalHoras() {
