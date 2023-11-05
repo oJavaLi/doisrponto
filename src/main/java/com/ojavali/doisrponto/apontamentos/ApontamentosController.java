@@ -7,13 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-
+@Slf4j
 public class ApontamentosController {
 
     @Autowired
@@ -23,6 +23,7 @@ public class ApontamentosController {
     @PostMapping("/cadastrarApontamentos")
     public ResponseEntity<Apontamentos> cadastrarApontamentos(@RequestBody @Validated ApontamentosRecord apontamentosRecordDto){
         var apontamentos = new Apontamentos();
+        log.info(apontamentosRecordDto.data_hora_fim());
         BeanUtils.copyProperties(apontamentosRecordDto, apontamentos);
         return ResponseEntity.status(HttpStatus.OK).body(apontamentosRepository.save(apontamentos));
     }

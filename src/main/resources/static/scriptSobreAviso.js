@@ -14,7 +14,7 @@ function getQueryParameter(name) {
 
 const username = getQueryParameter('username');
 const apontamentoId = getQueryParameter('apontamentoId');
-const categoria = getQueryParameter('categoria');
+const categoria = getQueryParameter('categoria') == "SobreAviso" ? "1" : "0";
 const metodo = getQueryParameter('metodo');
 
 // Obtém o elemento <h1> pelo id

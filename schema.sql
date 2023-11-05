@@ -44,3 +44,7 @@ ALTER TABLE apontamentos ADD COLUMN avaliador INTEGER;
 ALTER TABLE apontamentos ADD COLUMN resposta TEXT;
 
 ALTER TABLE apontamentos ADD CONSTRAINT apontamentos_avaliador_matricula_fkey FOREIGN KEY (avaliador) REFERENCES usuarios(matricula);
+
+ALTER TABLE public.apontamentos ALTER COLUMN data_hora_inicio TYPE varchar USING data_hora_inicio::varchar;
+
+ALTER TABLE public.apontamentos ALTER COLUMN data_hora_fim TYPE varchar USING data_hora_fim::varchar;

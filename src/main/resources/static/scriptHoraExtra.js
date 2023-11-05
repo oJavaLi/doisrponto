@@ -14,7 +14,7 @@ function getQueryParameter(name) {
 
 const username = getQueryParameter('username');
 const apontamentoId = getQueryParameter('apontamentoId');
-const categoria = getQueryParameter('categoria');
+const categoria = getQueryParameter('categoria') == "HoraExtra" ? "0" : "1";
 const metodo = getQueryParameter('metodo');
 
 // Obtém o elemento <h1> pelo id
