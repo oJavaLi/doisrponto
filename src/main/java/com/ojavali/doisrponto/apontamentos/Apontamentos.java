@@ -28,7 +28,10 @@ public class Apontamentos implements Serializable {
     private String justificativa;
     private int usuarioMatricula;
     private int centroResultadosId;
-    
+    private Boolean aprovado;
+    private Integer avaliador;
+    private String resposta;
+
     public String getTotalHoras() {
         try {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

@@ -49,8 +49,6 @@
                 <i class="fas fa-user-circle fa-2x"></i>
             </div>
             <div class="user-details">
-                <div class="user-name">John Doe</div>
-                <div class="user-matricula">Matrícula: 12345</div>
             </div>
         </div>
     </header>
@@ -206,6 +204,8 @@
 
         const gerarRelatorioButton = document.querySelector("#gerarRelatorioButton");
         gerarRelatorioButton.addEventListener("click", (e) => {
+            const tableBody = document.querySelector("#relatorioTableBody");
+            tableBody.innerHTML = "";
             const matricula = colaboradoresSelect.selectedOptions[0].value;
             fetch(
                 `/api/relatorio/${matricula}`,
@@ -224,13 +224,12 @@
                     return null;
                 }
             }).then((data) => {
-                const tableBody = document.querySelector("#relatorioTableBody");
                 data.forEach((linha) => {
                     if(linha[0] == "CR") return; // Pula cabeçalho
                     const tr = document.createElement("tr");
                     tr.innerHTML = `
                         <td>${linha[0]}</td>
-                        <td>${linha[1]}</td>
+                        <td>${linha[1] == '0' ? "Hora Extra" : "Sobreaviso"}</td>
                         <td>${linha[2]}</td>
                         <td>${linha[3]}</td>
                         <td>${linha[4]}</td>

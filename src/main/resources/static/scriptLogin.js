@@ -29,9 +29,10 @@ loginForm.addEventListener('submit', function (event) {
             // Autenticação bem-sucedida, você pode redirecionar o usuário para outra página ou executar ações apropriadas.
             console.log("Autenticação bem-sucedida");
             response.text().then(token => {
+                sessionStorage.setItem('username', username)
                 sessionStorage.setItem('token', token);
                 // Redirecione para a página desejada após o login bem-sucedido
-                window.location.href = '/listarApontamentos.html?username=' + encodeURIComponent(username);
+                window.location.href = '/listarApontamentos.html';
             })
         } else {
             // Autenticação falhou, você pode exibir uma mensagem de erro ao usuário.

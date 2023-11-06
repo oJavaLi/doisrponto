@@ -14,7 +14,7 @@ function getQueryParameter(name) {
 
 const username = getQueryParameter('username');
 const apontamentoId = getQueryParameter('apontamentoId');
-const categoria = getQueryParameter('categoria');
+const categoria = getQueryParameter('categoria') == "HoraExtra" ? "0" : "1";
 const metodo = getQueryParameter('metodo');
 
 // Obtém o elemento <h1> pelo id
@@ -48,8 +48,9 @@ if(metodo==="CADASTRAR") {
                     data_hora_fim: dataHoraSaidaFormatada,
                     justificativa: justificativa.value,
                     usuarioMatricula: username,
-                    centroResultadosId: cr.value
-
+                    centroResultadosId: cr.value,
+                    aprovado: false,
+                    avaliador: null
                 })
             })
             .then(function (res) {
@@ -170,7 +171,9 @@ else if(metodo==="EDITAR") {
                     data_hora_fim: dataHoraSaidaFormatada,
                     justificativa: justificativa.value,
                     usuarioMatricula: username,
-                    centroResultadosId: cr.value
+                    centroResultadosId: cr.value,
+                    aprovado: false,
+                    avaliador: null
 
                 })
             })

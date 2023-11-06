@@ -8,6 +8,7 @@ body {
     min-height: 100vh;
 }
 
+
 /* Estilos para o cabeçalho */
 header {
     background-color: #1e293b;
@@ -50,7 +51,7 @@ header img {
 }
 
 /* Estilos para o apontamento de hora extra */
-.sobre-aviso-form {
+.hora-extra-form {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -60,18 +61,44 @@ header img {
     max-width: 850px;
 }
 
-.sobre-aviso-form h2 {
+.hora-extra-form h2 {
     text-align: center;
     color: #1e293b;
+}
+
+/* Estilos para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e293b;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ... (outros estilos) ... */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .form-label {
     font-weight: bold;
 }
 
-/* Estilos para os campos de entrada */
+
+
 .entrada,
-.saida,
+.saida {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
 .cliente,
 .projeto,
 .solicitante,
@@ -83,7 +110,10 @@ header img {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
+.cliente {
+    height: 200px;
+    resize: none;
+}
 /* Estilos para os botões */
 .submit {
     background-color: #3498db;
@@ -107,8 +137,11 @@ header img {
     font-size: 1rem;
     margin-top: 10px;
     margin-left: 100px;
-}
 
+}
+#formulario{
+    position: relative;
+}
 
 /* Estilos para o hover nos botões */
 .submit:hover,
@@ -122,110 +155,6 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px 0;
-}
-
-/* body {
-    font-family: Arial, sans-serif;
-    background-color: #1e293b;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-} */
-
-header {
-    background-color: #1e293b;
-    color: #fff;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header img {
-    max-height: 42px;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    color: #fff;
-}
-
-.user-icon {
-    margin-right: 10px;
-}
-
-.user-icon i {
-    font-size: 2rem;
-}
-
-.user-details {
-    display: flex;
-    flex-direction: column;
-}
-
-.user-name {
-    font-size: 1.2rem;
-}
-
-.user-matricula {
-    font-size: 0.9rem;
-}
-
-.sobre-aviso-form {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    padding: 20px;
-    flex-grow: 1;
-    max-width: 850px;
-}
-
-.sobre-aviso-form h2 {
-    text-align: center;
-}
-
-.sobreaviso {
-    text-align: center;
-    display: block;
-    margin: 0 auto;
-    font-weight: bold;
-    margin-bottom: 20px;
-
-}
-
-.hora-extra-table table {
-    width: 850px;
-    border-collapse: collapse;
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-}
-
-.hora-extra-table th,
-.hora-extra-table td {
-    padding: 2px;
-    /* Espaçamento interno das células da tabela */
-    border: 1px solid #ccc;
-    /* Adicione uma borda às células da tabela */
-    text-align: center;
-    /* Centralize o conteúdo horizontalmente nas células */
-}
-
-.submit-hora-extra {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 10px;
-    margin-left: 650px;
-
-
 }
 
 nav.menu-lateral {

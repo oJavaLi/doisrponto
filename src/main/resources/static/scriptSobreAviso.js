@@ -1,13 +1,11 @@
-const formulario = document.querySelector("sobre-aviso-form");
-const botao = document.querySelector("submit");
+const formulario = document.querySelector("form");
+const botao = document.querySelector("#submit");
 
 const entrada = document.querySelector(".entrada");
 const saida = document.querySelector(".saida");
 const cliente = document.querySelector(".cliente");
 const projeto = document.querySelector(".projeto");
-const cr = document.querySelector(".cr");
 const justificativa = document.querySelector(".justificativa");
-const matricula = 1;
 
 function getQueryParameter(name) {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -15,32 +13,51 @@ function getQueryParameter(name) {
 }
 
 const username = getQueryParameter('username');
-const categoria = getQueryParameter('categoria');
+const apontamentoId = getQueryParameter('apontamentoId');
+const categoria = getQueryParameter('categoria') == "SobreAviso" ? "1" : "0";
+const metodo = getQueryParameter('metodo');
 
 // Obtém o elemento <h1> pelo id
-const usernameDisplay = document.getElementById('usernameDisplay');
+const usernameDisplay = document.getElementById('user-matricula');
+usernameDisplay.textContent = `Matrícula: ${username}`;
 
-// Define o texto do elemento <h1> com o valor do 'username'
-usernameDisplay.textContent = `Matrícula: ${username}`; // Exemplo de mensagem de boas-vindas
+const dataHoraEntrada = entrada.value;
+const dataHora = new Date(dataHoraEntrada);
+const dataHoraEntradaFormatada = `${dataHora.getFullYear()}-${(dataHora.getMonth() + 1).toString().padStart(2, '0')}-${dataHora.getDate().toString().padStart(2, '0')} ${dataHora.getHours().toString().padStart(2, '0')}:${dataHora.getMinutes().toString().padStart(2, '0')}:${dataHora.getSeconds().toString().padStart(2, '0')}`;
+const dataHoraSaida = saida.value;
+const dataHoraS = new Date(dataHoraSaida);
+const dataHoraSaidaFormatada = `${dataHoraS.getFullYear()}-${(dataHoraS.getMonth() + 1).toString().padStart(2, '0')}-${dataHoraS.getDate().toString().padStart(2, '0')} ${dataHoraS.getHours().toString().padStart(2, '0')}:${dataHoraS.getMinutes().toString().padStart(2, '0')}:${dataHoraS.getSeconds().toString().padStart(2, '0')}`;
+
+
+const crSelect = document.getElementById('cr');
 function cadastrar(){
+    const dataHoraEntrada = entrada.value;
+    const dataHora = new Date(dataHoraEntrada);
+    const dataHoraEntradaFormatada = `${dataHora.getFullYear()}-${(dataHora.getMonth() + 1).toString().padStart(2, '0')}-${dataHora.getDate().toString().padStart(2, '0')} ${dataHora.getHours().toString().padStart(2, '0')}:${dataHora.getMinutes().toString().padStart(2, '0')}:${dataHora.getSeconds().toString().padStart(2, '0')}`;
+    const dataHoraSaida = saida.value;
+    const dataHoraS = new Date(dataHoraSaida);
+    const dataHoraSaidaFormatada = `${dataHoraS.getFullYear()}-${(dataHoraS.getMonth() + 1).toString().padStart(2, '0')}-${dataHoraS.getDate().toString().padStart(2, '0')} ${dataHoraS.getHours().toString().padStart(2, '0')}:${dataHoraS.getMinutes().toString().padStart(2, '0')}:${dataHoraS.getSeconds().toString().padStart(2, '0')}`;
+
     fetch("http://localhost:1234/cadastrarApontamentos",
         {
             headers: {
-                'Accept':'application/json',
-                'Content-Type':'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
-            method:"POST",
+            method: "POST",
             body: JSON.stringify({
-                categoria: categoria,
-                data_hora_inicio:  entrada.value,
-                data_hora_fim: saida.value,
-                justificativa: justificativa.value,
-                usuarioMatricula:  username,
-                centroResultadosId: cr.value
 
+                categoria: categoria,
+                data_hora_inicio: dataHoraEntradaFormatada,
+                data_hora_fim: dataHoraSaidaFormatada,
+                justificativa: justificativa.value,
+                usuarioMatricula: username,
+                centroResultadosId: cr.value,
+                aprovado: false,
+                avaliador: null
             })
         })
-        .then(function (res){
+        .then(function (res) {
             // Verifica se a resposta da requisição foi bem-sucedida
             if (res.ok) {
                 // Redireciona para a outra página HTML após o cadastro bem-sucedido
@@ -49,25 +66,21 @@ function cadastrar(){
                 console.log("Erro ao cadastrar");
             }
         })
-        .catch(function(res) {console.log(res)})
+        .catch(function (res) {
+            console.log(res)
+        })
 }
-formulario.addEventListener('submit', function(event){
-    event.preventDefault();
-    cadastrar();
-});
-document.getElementById("submit2").addEventListener("click", function () {
-    // Volte para a página anterior no histórico de navegação
-    window.location.href = `listarApontamentos.html?username=${username}`;
-});
-
-//Opções nos CR
+    formulario.addEventListener('submit', function (event) {
+        event.preventDefault();
+        cadastrar();
+    });
+    document.getElementById("submit2").addEventListener("click", function () {
+        // Volte para a página anterior no histórico de navegação
+        window.location.href = `/listarApontamentos.html?username=${username}`;
+    });
+// Faça uma solicitação AJAX (ou fetch) para buscar os IDs da URL
 document.addEventListener('DOMContentLoaded', function () {
-    // Execute este código após a página ser completamente carregada
 
-    // Obtém a referência ao elemento <select> com id="cr"
-    const crSelect = document.getElementById('cr');
-
-    // Faça uma solicitação AJAX (ou fetch) para buscar os IDs da URL
     fetch('/CR')
         .then(response => {
             if (!response.ok) {
@@ -87,10 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => {
             console.error('Erro:', error);
         });
-});
-
-//Cliente e Projeto
-document.addEventListener('DOMContentLoaded', function () {
 
     function fetchApontamentosAndPopulateTable() {
         const token = sessionStorage.getItem("token");
@@ -107,11 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const crValue = this.value; // Obtém o valor selecionado no campo "CR"
 
             // Certifique-se de que um valor foi selecionado
-            if (!crValue) {
-                clienteInput.value = ''; // Limpa o campo "Cliente"
-                projetoInput.value = ''; // Limpa o campo "Projeto"
-                return;
-            }
+
 
             // Faça uma solicitação GET para a URL /CR/{crValue} (onde {crValue} é o valor do campo CR)
             fetch("/CR/" + crValue)
@@ -129,10 +134,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 .catch(error => {
                     console.error('Erro:', error);
                 });
+
         });
     }
+
     fetchApontamentosAndPopulateTable();
-
 });
-
-

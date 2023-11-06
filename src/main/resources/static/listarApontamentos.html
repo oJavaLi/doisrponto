@@ -146,7 +146,7 @@
 
     nav.menu-lateral {
       width: 60px;
-      height: calc (100vh - 58px);
+      height: calc(100vh - 58px);
       background-color: #2E5276;
       padding: 0px;
       box-shadow: 3px 0 0 #3498db;
@@ -211,6 +211,14 @@
       padding: 2rem;
       flex-grow: 1;
     }
+
+    .aprovado{
+        background-color: #a7ffa7;
+    }
+
+    .reprovado{
+        background-color: #ffa7a7;
+    }
   </style>
 </head>
 
@@ -219,7 +227,6 @@
     <img src="/images/2RPONTO_BRANCO.png" alt="Logo" />
     <div class="user-info">
       <div class="user-details">
-        <div class="user-name">João Ney</div>
         <div id="usernameDisplay"></div>
 
       </div>
@@ -288,7 +295,7 @@
             </a>
         </li>
         <li class="item-menu" id="relatoriosMenuItem">
-          <a href="#">
+          <a href="/gerarRelatorio.html">
               <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
               <span class="txt-link">Relatorios</span>
           </a>
@@ -321,7 +328,7 @@
             <th>Início</th>
             <th>Fim</th>
             <th>Justificativa</th>
-            <th>Aprovado Por</th>
+            <th>Avaliado Por</th>
             <th>Centro de Resultados</th>
             <th>Ações</th>
           </tr>
@@ -333,13 +340,17 @@
       <button id=horaExtra class="horaExtra"><i class="fas fa-clock"></i> Registrar Hora Extra</a></button>
       <button id=sobreaviso class="sobreaviso" type="submit"><i class="fas fa-clock"></i> Registrar Sobreaviso</button>
     </div>
+
   </div>
+
   <footer>
     <p>Equipe Javali</p>
   </footer>
 
   <script>
-
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    let username = sessionStorage.getItem('username');
+    usernameDisplay.textContent = `Matrícula: ${username}`;
     function deleteItem(id) {
       if (confirm("Tem certeza de que deseja excluir este item?")) {
         fetch(`/apontamentos/${id}`, {
@@ -366,12 +377,12 @@
 
     // Adicionar ouvinte de evento para o botão "Hora Extra"
     document.getElementById('horaExtra').addEventListener('click', function () {
-      redirecionarParaOutraPagina("HORAEXTRA");
+      redirecionarParaOutraPagina("HoraExtra");
     });
 
     // Adicionar ouvinte de evento para o botão "Sobreaviso"
     document.getElementById('sobreaviso').addEventListener('click', function () {
-      redirecionarParaOutraPagina("SOBREAVISO");
+      redirecionarParaOutraPagina("SobreAviso");
     });
     document.addEventListener("DOMContentLoaded", function () {
       function getQueryParameter(name) {
@@ -379,13 +390,11 @@
         return urlSearchParams.get(name);
       }
 
-      const username = getQueryParameter('username');
+      const username = sessionStorage.getItem("username");
 
       // Obtém o elemento <h1> pelo id
-      const usernameDisplay = document.getElementById('usernameDisplay');
 
       // Define o texto do elemento <h1> com o valor do 'username'
-      usernameDisplay.textContent = `Matrícula: ${username}`; // Exemplo de mensagem de boas-vindas
       function fetchApontamentosAndPopulateTable() {
         const token = sessionStorage.getItem("token");
         if (!token) {
@@ -410,7 +419,8 @@
             // Loop through the retrieved data and populate the table
             data.forEach((apontamento) => {
               const row = document.createElement("tr");
-              row.innerHTML = `
+              if(Object.is(apontamento.avaliador, null)) {
+                  row.innerHTML = `
                     <td class="id">${apontamento.id}</td>
                     <td>${apontamento.categoria}</td>
                     <td>${apontamento.data_hora_inicio}</td>
@@ -429,6 +439,28 @@
                         <i class="fas fa-trash-alt"></i>Deletar</button></a>
                     </td>
                 `;
+              } else {
+                  if(apontamento.aprovado === true){
+                      row.classList.add("aprovado");
+                  }else if(apontamento.aprovado === false){
+                      row.classList.add("reprovado");
+                  }
+                  row.innerHTML = `
+                    <td class="id">${apontamento.id}</td>
+                    <td>${apontamento.categoria == '0' ? 'Hora Extra': 'Sobreaviso'}</td>
+                    <td>${apontamento.data_hora_inicio}</td>
+                    <td>${apontamento.data_hora_fim}</td>
+                    <td>${apontamento.justificativa}</td>
+                    <td>${apontamento.avaliador || " - "}</td>
+                    <td>${apontamento.centroResultadosId}</td>
+                    <td>
+                        <a  href="feedback.html?username=${apontamento.usuarioMatricula}&nomeAvaliador=${apontamento.avaliador}&apontamentoId=${apontamento.id}"><button class="editar">
+                        <i class="fas fa-eye"></i>Visualizar</button></a>
+
+
+                    </td>
+                `;
+              }
               tableBody.appendChild(row);
             });
 
@@ -437,9 +469,8 @@
             console.error("Error fetching data:", error);
           });
 
+
       }
-
-
       // Call the function to fetch and populate the table with the auth token
       fetchApontamentosAndPopulateTable();
 

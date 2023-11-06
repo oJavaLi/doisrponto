@@ -19,8 +19,7 @@
                 <i class="fas fa-user-circle fa-2x"></i>
             </div>
             <div class="user-details">
-                <div class="user-name">John Doe</div>
-                <div class="user-matricula">Matrícula: 12345</div>
+                <div class="user-matricula" id="user-matricula">Matrícula: 12345</div>
             </div>
         </div>
     </header>
@@ -83,7 +82,7 @@
                 </a>
             </li>
             <li class="item-menu" id="relatoriosMenuItem">
-                <a href="#">
+                <a href="/gerarRelatorio.html">
                     <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
                     <span class="txt-link">Relatorios</span>
                 </a>
@@ -113,10 +112,10 @@
             <input type="datetime-local" class="saida" id="saida" name="saida" required>
 
             <label class="form-label" for="cliente">Cliente:</label>
-            <input type="text" class="cliente" id="cliente" name="cliente" required>
+            <input type="text" class="cliente" id="cliente" name="cliente" readonly required>
 
             <label class="form-label" for="projeto">Projeto:</label>
-            <input type="text" class="projeto" id="projeto" name="projeto" required>
+            <input type="text" class="projeto" id="projeto" name="projeto" readonly required>
 
             <label class="form-label" for="cr">CR:</label>
             <select class="cr" id="cr" name="cr" required>
@@ -126,8 +125,8 @@
             <label class="form-label" for="justificativa">Justificativa:</label>
             <textarea class="justificativa" id="justificativa" name="justificativa" required></textarea>
 
-            <button class="submit" type="submit"><i class="fas fa-clock"></i> Registrar Sobreaviso</button>
-            <button class="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
+            <button class="submit" id="submit" type="submit"><i class="fas fa-clock"></i> Registrar Sobreaviso</button>
+            <button class="submit2" id="submit2" type="submit2"><i class="fas fa-list"></i> Ver Registros</button>
 
         </form>
 

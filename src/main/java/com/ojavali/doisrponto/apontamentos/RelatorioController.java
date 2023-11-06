@@ -44,7 +44,7 @@ public class RelatorioController {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         List<String[]> relatorio = new ArrayList<>();
         
-        List<Apontamentos> apontamentos = apontamentosRepository.findByUsuarioMatricula(matricula);
+        List<Apontamentos> apontamentos = apontamentosRepository.findByUsuarioMatriculaAndAprovado(matricula, true);
 
         relatorio.add(new String[] {
             "CR", 
@@ -64,7 +64,7 @@ public class RelatorioController {
             double porcentagem = 0;
             double horasCalculadas = 0;
             
-            if (a.getCategoria() == "0") {
+            if (a.getCategoria().equals("1")) { // Sobreaviso
                 verba = "3016";
                 multiplicador = 1;
                 porcentagem = 30;
@@ -95,7 +95,7 @@ public class RelatorioController {
                 });
             } else {
                 if(
-                    a.getInicio().getHour() >= 6
+                    (a.getInicio().getHour() >= 6 && a.getInicio().getHour() < 22)
                     && (a.getFim().getHour() < 22 || (a.getFim().getHour() == 22 && a.getFim().getMinute() == 0))
                 ){
                     Duration duracao = Duration.between(a.getInicio(), a.getFim());
