@@ -100,7 +100,11 @@ https://github.com/oJavaLi/doisrponto/assets/107864553/9a88e17a-8ddf-41ad-aa0a-d
 <summary><h2> Sprint 3 </h2> <br id=h></summary>
 <br>
 
-https://github.com/oJavaLi/doisrponto/assets/77700346/933afd5e-703e-456e-98ee-07b01eebe945
+
+https://github.com/oJavaLi/doisrponto/assets/77700346/44103326-a232-4f7f-bc4a-21accc4c1713
+
+![sprint3-parametrização](https://github.com/oJavaLi/doisrponto/assets/77700346/4c90b61d-4b33-490d-b4dc-80f8d7376cd7)
+
 
 ![Sprint 3](https://github.com/oJavaLi/doisrponto/assets/107864553/996e8199-e668-4296-9c42-9e1be2cda8da)
 
