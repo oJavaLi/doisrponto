@@ -2,7 +2,6 @@ package com.ojavali.doisrponto.dashboard;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ojavali.doisrponto.apontamentos.Apontamentos;
 import com.ojavali.doisrponto.apontamentos.ApontamentosRepository;
-
-import ch.qos.logback.core.util.Duration;
 
 @RestController
 public class DashboardController {
