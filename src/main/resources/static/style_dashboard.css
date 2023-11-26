@@ -2,3 +2,8 @@
     padding: 0 2rem;
     flex-grow: 1;
 }
+
+.charts {
+    display: flex;
+    gap: 5rem;
+}

@@ -33,7 +33,7 @@ public class DashboardController {
         
         estatisticas.setTotal(apontamentosDoMes.size());
         estatisticas.setAprovados(apontamentosDoMes.stream().filter(a -> a.getAprovado() != null && a.getAprovado()).count());
-        estatisticas.setReprovados(estatisticas.getTotal() - estatisticas.getAprovados());
+        estatisticas.setReprovados(apontamentosDoMes.stream().filter(a -> a.getAprovado() != null && !a.getAprovado()).count());
         estatisticas.setPendentes(estatisticas.getTotal() - estatisticas.getAprovados() - estatisticas.getReprovados());
         
         estatisticas.setTotalHoras(apontamentosDoMes.stream().mapToDouble(a -> {

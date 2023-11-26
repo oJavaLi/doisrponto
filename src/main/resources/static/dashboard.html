@@ -116,10 +116,14 @@
 
         <div class="dashboard">
             <h1>Dashboard</h1>
-            <div class="chart-container" style="position: relative; height:40vh; width:40vh">
-                <canvas id="stats-qtd-mes"></canvas>
+            <div class="charts">
+                <div class="chart-container" style="position: relative; height:50vh; width:50vh">
+                    <canvas id="stats-qtd-mes"></canvas>
+                </div>
+                <div class="chart-container" style="position: relative; height:50vh; width:50vh">
+                    <canvas id="stats-hrs-mes"></canvas>
+                </div>
             </div>
-
         </div>
 
 
@@ -152,6 +156,9 @@
             const ctxStatsQtdMes = document.getElementById('stats-qtd-mes');
             let chartStatsQtdMes;
 
+            const ctxStatsHrsMes = document.getElementById('stats-hrs-mes');
+            let chartStatsHrsMes;
+
             fetch(
                 "/api/dashboard/estatisticaApontamentos",
                 {
@@ -170,7 +177,7 @@
             }).then((data) => {
                 console.log(data);
 
-                new Chart(ctxStatsQtdMes, {
+                chartStatsQtdMes = new Chart(ctxStatsQtdMes, {
                     type: 'bar',
                     data: {
                         labels: ['Pendentes', 'Aprovados', 'Reprovados'],
@@ -200,6 +207,45 @@
                             title: {
                                 display: true,
                                 text: 'Quantidade de Apontamentos'
+                            },
+                            legend: {
+                                display: false,
+                            }
+                        },
+                    }
+                });
+
+
+                chartStatsQtdMes = new Chart(ctxStatsHrsMes, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Pendentes', 'Aprovados', 'Reprovados'],
+                        datasets: [{
+                            label: 'Horas Apontamentos',
+                            data: [data.pendentesHoras, data.aprovadosHoras, data.reprovadosHoras],
+                            backgroundColor: [
+                                "#A9A9A988",
+                                "#4CAF5088",
+                                "#EF535088",
+                            ],
+                            borderColor: [
+                                "#A9A9A9",
+                                "#4CAF50",
+                                "#EF5350",
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Horas Apontamentos'
                             },
                             legend: {
                                 display: false,
