@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_home.css">
+    <link rel="stylesheet" href="style_dashboard.css">
+    <title>"2RPonto"</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+
+<body>
+
+    <header>
+        <img src="./images/2RPONTO_BRANCO.png" alt="Logo">
+        <div class="user-info">
+            <div class="user-icon">
+                <i class="fas fa-user-circle fa-2x"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-matricula">Matrícula: 12345</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+
+        <nav class="menu-lateral">
+
+            <ul>
+                <li class="item-menu" id="homeMenuItem">
+                    <a href="./home.html">
+                        <span class="icon"><i class="bi bi-house-door"></i></span>
+                        <span class="txt-link">Home</span>
+                    </a>
+                </li>
+                <li class="item-menu ativo" id="dashboardMenuItem">
+                    <a href="./dashboard.html">
+                        <span class="icon"><i class="bi bi-speedometer2"></i></span>
+                        <span class="txt-link">Dashboard</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="usuarioMenuItem">
+                    <a href="./cadastroUsuario.html">
+                        <span class="icon"><i class="bi bi-people"></i></span>
+                        <span class="txt-link">Usuários</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="listaUsuarioMenuItem">
+                    <a href="./listaUsuario.html">
+                        <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                        <span class="txt-link">ListaUsuários</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="clientesMenuItem">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-buildings"></i></span>
+                        <span class="txt-link">Clientes</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="crMenuItem">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-collection"></i></span>
+                        <span class="txt-link">CR</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="horasExtrasMenuItem">
+                    <a href="./apontarHoraExtra.html">
+                        <span class="icon"><i class="bi bi-clock"></i></span>
+                        <span class="txt-link">HorasExtras</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="sobreavisoMenuItem">
+                    <a href="./apontarSobreAviso.html">
+                        <span class="icon"><i class="bi bi-calendar-check"></i></span>
+                        <span class="txt-link">Sobreaviso</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="listaApontamentosMenuItem">
+                    <a href="./listarApontamentos.html">
+                        <span class="icon"><i class="bi bi-card-list"></i></span>
+                        <span class="txt-link">ListaApontamentos</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="aprovarApontamentoMenuItem">
+                    <a href="./aprovarApontamento.html">
+                        <span class="icon"><i class="bi bi-card-checklist"></i></span>
+                        <span class="txt-link">AprovarApontamentos</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="relatoriosMenuItem">
+                    <a href="/gerarRelatorio.html">
+                        <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
+                        <span class="txt-link">Relatorios</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="ParametrizacaoMenuItem">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-bar-chart"></i></span>
+                        <span class="txt-link">Parametrização</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="logoutMenuItem">
+                    <a href="./index.html">
+                        <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                        <span class="txt-link">Logout</span>
+                    </a>
+                </li>
+
+            </ul>
+
+
+        </nav>
+
+        <div class="dashboard">
+            <h1>Dashboard</h1>
+            <div class="chart-container" style="position: relative; height:40vh; width:40vh">
+                <canvas id="stats-qtd-mes"></canvas>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+        var homeItem = document.querySelectorAll('.item-menu')
+
+        function selectLink() {
+            homeItem.forEach((item) =>
+                item.classList.remove('ativo')
+            )
+            this.classList.add('ativo')
+        }
+
+        homeItem.forEach((item) =>
+            item.addEventListener('click', selectLink)
+        )
+
+    </script>
+
+    <script src="scriptAuth.js" defer></script>
+    <script src="scriptMenu.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            verificaLogin();
+
+            const ctxStatsQtdMes = document.getElementById('stats-qtd-mes');
+            let chartStatsQtdMes;
+
+            fetch(
+                "/api/dashboard/estatisticaApontamentos",
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization": obtemToken(),
+                    }  
+                }
+            ).then((response) => {
+                if(response.status == 401) {
+                    alert("Sua sessão expirou!");
+                    resetToken();
+                    verificaLogin();
+                }
+                return response.json();
+            }).then((data) => {
+                console.log(data);
+
+                new Chart(ctxStatsQtdMes, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Pendentes', 'Aprovados', 'Reprovados'],
+                        datasets: [{
+                            label: 'Quantidade de Apontamentos',
+                            data: [data.pendentes, data.aprovados, data.reprovados],
+                            backgroundColor: [
+                                "#A9A9A988",
+                                "#4CAF5088",
+                                "#EF535088",
+                            ],
+                            borderColor: [
+                                "#A9A9A9",
+                                "#4CAF50",
+                                "#EF5350",
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Quantidade de Apontamentos'
+                            },
+                            legend: {
+                                display: false,
+                            }
+                        },
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
