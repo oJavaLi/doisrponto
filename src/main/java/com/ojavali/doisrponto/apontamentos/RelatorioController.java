@@ -1,14 +1,10 @@
 package com.ojavali.doisrponto.apontamentos;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ojavali.doisrponto.usuarios.User;
 import com.ojavali.doisrponto.usuarios.UserRepository;
 
-
-import com.opencsv.CSVWriter;
 
 @RestController
 public class RelatorioController {
@@ -40,7 +34,6 @@ public class RelatorioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
         }
         
-        User user = userOptional.get();
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         List<String[]> relatorio = new ArrayList<>();
         

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_home.css">
+    <title>Nome da Sua Aplicação - Cadastro de CR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e293b;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #1e293b;
+            color: #fff;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            max-height: 42px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .user-icon {
+            margin-right: 10px;
+        }
+
+        .user-icon i {
+            font-size: 2rem;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 1.2rem;
+        }
+
+        .user-matricula {
+            font-size: 0.9rem;
+        }
+
+        .content {
+            display: flex;
+            height: calc(100vh - 58px);
+        }
+
+        .menu-lateral {
+            width: 60px;
+            height: calc(100vh - 58px);
+            background-color: #2E5276;
+            padding: 0px;
+            box-shadow: 3px 0 0 #3498db;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            transition: .2s;
+        }
+
+        .menu-lateral:hover {
+            width: 250px;
+        }
+
+        ul {
+            height: 100%;
+            list-style-type: none;
+            padding: 0%;
+        }
+
+        ul li.item-menu {
+            transition: .2s;
+        }
+
+        ul li.ativo {
+            background-color: #3498db;
+        }
+
+        ul li.item-menu:hover {
+            background-color: #3498db;
+        }
+
+        ul li.item-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 10px 6%;
+            display: flex;
+            line-height: 30px;
+        }
+
+        ul li.item-menu a .txt-link {
+            margin-left: 40px;
+        }
+
+        ul li.item-menu a .icon>i {
+            font-size: 23px;
+            margin-left: 10px;
+        }
+
+        .tela {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .cr-form {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            flex-grow: 1;
+            width: 850px;
+        }
+
+        .cr-form h2 {
+            text-align: center;
+            color: #1e293b;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-input {
+    width: 100%; /* Utiliza 100% da largura do contêiner pai */
+    max-width: 400px; /* Ajuste a largura máxima conforme necessário */
+    padding: 5px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+        .create-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 3rem;
+            margin-left: 0px;
+        }
+
+        .create-button:hover {
+            opacity: 0.8;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid rgb(0, 0, 0);
+            border-collapse: collapse;
+            padding: 0.25rem 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f7f5f5;
+        }
+
+        .view-button,
+        .edit-button,
+        .remove-button {
+            border: none;
+            border-radius: 4px;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .view-button {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .edit-button {
+            background-color: #f39c12;
+            color: #fff;
+        }
+
+        .remove-button {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .view-button:hover,
+        .edit-button:hover,
+        .remove-button:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            background-color: #1e293b;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="./images/2RPONTO_BRANCO.png" alt="Logo">
+        <div class="user-info">
+            <div class="user-icon">
+                <i class="fas fa-user-circle fa-2x"></i>
+            </div>
+            <div class="user-details">
+                <div class="user-matricula">Matrícula: 12345</div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="content">
+        <nav class="menu-lateral">
+            <ul>
+                <li class="item-menu" id="homeMenuItem">
+                    <a href="./home.html">
+                        <span class="icon"><i class="bi bi-house-door"></i></span>
+                        <span class="txt-link">Home</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="dashboardMenuItem">
+                    <a href="./dashboard.html">
+                        <span class="icon"><i class="bi bi-speedometer2"></i></span>
+                        <span class="txt-link">Dashboard</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="usuarioMenuItem">
+                    <a href="./cadastroUsuario.html">
+                        <span class="icon"><i class="bi bi-people"></i></span>
+                        <span class="txt-link">Usuários</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="listaUsuarioMenuItem">
+                    <a href="./listaUsuario.html">
+                        <span class="icon"><i class="bi bi-person-lines-fill"></i></span>
+                        <span class="txt-link">ListaUsuários</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="clientesMenuItem">
+                    <a href="./clientes.html">
+                        <span class="icon"><i class="bi bi-buildings"></i></span>
+                        <span class="txt-link">Clientes</span>
+                    </a>
+                </li>
+                <li class="item-menu ativo" id="crMenuItem">
+                    <a href="./cr.html">
+                        <span class="icon"><i class="bi bi-collection"></i></span>
+                        <span class="txt-link">CR</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="horasExtrasMenuItem">
+                    <a href="./apontarHoraExtra.html">
+                        <span class="icon"><i class="bi bi-clock"></i></span>
+                        <span class="txt-link">HorasExtras</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="sobreavisoMenuItem">
+                    <a href="./apontarSobreAviso.html">
+                        <span class="icon"><i class="bi bi-calendar-check"></i></span>
+                        <span class="txt-link">Sobreaviso</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="listaApontamentosMenuItem">
+                    <a href="./listarApontamentos.html">
+                        <span class="icon"><i class="bi bi-card-list"></i></span>
+                        <span class="txt-link">ListaApontamentos</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="aprovarApontamentoMenuItem">
+                    <a href="./aprovarApontamento.html">
+                        <span class="icon"><i class="bi bi-card-checklist"></i></span>
+                        <span class="txt-link">AprovarApontamentos</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="relatoriosMenuItem">
+                    <a href="/gerarRelatorio.html">
+                        <span class="icon"><i class="bi bi-graph-up-arrow"></i></span>
+                        <span class="txt-link">Relatorios</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="ParametrizacaoMenuItem">
+                    <a href="/parametrizacao.html">
+                        <span class="icon"><i class="bi bi-bar-chart"></i></span>
+                        <span class="txt-link">Parametrização</span>
+                    </a>
+                </li>
+                <li class="item-menu" id="logoutMenuItem">
+                    <a href="./index.html">
+                        <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                        <span class="txt-link">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="cr-form">
+            <h2>Cadastro de CR (Centro de Resultados)</h2>
+            <form id="crForm">
+                <div>
+                    <label for="codigoCR" class="form-label">Código do CR:</label>
+                    <input type="text" id="codigoCR" name="codigoCR" class="form-input" required>
+                </div>
+                <div>
+                    <label for="nomeCR" class="form-label">Nome do CR:</label>
+                    <input type="text" id="nomeCR" name="nomeCR" class="form-input" required>
+                </div>
+                <div>
+                    <label for="siglaCR" class="form-label">Sigla do CR:</label>
+                    <input type="text" id="siglaCR" name="siglaCR" class="form-input" required>
+                </div>
+
+                <button type="button" onclick="cadastrarCR()" class="create-button">
+                    <i class="fas fa-plus"></i> Cadastrar CR
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scriptAuth.js" defer></script>
+    <script src="scriptMenu.js" defer></script>
+    <script>
+        const cadastrarCR = async () => {
+            const codigoCR = document.getElementById('codigoCR').value;
+            const nomeCR = document.getElementById('nomeCR').value;
+            const siglaCR = document.getElementById('siglaCR').value;
+
+
+            alert("CR cadastrado com sucesso.");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            verificaLogin();
+        });
+    </script>
+</body>
+
+</html>

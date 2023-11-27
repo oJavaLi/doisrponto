@@ -48,3 +48,14 @@ ALTER TABLE apontamentos ADD CONSTRAINT apontamentos_avaliador_matricula_fkey FO
 ALTER TABLE public.apontamentos ALTER COLUMN data_hora_inicio TYPE varchar USING data_hora_inicio::varchar;
 
 ALTER TABLE public.apontamentos ALTER COLUMN data_hora_fim TYPE varchar USING data_hora_fim::varchar;
+
+CREATE TABLE parametrizacao (
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(255),
+    verba BIGINT,
+    horas DOUBLE PRECISION,
+    porcentagem DOUBLE PRECISION,
+    descricao VARCHAR(255)
+);
+
+INSERT INTO public.parametrizacao(tipo, verba, horas, porcentagem, descricao) VALUES('Sobreaviso', 3016, 1.0, 30.0, 'Horas apontadas em sobreaviso.');
