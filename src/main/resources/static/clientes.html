@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_home.css">
-    <title>"2RPonto"</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>2RPonto - Cadastro de Clientes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,7 +16,7 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        
+
         header {
             background-color: #1e293b;
             color: #fff;
@@ -25,43 +25,43 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         header img {
             max-height: 42px;
         }
-        
+
         .user-info {
             display: flex;
             align-items: center;
             color: #fff;
         }
-        
+
         .user-icon {
             margin-right: 10px;
         }
-        
+
         .user-icon i {
             font-size: 2rem;
         }
-        
+
         .user-details {
             display: flex;
             flex-direction: column;
         }
-        
+
         .user-name {
             font-size: 1.2rem;
         }
-        
+
         .user-matricula {
             font-size: 0.9rem;
         }
-        
+
         .content {
             display: flex;
             height: calc(100vh - 58px);
         }
-        
+
         .menu-lateral {
             width: 60px;
             height: calc(100vh - 58px);
@@ -73,29 +73,29 @@
             overflow: hidden;
             transition: .2s;
         }
-        
+
         .menu-lateral:hover {
             width: 250px;
         }
-        
+
         ul {
             height: 100%;
             list-style-type: none;
             padding: 0%;
         }
-        
+
         ul li.item-menu {
             transition: .2s;
         }
-        
+
         ul li.ativo {
             background-color: #3498db;
         }
-        
+
         ul li.item-menu:hover {
             background-color: #3498db;
         }
-        
+
         ul li.item-menu a {
             color: #ffffff;
             text-decoration: none;
@@ -104,16 +104,16 @@
             display: flex;
             line-height: 30px;
         }
-        
+
         ul li.item-menu a .txt-link {
             margin-left: 40px;
         }
-        
-        ul li.item-menu a .icon > i {
+
+        ul li.item-menu a .icon>i {
             font-size: 23px;
             margin-left: 10px;
         }
-        
+
         .tela {
             display: flex;
             flex-direction: column;
@@ -122,8 +122,8 @@
             padding: 2rem;
             flex-grow: 1;
         }
-        
-        .parametrizacao-form {
+
+        .clientes-form {
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -132,24 +132,25 @@
             flex-grow: 1;
             width: 850px;
         }
-        
-        .parametrizacao-form h2 {
+
+        .clientes-form h2 {
             text-align: center;
             color: #1e293b;
         }
-        
+
         .form-label {
             font-weight: bold;
         }
-        
+
         .form-input {
-            width: 800px;
-            padding: 5px;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        
+    width: 100%; /* Utiliza 100% da largura do contêiner pai */
+    max-width: 400px; /* Ajuste a largura máxima conforme necessário */
+    padding: 5px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
         .create-button {
             background-color: #3498db;
             color: #fff;
@@ -161,11 +162,11 @@
             margin-top: 3rem;
             margin-left: 0px;
         }
-        
+
         .create-button:hover {
             opacity: 0.8;
         }
-        
+
         table,
         th,
         td {
@@ -173,21 +174,21 @@
             border-collapse: collapse;
             padding: 0.25rem 0.5rem;
         }
-        
+
         table {
             width: 100%;
             border-radius: 20px;
         }
-        
+
         th {
             background-color: #3498db;
             color: #fff;
         }
-        
+
         tr:hover {
             background-color: #f7f5f5;
         }
-        
+
         .view-button,
         .edit-button,
         .remove-button {
@@ -197,28 +198,28 @@
             cursor: pointer;
             font-size: 0.8rem;
         }
-        
+
         .view-button {
             background-color: #3498db;
             color: #fff;
         }
-        
+
         .edit-button {
             background-color: #f39c12;
             color: #fff;
         }
-        
+
         .remove-button {
             background-color: #e74c3c;
             color: #fff;
         }
-        
+
         .view-button:hover,
         .edit-button:hover,
         .remove-button:hover {
             opacity: 0.8;
         }
-        
+
         footer {
             background-color: #1e293b;
             color: #fff;
@@ -227,6 +228,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -239,14 +241,11 @@
                 <div class="user-matricula">Matrícula: 12345</div>
             </div>
         </div>
+
     </header>
 
-    
-
-    <div class="content"> 
-        
+    <div class="content">
         <nav class="menu-lateral">
-
             <ul>
                 <li class="item-menu" id="homeMenuItem">
                     <a href="./home.html">
@@ -272,7 +271,7 @@
                         <span class="txt-link">ListaUsuários</span>
                     </a>
                 </li>
-                <li class="item-menu" id="clientesMenuItem">
+                <li class="item-menu ativo" id="clientesMenuItem">
                     <a href="./clientes.html">
                         <span class="icon"><i class="bi bi-buildings"></i></span>
                         <span class="txt-link">Clientes</span>
@@ -314,7 +313,7 @@
                         <span class="txt-link">Relatorios</span>
                     </a>
                 </li>
-                <li class="item-menu ativo" id="ParametrizacaoMenuItem">
+                <li class="item-menu" id="ParametrizacaoMenuItem">
                     <a href="/parametrizacao.html">
                         <span class="icon"><i class="bi bi-bar-chart"></i></span>
                         <span class="txt-link">Parametrização</span>
@@ -328,123 +327,66 @@
                 </li>
 
             </ul>
-
-
         </nav>
-        <div class="parametrizacao-form">
-            <h1 class="text-center mb-5" id="page-title"></h1>
+        <div class="clientes-form">
+            <h2>Cadastro de Clientes</h2>
+            <form id="clienteForm">
+                <div>
+                    <label for="razaoSocial" class="form-label">Razão Social:</label>
+                    <input type="text" id="razaoSocial" name="razaoSocial" class="form-input" required>
+                </div>
+                <div>
+                    <label for="cnpj" class="form-label">CNPJ:</label>
+                    <input type="text" id="cnpj" name="cnpj" class="form-input" required oninput="formatarCnpj(this)">
+                </div>
 
-            <form id="parametro-form">
-                <div class="mb-3">
-                    <label for="tipo" class="form-label">Tipo:</label>
-                    <input type="text" class="form-control" id="tipo" name="tipo" required>
-                </div>
-                <div class="mb-3">
-                    <label for="verba" class="form-label">Verba:</label>
-                    <input type="number" class="form-control" id="verba" name="verba" step="1" required>
-                </div>
-                <div class="mb-3">
-                    <label for="horas" class="form-label">Horas:</label>
-                    <input type="number" class="form-control" id="horas" name="horas" step="0.0001" required>
-                </div>
-                <div class="mb-3">
-                    <label for="porcentagem" class="form-label">Porcentagem:</label>
-                    <input type="number" class="form-control" id="porcentagem" name="porcentagem" step="0.01" required>
-                </div>
-                <div class="mb-3">
-                    <label for="descricao" class="form-label">Descrição:</label>
-                    <textarea class="form-control" name="descricao" id="descricao" rows="3"></textarea>
-                </div>
-                <div class="d-flex justify-content-end mt-5" style="gap: 0.5rem">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                    <a href="list.html" class="btn btn-secondary">Cancelar</a>
-                </div>
+                <button type="button" onclick="cadastrarCliente()" class="create-button">
+                    <i class="fas fa-plus"></i> Cadastrar Cliente
+                </button>
             </form>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scriptAuth.js" defer></script>
     <script src="scriptMenu.js" defer></script>
     <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            verificaLogin();
-            const urlParams = new URLSearchParams(window.location.search);
-            const action = urlParams.get("action");
-            const parametroId = urlParams.get("id");
+        const cadastrarCliente = async () => {
+            const razaoSocial = document.getElementById('razaoSocial').value;
+            // Remover caracteres não numéricos do CNPJ
+            const cnpj = document.getElementById('cnpj').value.replace(/\D/g, '');
 
-            const pageTitle = document.getElementById("page-title");
-
-            const parametroForm = document.getElementById("parametro-form");
-            const campoTipo = document.getElementById("tipo");
-            const campoVerba = document.getElementById("verba");
-            const campoHoras = document.getElementById("horas");
-            const campoPorcentagem = document.getElementById("porcentagem");
-            const campoDescricao = document.getElementById("descricao");
-
-            if (action === "update" && parametroId) {
-                pageTitle.textContent = "Editar Parâmetro"
-                try {
-                    const response = await fetch(
-                        `/api/parametros/${parametroId}`,
-                        {
-                            method: "GET",
-                            headers: {
-                                "Authorization": obtemToken(),
-                            }  
-                        }
-                    );
-                    const parametro = await response.json();
-
-                    campoTipo.value = parametro.tipo;
-                    campoVerba.value = parametro.verba;
-                    campoHoras.value = parametro.horas;
-                    campoPorcentagem.value = parametro.porcentagem;
-                    campoDescricao.value = parametro.descricao;
-                } catch (error) {
-                    console.error("Erro ao carregar dados do parâmetro para edição:", error.message);
-                    alert("Erro ao carregar parâmetro!");
-                }
-            } else {
-                pageTitle.textContent = "Novo Parâmetro"
-            }
-
-            parametroForm.addEventListener("submit", async (event) => {
-            event.preventDefault();
-
-            // Obter dados do formulário
-            const formData = new FormData(parametroForm);
-            const parametroData = {};
-            formData.forEach((value, key) => {
-                parametroData[key] = value;
-            });
-
-            // Determinar a URL da API com base na ação
-            const apiUrl = action === "create" ? "/api/parametros" : `/api/parametros/${parametroId}`;
-
-            try {
-                // Realizar ação (create ou update) enviando a requisição à API
-                const response = await fetch(apiUrl, {
-                    method: action === "create" ? "POST" : "PUT",
+            const response = await fetch(
+                "/api/cadastrar_cliente",
+                {
+                    method: "POST",
                     headers: {
-                        "Authorization": obtemToken(),
                         "Content-Type": "application/json",
+                        "Authorization": obtemToken(),
                     },
-                    body: JSON.stringify(parametroData),
-                });
-
-                if (response.status === 201 || response.status === 200) {
-                    // Redirecionar para a página de listagem após a conclusão bem-sucedida
-                    window.location.href = "/parametrizacao.html";
-                } else {
-                    console.error("Erro ao salvar o parâmetro:", response.statusText);
+                    body: JSON.stringify({ razaoSocial, cnpj }),
                 }
-            } catch (error) {
-                console.error("Erro ao salvar o parâmetro:", error.message);
-                alert("Erro ao salvar parâmetro!");
+            );
+
+            if (response.status === 201) {
+                alert("Cliente cadastrado com sucesso.");
+            } else {
+                alert("Erro ao cadastrar cliente.");
             }
+        }
+        const formatarCnpj = (input) => {
+            let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+            if (value.length > 12) {
+                value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
+            } else {
+                value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{0,4})$/, '$1.$2.$3/$4');
+            }
+            input.value = value;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            verificaLogin();
         });
-    });
     </script>
 </body>
+
 </html>
